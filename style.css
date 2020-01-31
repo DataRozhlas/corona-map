@@ -1,0 +1,12 @@
+#corona_map {
+    width: 100%;
+    height: 75vw;
+    max-height: 700px;
+}
+
+.stats {
+    padding: 10px;
+    background-color: white;
+    border-radius: 10px;
+    font-weight: bold;
+}
