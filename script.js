@@ -29,7 +29,28 @@ const cNames = {
     "United Arab Emirates": "Spojené arabské emiráty",
     "Philippines": "Filipíny",
     "India": "Indie",
-    "Italy": "Itálie "
+    "Italy": "Itálie ",
+    "Belgium": "Belgie",
+    "Austria": "Rakousko",
+    "Russia": "Rusko",
+    "Sweden": "Švédsko",
+    "UK": "Spojené království",
+    "Spain": "Španělsko",
+    "Switzerland": "Švýcarsko",
+    "Croatia": "Chorvatsko",
+    "Greece": "Řecko",
+    "Lebanon": "Libanon",
+    "Brazil": "Brazílie",
+    "Algeria": "Alžírsko",
+    "Lebanon": "Libanon",
+    "Afghanistan": "Afghánistán",
+    "Iraq": "Irák",
+    "Iran": "Írán",
+    "Malaysia": "Malajsie",
+    "Oman": "Omán",
+    "Israel": "Izrael",
+    "Bahrain": "Bahrajn",
+    "Kuwait": "Kuvajt"
 }
 
 fetch(sURL)
