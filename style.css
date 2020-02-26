@@ -3,6 +3,10 @@
     padding-top: 70%;
 }
 
+#corona_count {
+    width: 100%;
+}
+
 .stats {
     padding: 7px;
     background-color: white;
