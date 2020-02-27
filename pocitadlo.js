@@ -12,6 +12,10 @@ function niceDate(val) {
       const vylec = [];
   
       data.features.forEach((ftr) => {
+        if ( (window.screen.width < 600) & (ftr.attributes.Report_Date < 1581292800000) ) { // omezeni sire mobil (po 10. 2.)
+          return
+        }
+
         days.push(niceDate(ftr.attributes.Report_Date_String));
         cina.push(ftr.attributes.Mainland_China);
         svet.push(ftr.attributes.Other_Locations);
