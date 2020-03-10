@@ -50,7 +50,10 @@ const cNames = {
     "Oman": "Omán",
     "Israel": "Izrael",
     "Bahrain": "Bahrajn",
-    "Kuwait": "Kuvajt"
+    "Kuwait": "Kuvajt",
+    "Slovakia": "Slovensko",
+    "Hungary": "Maďarsko",
+    "Czech Republic": "Česko",
 }
 
 fetch(sURL)
