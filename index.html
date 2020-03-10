@@ -10,6 +10,18 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highcharts/8.0.0/highcharts.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.15.0/d3.min.js"></script>
 
+<div id="corona_dboard">
+    <div id="corona_dboard_overview">
+        <h3>Celková čísla</h3>
+        <p>Celkem nakažených: <span id="corona_sum_conf"></span></p>
+        <p>Celkem mrtvých: <span id="corona_sum_deaths"></span></p>
+        <p>Celkem zotavených: <span id="corona_sum_recov"></span></p>
+        <p><span id="corona_stats_updated"></span></p>
+    </div>
+    <div id="corona_dboard_eu"></div>
+    <div id="corona_dboard_world"></div>
+</div>
+
 <div id="corona_eu"></div>
 
 <div id="corona_map"></div>
@@ -17,7 +29,7 @@
 <div id="corona_count"></div>
 
 
-
+<script src="./dashboard.js"></script>
 <script src="./script.js"></script>
 <script src="./pocitadlo-eu.js"></script>
 <script src="./pocitadlo.js"></script>

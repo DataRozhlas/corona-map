@@ -3,7 +3,7 @@
     padding-top: 70%;
 }
 
-#corona_count {
+#corona_count, #corona_eu {
     width: 100%;
 }
 
@@ -12,4 +12,23 @@
     background-color: white;
     border-radius: 10px;
     font-weight: bold;
+}
+
+#corona_dboard {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+#corona_dboard div {
+    margin: 5px;
+    padding: 5px;
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 5px;
+
+}
+
+#corona_stats_updated {
+    font-size: x-small;
 }
