@@ -117,9 +117,9 @@
                             shared: true
                         },
                         legend: {
-                            layout: 'vertical',
-                            align: 'right',
-                            verticalAlign: 'middle'
+                            layout: 'horizontal',
+                            align: 'center',
+                            verticalAlign: 'bottom'
                         },
                         plotOptions: {
                             line: {
