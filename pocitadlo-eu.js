@@ -42,7 +42,7 @@
                 const tmp = []
                 Object.keys(v).forEach(day => {
                     if ( (day.indexOf('/20') > -1) & (Date.parse(day) >= 1581292800000) ) { // po 10. 2.
-                        tmp.push([Date.parse(day), parseInt(v[day])])
+                        tmp.push([Date.parse(day) + 86400000, parseInt(v[day])])
                     }
                 })
                 srs.push(
@@ -58,6 +58,8 @@
                 )
             })
 
+            console.log(srs)
+
             fetch('https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_19-covid-Deaths.csv')
                 .then((response) => response.text())
                 .then((data) => {
@@ -67,7 +69,7 @@
                         const tmp = []
                         Object.keys(v).forEach(day => {
                             if ( (day.indexOf('/20') > -1) & (Date.parse(day) >= 1581292800000) ) { // po 10. 2.
-                                tmp.push([Date.parse(day), parseInt(v[day])])
+                                tmp.push([Date.parse(day) + 86400000, parseInt(v[day])])
                             }
                         })
                         srs.push(
