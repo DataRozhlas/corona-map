@@ -134,7 +134,7 @@
                             fetch('https://api.github.com/repos/CSSEGISandData/COVID-19/commits?path=csse_covid_19_data/csse_covid_19_time_series/time_series_19-covid-Confirmed.csv')
                                 .then((response) => response.json())
                                 .then((data) => {
-                                    document.getElementById('corona_stats_updated').innerHTML = '<a target="_blank" href="https://github.com/CSSEGISandData/COVID-19">Aktualizováno</a> ' + niceDate(data[0].commit.committer.date)
+                                    document.getElementById('corona_stats_updated').innerHTML = 'Aktualizováno ' + niceDate(data[0].commit.committer.date) + ', <a target="_blank" href="https://github.com/CSSEGISandData/COVID-19">Johns Hopkins CSSE</a>'
                                 })
                         })
                 })
