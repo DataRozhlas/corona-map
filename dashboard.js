@@ -87,125 +87,98 @@
       }
 
     const euNames = {
-            "Germany": "Německo",
-            "Finland": "Finsko",
-            "Italy": "Itálie",
-            "UK": "Spojené království",
-            "Sweden": "Švédsko",
-            "Spain": "Španělsko",
-            "Belgium": "Belgie",
-            "Croatia": "Chorvatsko",
-            "Switzerland": "Švýcarsko",
-            "Austria": "Rakousko",
-            "Greece": "Řecko",
-            "Norway": "Norsko",
-            "Romania": "Rumunsko",
-            "Denmark": "Dánsko",
-            "Estonia": "Estonsko",
-            "Netherlands": "Holandsko",
-            "Ireland": "Irsko",
-            "Luxembourg": "Lucembursko",
-            "Czech Republic": "Česko",
-            "Portugal": "Portugalsko",
-            "Latvia": "Lotyšsko",
-            "Ukraine": "Ukrajina",
-            "Hungary": "Maďarsko",
-            "Liechtenstein": "Lichtenštejnsko",
-            "Poland": "Polsko",
-            "Slovenia": "Slovinsko",
-            "Slovakia": "Slovensko",
-            "Bulgaria": "Bulharsko",
-            "Cyprus": "Kypr",
+        "Germany": "Německo",
+        "Finland": "Finsko",
+        "Italy": "Itálie",
+        "UK": "Spojené království",
+        "Sweden": "Švédsko",
+        "Spain": "Španělsko",
+        "Belgium": "Belgie",
+        "Croatia": "Chorvatsko",
+        "Switzerland": "Švýcarsko",
+        "Austria": "Rakousko",
+        "Greece": "Řecko",
+        "Norway": "Norsko",
+        "Romania": "Rumunsko",
+        "Denmark": "Dánsko",
+        "Estonia": "Estonsko",
+        "Netherlands": "Holandsko",
+        "Ireland": "Irsko",
+        "Luxembourg": "Lucembursko",
+        "Czech Republic": "Česko",
+        "Portugal": "Portugalsko",
+        "Latvia": "Lotyšsko",
+        "Ukraine": "Ukrajina",
+        "Hungary": "Maďarsko",
+        "Liechtenstein": "Lichtenštejnsko",
+        "Poland": "Polsko",
+        "Slovenia": "Slovinsko",
+        "Slovakia": "Slovensko",
+        "Bulgaria": "Bulharsko",
+        "Cyprus": "Kypr",
     }
 
-    let confirmed,
-        deaths,
-        revovered
-
-    function getLastVal(obj) {
-        const tmp = Object.keys(obj).map(v => {
-            if (v.indexOf('/20') > -1) {
-                return [Date.parse(v), v ]
-            }
-        })
-        return parseInt(obj[tmp.sort( (a,b) => b[0] - a[0] )[0][1]])
-    }
-
-    function dumpDashBoard(names, div, cnt) {
+    function dumpDashBoard(rows, div, cnt) {
         let npis = 'Svět'
         if (div === 'corona_dboard_eu') {
             npis = 'Evropa'
         }
         document.getElementById(div).innerHTML = `<h3>${npis}</h3>`
-        const dumpTmp = []
-        Object.keys(names).forEach(v => {
-            const sel_confirmed = confirmed.filter(row => row['Country/Region'] === v)
-            const sel_deaths = deaths.filter(row => row['Country/Region'] === v)
-            const sel_recovered = recovered.filter(row => row['Country/Region'] === v)
-
-            const sum_confirmed = sel_confirmed.map(row => getLastVal(row)).reduce((a, b) => a + b, 0)
-            const sum_deaths = sel_deaths.map(row => getLastVal(row)).reduce((a, b) => a + b, 0)
-            const sum_recovered = sel_recovered.map(row => getLastVal(row)).reduce((a, b) => a + b, 0)
-
-            dumpTmp.push([names[v], sum_confirmed, sum_deaths, sum_recovered])
-        })
 
         if (cnt === -1) {
-            cnt = dumpTmp.length
+            cnt = rows.length
         }
 
-        dumpTmp.sort((row1, row2) => row2[1] - row1[1]).splice(0, cnt).forEach(txtRow => {
-            document.getElementById(div).innerHTML += `<p><b>${txtRow[0]}</b><br>Nakažených: ${txtRow[1]}, mrtvých: ${txtRow[2]}, zotavených: ${txtRow[3]}</p>`
+        rows.sort((row1, row2) => row2[1] - row1[1]).slice(0, cnt).forEach(txtRow => {
+            document.getElementById(div).innerHTML += `<p><b>${txtRow[0]}</b><br>Nakažených: ${txtRow[1]}, mrtvých: ${txtRow[4]}, zotavených: ${txtRow[5]}</p>`
         })
 
-        if (cnt < dumpTmp.length) { // odkaz na rozbaleni
+        if (cnt < rows.length) { // odkaz na rozbaleni
             document.getElementById(div).innerHTML += `<p><a id="corona_dump_all_${div}" href="#/">Ukázat všechny</a></p>`
-            document.getElementById(`corona_dump_all_${div}`).onclick = () => dumpDashBoard(names, div, -1)
+            document.getElementById(`corona_dump_all_${div}`).onclick = () => dumpDashBoard(rows, div, -1)
         }    
     }
 
-    function niceDate(ugly) {
-        const dParts = ugly.split('T')[0].split('-')
-        const tParts = ugly.split('T')[1].split('Z')[0].split(':')
-        console.log(ugly)
-        return `${parseInt(dParts[2])}. ${parseInt(dParts[1])}. v ${parseInt(tParts[0]) + 1}:${dParts[1]}`
-    }
-    
-    fetch('https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_19-covid-Confirmed.csv')
+    fetch('https://docs.google.com/spreadsheets/d/e/2PACX-1vR30F8lYP3jG7YOq8es0PBpJIE5yvRVZffOyaqC0GgMBN6yt0Q-NI8pxS7hd1F9dYXnowSC6zpZmW9D/pub?gid=0&single=true&output=csv')
         .then((response) => response.text())
         .then((data) => {
-            confirmed = d3.csvParse(data)
+            const d = d3.csvParse(data.split('\n').slice(5,).join('\n'))
+            let dumpEU = []
+            let dumpWrld = []
+            d.forEach(v => {
+                const cases = parseInt(v['Cases'].replace(',', '')) || 0
+                const serious = parseInt(v['Serious'].replace(',', '')) || 0
+                const critical = parseInt(v['Critical'].replace(',', '')) || 0
+                const deaths = parseInt(v['Deaths'].replace(',', '')) || 0
+                const recovered = parseInt(v['Recovered'].replace(',', '')) || 0
+                const country = v['OTHER PLACES']
 
-            fetch('https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_19-covid-Deaths.csv')
-                .then((response) => response.text())
-                .then((data) => {
-                    deaths = d3.csvParse(data)
+                if (Object.keys(euNames).indexOf(country) > -1) {
+                    dumpEU.push([euNames[country], cases, serious, critical, deaths, recovered])
+                } else {
+                    dumpWrld.push([cNames[country] || country, cases, serious, critical, deaths, recovered])
+                }
+            })
+            // celková čísla
+            document.getElementById('corona_sum_conf').innerText = dumpWrld.filter(v => v[0] === 'TOTAL')[0][1]
+            document.getElementById('corona_sum_deaths').innerText = dumpWrld.filter(v => v[0] === 'TOTAL')[0][4]
+            document.getElementById('corona_sum_recov').innerText = dumpWrld.filter(v => v[0] === 'TOTAL')[0][5]
+            
+            let omit = ['TOTAL', 'Queue', 'Diamond Princess']
+            omit.forEach(om => {
+                try {
+                    const idx = dumpWrld.indexOf(dumpWrld.filter(v => v[0] === om)[0])
+                    if (idx !== -1) dumpWrld.splice(idx, 1)
+                } catch(err) {}
+            })
+            // EU státy
+            dumpDashBoard(dumpEU, 'corona_dboard_eu', 5)
+            // svet
+            dumpDashBoard(dumpWrld, 'corona_dboard_world', 5)
+            // celková čísla
 
-                    fetch('https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_19-covid-Recovered.csv')
-                        .then((response) => response.text())
-                        .then((data) => {
-                            recovered = d3.csvParse(data)
+            
 
-                            // celková čísla
-                            document.getElementById('corona_sum_conf').innerText = confirmed.map(v => getLastVal(v)).reduce((a, b) => a + b, 0)
-                            document.getElementById('corona_sum_deaths').innerText = deaths.map(v => getLastVal(v)).reduce((a, b) => a + b, 0)
-                            document.getElementById('corona_sum_recov').innerText = recovered.map(v => getLastVal(v)).reduce((a, b) => a + b, 0)
-
-                            // EU státy
-                            dumpDashBoard(euNames, 'corona_dboard_eu', 5)
-                            // svet
-                            dumpDashBoard(cNames, 'corona_dboard_world', 5)
-
-                            // last update
-                            fetch('https://api.github.com/repos/CSSEGISandData/COVID-19/commits?path=csse_covid_19_data/csse_covid_19_time_series/time_series_19-covid-Confirmed.csv')
-                                .then((response) => response.json())
-                                .then((data) => {
-                                    document.getElementById('corona_stats_updated').innerHTML = 'Aktualizováno ' + niceDate(data[0].commit.committer.date) + ', <a target="_blank" href="https://github.com/CSSEGISandData/COVID-19">Johns Hopkins CSSE</a>'
-                                })
-                        })
-                })
+            
         })
-})()
-
-
-
+    })()
