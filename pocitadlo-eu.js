@@ -1,6 +1,6 @@
 (function() {
     const cNames = {
-        "France": "Francie",
+        //"France": "Francie",
         "Germany": "Německo",
         "Italy": "Itálie",
         "Austria": "Rakousko",
@@ -10,6 +10,7 @@
         "Slovakia": "Slovensko",
         "Hungary": "Maďarsko",
         "Czech Republic": "Česko",
+        "Czechia": "Česko",
     }
     const colors = {
         "Francie": ['#2CB314', '#8BFA78'],
