@@ -120,6 +120,7 @@ const cNames = {
     "Slovakia": "Slovensko",
     "Bulgaria": "Bulharsko",
     "Cyprus": "Kypr",
+    "France": "Francie",
 }
 
 fetch(sURL)

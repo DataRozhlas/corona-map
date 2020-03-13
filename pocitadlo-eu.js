@@ -37,9 +37,10 @@
         .then((response) => response.text())
         .then((data) => {
             const srs = []
-            d3.csvParse(data).filter( v => { 
+            const stateFiltered = d3.csvParse(data).filter( v => { 
                 return Object.keys(cNames).indexOf(v['Country/Region']) > -1
-            }).forEach(v => {
+            })
+            stateFiltered.forEach(v => {
                 const tmp = []
                 Object.keys(v).forEach(day => {
                     if ( (day.indexOf('/20') > -1) & (Date.parse(day) >= 1581292800000) ) { // po 10. 2.
