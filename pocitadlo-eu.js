@@ -1,6 +1,6 @@
 (function() {
     const cNames = {
-        //"France": "Francie",
+        "France": "Francie",
         "Germany": "Německo",
         "Italy": "Itálie",
         "Austria": "Rakousko",
@@ -41,6 +41,7 @@
                 return Object.keys(cNames).indexOf(v['Country/Region']) > -1
             })
             stateFiltered.forEach(v => {
+                if ( (v['Country/Region'] === 'France') & (v['Province/State'] !== 'France') ) { return }
                 const tmp = []
                 Object.keys(v).forEach(day => {
                     if ( (day.indexOf('/20') > -1) & (Date.parse(day) >= 1581292800000) ) { // po 10. 2.
@@ -66,6 +67,7 @@
                     d3.csvParse(data).filter( v => {
                         return Object.keys(cNames).indexOf(v['Country/Region']) > -1
                     }).forEach(v => {
+                        if ( (v['Country/Region'] === 'France') & (v['Province/State'] !== 'France') ) { return }
                         const tmp = []
                         Object.keys(v).forEach(day => {
                             if ( (day.indexOf('/20') > -1) & (Date.parse(day) >= 1581292800000) ) { // po 10. 2.

@@ -125,6 +125,8 @@
         "Cyprus": "Kypr",
         "France": "Francie",
         "Czechia": "Česko",
+        "Korea, South": "Jižní Korea",
+        "Taiwan*": "Taiwan",
     }
 
     fetch(sURL)
