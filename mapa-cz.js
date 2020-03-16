@@ -15,6 +15,10 @@
                 chart: {
                     map: geojson
                 },
+                credits: {
+                    href: 'https://apify.com/petrpatek/covid-cz',
+                    text: 'MZ ČR, Apify',
+                },
                 title: {
                     text: `Nakažení v krajích ČR k ${upDate[2]}. ${upDate[1]}.`
                 },
@@ -35,7 +39,7 @@
                     name: 'Nakažení:',
                     states: {
                         hover: {
-                            color: '#a4edba'
+                            color: '#de2d26'
                         }
                     },
                     tooltip: {
