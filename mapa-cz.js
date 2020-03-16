@@ -7,7 +7,7 @@
             })
             const upDate = data.lastUpdatedAtSource.split('T')[0].split('-')
 
-    fetch('./kraje.json')
+    fetch('https://data.irozhlas.cz/corona-map/kraje.json')
         .then((response) => response.json())
         .then((geojson) => {
             // Initiate the chart
