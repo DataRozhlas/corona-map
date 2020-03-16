@@ -19,6 +19,7 @@
         "Korea, South": "Jižní Korea",
         "Taiwan*": "Taiwan",
         "Singapore": "Singapur",
+        "Hong Kong": "Hong Kong",
     }
     
     fetch('https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_19-covid-Confirmed.csv')
@@ -26,6 +27,9 @@
         .then((data) => {
             const cleaned = d3.csvParse(data).map(row => {
                 let cntry = row['Country/Region']
+                if (row['Province/State'] === 'Hong Kong') { // HK separe od Ciny
+                    cntry = 'Hong Kong'
+                }
                 delete row['Lat']
                 delete row['Long']
                 delete row['Province/State']
@@ -73,6 +77,7 @@
             })
 
             Highcharts.chart('corona_log', {
+                colors: ['#a6cee3','#1f78b4','#b2df8a','#33a02c','#fb9a99','#e31a1c','#fdbf6f','#ff7f00','#cab2d6','#6a3d9a','#b15928', '#8dd3c7','black','#bebada','#fb8072','#80b1d3','#fdb462','#b3de69','#fccde5','#d9d9d9','#bc80bd','#ccebc5'],
                 title: {
                     text: 'Nakažení COVID-19'
                 },
