@@ -94,6 +94,7 @@
         "Andorra": "Andora",
         "Vatican City": "Vatikán",
         "Turkey": "Turecko",
+        "China": "Čína",
       }
 
     const euNames = {
