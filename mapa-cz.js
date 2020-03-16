@@ -36,7 +36,7 @@
                     data: dat,
                     keys: ['NAZ_CZNUTS3', 'value'],
                     joinBy: 'NAZ_CZNUTS3',
-                    name: 'Nakažení:',
+                    name: 'Nakažení',
                     states: {
                         hover: {
                             color: '#de2d26'
