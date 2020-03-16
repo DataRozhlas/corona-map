@@ -2,7 +2,6 @@
     fetch('https://api.apify.com/v2/key-value-stores/K373S4uCFR9W1K8ei/records/LATEST?disableRedirect=true')
         .then((response) => response.json())
         .then((data) => {
-            console.log(data)
             const srs = []
 
            const tested = data.numberOfTestedGraph.map(v => {
