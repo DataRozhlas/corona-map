@@ -5,15 +5,11 @@
             const srs = []
 
            const tested = data.numberOfTestedGraph.map(v => {
-               return parseInt(v.value.replace(',', ''))
+               return [Date.parse(v.date), parseInt(v.value.replace(',', ''))]
            })
 
-           const dtes = data.numberOfTestedGraph.map(v => {
-            return parseInt(Date.parse(v.date))
-        })
-
            const infected = data.totalPositiveTests.map(v => {
-            return parseInt(v.value.replace(',', ''))
+            return [Date.parse(v.date), parseInt(v.value.replace(',', ''))]
             })
 
             
@@ -58,14 +54,12 @@
                     }
                 },
                 xAxis: {
-                    type: 'category',
-                    categories: dtes,
-
+                    type: 'datetime',
                     labels:{
                         formatter: function(){
                             return Highcharts.dateFormat('%d. %m.', this.value);
                         }
-                        }
+                    }
                 },
                 tooltip: {
                     formatter: function () {
