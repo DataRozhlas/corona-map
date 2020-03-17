@@ -12,6 +12,7 @@
             return [Date.parse(v.date), parseInt(v.value.replace(',', ''))]
             })
 
+            const recovered = [[Date.parse(data.lastUpdatedAtSource), data.recovered]]
             
             srs.push(
                 {
@@ -37,9 +38,22 @@
                 }
             )
             
+            srs.push(
+                {
+                    name: 'Vyléčení',
+                    data: recovered,
+                    color: '#2ca25f',
+                    visible: true,
+                    type: 'scatter',
+                    marker: {
+                        symbol: 'circle'
+                    }
+                }
+            )
+            
             Highcharts.chart('corona_cz_chart', {
                 title: {
-                    text: `Koronavirus: testovaní (${data.totalTested}) a nakažení (${data.infected}) v Česku`
+                    text: `Koronavirus: testovaní (${data.totalTested}), nakažení (${data.infected}) a zotavení (${data.recovered}) v Česku`
                 },
                 subtitle: {
                     text: 'data: <a href="https://koronavirus.mzcr.cz/">MZ ČR</a>, <a href="https://apify.com/petrpatek/covid-cz">Apify</a>',
@@ -55,6 +69,9 @@
                 },
                 xAxis: {
                     type: 'datetime',
+                    endOnTick: true,
+                    showLastLabel: true,
+                    startOnTick: true,
                     labels:{
                         formatter: function(){
                             return Highcharts.dateFormat('%d. %m.', this.value);
