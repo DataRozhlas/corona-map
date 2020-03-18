@@ -95,6 +95,10 @@
         "Vatican City": "Vatikán",
         "Turkey": "Turecko",
         "China": "Čína",
+        "Korea, South": "Jižní Korea",
+        "Taiwan*": "Taiwan",
+        "Congo (Brazzaville)": "Kongo (Kinshasa)",
+        "Republic of the Congo": "Konžská republika",
       }
 
     const euNames = {

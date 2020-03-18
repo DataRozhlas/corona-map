@@ -127,6 +127,8 @@
         "Czechia": "Česko",
         "Korea, South": "Jižní Korea",
         "Taiwan*": "Taiwan",
+        "Congo (Brazzaville)": "Kongo (Kinshasa)",
+        "Republic of the Congo": "Konžská republika",
     }
 
     fetch(sURL)
