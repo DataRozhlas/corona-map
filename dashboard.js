@@ -179,7 +179,7 @@
                 }
             })
             // celková čísla
-            document.getElementById('corona_sum_conf').innerText = dumpWrld.filter(v => v[0] === 'TOTAL')[0][1]
+            document.getElementById('corona_sum_conf').innerText = dumpWrld.filter(v => v[0] === 'TOTAL')[0][1] + ' (zjištěných)'
             document.getElementById('corona_sum_deaths').innerText = dumpWrld.filter(v => v[0] === 'TOTAL')[0][4]
             document.getElementById('corona_sum_recov').innerText = dumpWrld.filter(v => v[0] === 'TOTAL')[0][5]
             
