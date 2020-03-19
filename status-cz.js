@@ -5,9 +5,17 @@
             const dte = data.lastUpdatedAtSource.split('T')[0].split('-')
             const hr = data.lastUpdatedAtSource.split('T')[1].split(':')
             
-            document.getElementById('status_cz_testovani').innerText = data.totalTested
-            document.getElementById('status_cz_nakazeni').innerText = data.infected
-            document.getElementById('status_cz_vyleceni').innerText = data.recovered
+            if ( (document.getElementById('status_cz_testovani').innerText === '') | (parseInt(document.getElementById('status_cz_testovani').innerText) < data.totalTested) ) {
+                document.getElementById('status_cz_testovani').innerText = data.totalTested
+            }
+
+            if ( (document.getElementById('status_cz_nakazeni').innerText === '') | (parseInt(document.getElementById('status_cz_nakazeni').innerText) < data.infected) ) {
+                document.getElementById('status_cz_nakazeni').innerText = data.infected
+            }
+
+            if ( (document.getElementById('status_cz_vyleceni').innerText === '') | (parseInt(document.getElementById('status_cz_vyleceni').innerText) < data.recovered) ) {
+                document.getElementById('status_cz_vyleceni').innerText = data.recovered
+            }
             document.getElementById('status_cz_update').innerText = `${parseInt(dte[2])}. ${parseInt(dte[1])}. v ${parseInt(hr[0]) + 1}:${hr[1]}`
     })
 })()
