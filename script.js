@@ -171,7 +171,7 @@
                 let stats = L.control({position: 'topleft'})
                 stats.onAdd = function(map){
                     let div = L.DomUtil.create('div', 'stats')
-                    div.innerHTML = `Celkem nakažených: ${casesSum}<br>Mrtvých: ${deathsSum}`
+                    div.innerHTML = `Zjištěných nakažených: ${casesSum}<br>Mrtvých: ${deathsSum}`
                     return div;
                 }
                 stats.addTo(mymap)
@@ -189,7 +189,7 @@
                         fillColor: '#de2d26',
                         fillOpacity: 0.5,
                     })
-                    mrk.bindPopup(`<b>${ftr[1] || ''}<br>${cNames[ftr[0]] || ftr[0]}</b><br>Nakaženo: ${ftr[3]}<br>Mrtvých: ${ftr[4]}`)
+                    mrk.bindPopup(`<b>${ftr[1] || ''}<br>${cNames[ftr[0]] || ftr[0]}</b><br>Zjištěno nakažených: ${ftr[3]}<br>Mrtvých: ${ftr[4]}`)
                     mrk.addTo(pinGrp)
                 })
                 pinGrp.addTo(mymap)

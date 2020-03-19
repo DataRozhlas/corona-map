@@ -57,10 +57,10 @@ function niceDate(val) {
           crosshairs: true,
         },
         series: [{
-          name: 'Nakažení v pevninské Číně',
+          name: 'Zjištění nakažení v pevninské Číně',
           data: cina,
         }, {
-          name: 'Případy v ostatních zemích',
+          name: 'Zjištěné případy v ostatních zemích',
           data: svet,
         }, {
           name: 'Celkem vyléčení',

@@ -53,7 +53,7 @@
             
             Highcharts.chart('corona_cz_chart', {
                 title: {
-                    text: `Koronavirus: testovaní (${data.totalTested}), nakažení (${data.infected}) a zotavení (${data.recovered}) v Česku`
+                    text: `Koronavirus: testovaní (${data.totalTested}), zjištění nakažení (${data.infected}) a zotavení (${data.recovered}) v Česku`
                 },
                 subtitle: {
                     text: 'data: <a href="https://koronavirus.mzcr.cz/">MZ ČR</a>, <a href="https://apify.com/petrpatek/covid-cz">Apify</a>',

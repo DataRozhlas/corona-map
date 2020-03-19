@@ -149,7 +149,7 @@
         }
 
         rows.sort((row1, row2) => row2[1] - row1[1]).slice(0, cnt).forEach(txtRow => {
-            document.getElementById(div).innerHTML += `<p><b>${txtRow[0]}</b><br>Nakažených: ${txtRow[1]}, mrtvých: ${txtRow[4]}, zotavených: ${txtRow[5]}</p>`
+            document.getElementById(div).innerHTML += `<p><b>${txtRow[0]}</b><br>Zjištěných nakažených: ${txtRow[1]}, mrtvých: ${txtRow[4]}, zotavených: ${txtRow[5]}</p>`
         })
 
         if (cnt < rows.length) { // odkaz na rozbaleni

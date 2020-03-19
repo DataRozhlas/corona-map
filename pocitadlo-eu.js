@@ -90,7 +90,7 @@
 
                     Highcharts.chart('corona_eu', {
                         title: {
-                            text: 'Nakažení a mrtví v EU v souvislosti s COVID-19'
+                            text: 'Zjištění nakažení a mrtví v EU v souvislosti s COVID-19'
                         },
                         subtitle: {
                             text: 'data: <a href="https://github.com/CSSEGISandData/COVID-19/">JHU CSSE</a>',

@@ -79,10 +79,10 @@
             Highcharts.chart('corona_log', {
                 colors: ['#a6cee3','#1f78b4','#b2df8a','#33a02c','#fb9a99','#e31a1c','#fdbf6f','#ff7f00','#cab2d6','#6a3d9a','#b15928', '#8dd3c7','black','#bebada','#fb8072','#80b1d3','#fdb462','#b3de69','#fccde5','#d9d9d9','#bc80bd','#ccebc5'],
                 title: {
-                    text: 'Nakažení COVID-19'
+                    text: 'Zjištění nakažení COVID-19'
                 },
                 subtitle: {
-                    text: 'po dnech od 100. nakaženého, nakažení na <a href="https://cs.wikipedia.org/wiki/Logaritmick%C3%A1_stupnice">logaritmické stupnici</a>, data: <a href="https://github.com/CSSEGISandData/COVID-19/">JHU CSSE</a>',
+                    text: 'po dnech od 100. zjištěného nakaženého, nakažení na <a href="https://cs.wikipedia.org/wiki/Logaritmick%C3%A1_stupnice">logaritmické stupnici</a>, data: <a href="https://github.com/CSSEGISandData/COVID-19/">JHU CSSE</a>',
                     useHTML: true
                 },
                 credits: {

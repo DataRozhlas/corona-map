@@ -20,7 +20,7 @@
                     text: 'MZ ČR, Apify',
                 },
                 title: {
-                    text: `Nakažení v krajích ČR k ${upDate[2]}. ${upDate[1]}.`
+                    text: `Zjištění nakažení v krajích ČR k ${upDate[2]}. ${upDate[1]}.`
                 },
                 mapNavigation: {
                     enableMouseWheelZoom: false,
@@ -36,7 +36,7 @@
                     data: dat,
                     keys: ['NAZ_CZNUTS3', 'value'],
                     joinBy: 'NAZ_CZNUTS3',
-                    name: 'Nakažení',
+                    name: 'Zjištění nakažení',
                     states: {
                         hover: {
                             color: '#de2d26'
