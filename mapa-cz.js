@@ -3,7 +3,7 @@
         .then((response) => response.json())
         .then((data) => {
             const dat = data.infectedByRegion.map(v => {
-                return [v.region, parseInt(v.value.replace(',', ''))]
+                return [v.region, parseInt(v.value)]
             })
             const upDate = data.lastUpdatedAtSource.split('T')[0].split('-')
 

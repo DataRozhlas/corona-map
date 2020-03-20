@@ -149,7 +149,7 @@
         }
 
         rows.sort((row1, row2) => row2[1] - row1[1]).slice(0, cnt).forEach(txtRow => {
-            document.getElementById(div).innerHTML += `<p><b>${txtRow[0]}</b><br>Zjištěných nakažených: ${txtRow[1]}, mrtvých: ${txtRow[4]}, zotavených: ${txtRow[5]}</p>`
+            document.getElementById(div).innerHTML += `<p><b>${txtRow[0]}</b><br>Zjištěných nakažených: ${txtRow[1]}, mrtvých: ${txtRow[3]}, zotavených: ${txtRow[4]}</p>`
         })
 
         if (cnt < rows.length) { // odkaz na rozbaleni
@@ -166,22 +166,22 @@
             let dumpWrld = []
             d.forEach(v => {
                 const cases = parseInt(v['Cases'].replace(',', '')) || 0
-                const serious = parseInt(v['Serious'].replace(',', '')) || 0
-                const critical = parseInt(v['Critical'].replace(',', '')) || 0
+                const serious = parseInt(v['Serious & Critical'].replace(',', '')) || 0
+                //const critical = parseInt(v['Critical'].replace(',', '')) || 0
                 const deaths = parseInt(v['Deaths'].replace(',', '')) || 0
                 const recovered = parseInt(v['Recovered'].replace(',', '')) || 0
-                const country = v['OTHER PLACES']
+                const country = v['WORLD']
 
                 if (Object.keys(euNames).indexOf(country) > -1) {
-                    dumpEU.push([euNames[country], cases, serious, critical, deaths, recovered])
+                    dumpEU.push([euNames[country], cases, serious, deaths, recovered])
                 } else {
-                    dumpWrld.push([cNames[country] || country, cases, serious, critical, deaths, recovered])
+                    dumpWrld.push([cNames[country] || country, cases, serious, deaths, recovered])
                 }
             })
             // celková čísla
             document.getElementById('corona_sum_conf').innerText = dumpWrld.filter(v => v[0] === 'TOTAL')[0][1] + ' (zjištěných)'
-            document.getElementById('corona_sum_deaths').innerText = dumpWrld.filter(v => v[0] === 'TOTAL')[0][4]
-            document.getElementById('corona_sum_recov').innerText = dumpWrld.filter(v => v[0] === 'TOTAL')[0][5]
+            document.getElementById('corona_sum_deaths').innerText = dumpWrld.filter(v => v[0] === 'TOTAL')[0][3]
+            document.getElementById('corona_sum_recov').innerText = dumpWrld.filter(v => v[0] === 'TOTAL')[0][4]
             
             let omit = ['TOTAL', 'Queue', 'Diamond Princess']
             omit.forEach(om => {

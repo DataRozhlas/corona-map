@@ -5,11 +5,11 @@
             const srs = []
 
            const tested = data.numberOfTestedGraph.map(v => {
-               return [Date.parse(v.date), parseInt(v.value.replace(',', ''))]
+               return [Date.parse(v.date), parseInt(v.value)]
            })
 
            const infected = data.totalPositiveTests.map(v => {
-            return [Date.parse(v.date), parseInt(v.value.replace(',', ''))]
+            return [Date.parse(v.date), parseInt(v.value)]
             })
 
             const recovered = [[Date.parse(data.lastUpdatedAtSource), data.recovered]]
