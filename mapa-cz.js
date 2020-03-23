@@ -10,7 +10,12 @@
     fetch('https://data.irozhlas.cz/corona-map/kraje.json')
         .then((response) => response.json())
         .then((geojson) => {
-            // Initiate the chart
+            // relativize
+           dat.forEach(f => {
+                const gjs = geojson.features.filter(v => v.properties.NAZ_CZNUTS3 === f[0])[0]
+                f[1] = (f[1] / gjs.properties.POCET_OB_11) * 100000
+            })
+
             Highcharts.mapChart('corona_cz_map', {
                 chart: {
                     map: geojson
@@ -20,7 +25,7 @@
                     text: 'MZ ČR, Apify',
                 },
                 title: {
-                    text: `Zjištění nakažení v krajích ČR k ${upDate[2]}. ${upDate[1]}.`
+                    text: `Zjištění nakažení (na 100 tis. obyvatel) v krajích ČR k ${parseInt(upDate[2])}. ${parseInt(upDate[1])}.`
                 },
                 mapNavigation: {
                     enableMouseWheelZoom: false,
@@ -36,7 +41,7 @@
                     data: dat,
                     keys: ['NAZ_CZNUTS3', 'value'],
                     joinBy: 'NAZ_CZNUTS3',
-                    name: 'Zjištění nakažení',
+                    name: 'Zjištění nakažení na 100 tis., obyvatel',
                     states: {
                         hover: {
                             color: '#de2d26'
@@ -44,7 +49,7 @@
                     },
                     tooltip: {
                         pointFormatter: function() {
-                            return this.NAZ_CZNUTS3 + ': ' + this.value
+                            return this.NAZ_CZNUTS3 + ': ' + Math.round(this.value * 10) / 10
                         }
                     },
                     dataLabels: {
