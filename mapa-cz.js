@@ -11,8 +11,10 @@
         .then((response) => response.json())
         .then((geojson) => {
             // relativize
+            let absDat = {}
            dat.forEach(f => {
                 const gjs = geojson.features.filter(v => v.properties.NAZ_CZNUTS3 === f[0])[0]
+                absDat[f[0]] = f[1]
                 f[1] = (f[1] / gjs.properties.POCET_OB_11) * 100000
             })
 
@@ -49,7 +51,7 @@
                     },
                     tooltip: {
                         pointFormatter: function() {
-                            return this.NAZ_CZNUTS3 + ': ' + Math.round(this.value * 10) / 10
+                            return this.NAZ_CZNUTS3 + ': ' + Math.round(this.value * 10) / 10 + ' (' + absDat[this.NAZ_CZNUTS3] + ' osob)'
                         }
                     },
                     dataLabels: {
