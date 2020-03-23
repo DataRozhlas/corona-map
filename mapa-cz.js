@@ -41,7 +41,7 @@
                     data: dat,
                     keys: ['NAZ_CZNUTS3', 'value'],
                     joinBy: 'NAZ_CZNUTS3',
-                    name: 'Zjištění nakažení na 100 tis., obyvatel',
+                    name: 'Zjištění nakažení na 100 tis. obyvatel',
                     states: {
                         hover: {
                             color: '#de2d26'
