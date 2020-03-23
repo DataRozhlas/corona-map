@@ -16,6 +16,10 @@
             if ( (document.getElementById('status_cz_vyleceni').innerText === '') | (parseInt(document.getElementById('status_cz_vyleceni').innerText) < data.recovered) ) {
                 document.getElementById('status_cz_vyleceni').innerText = data.recovered
             }
+
+            if ( (document.getElementById('status_cz_zemreli').innerText === '') | (parseInt(document.getElementById('status_cz_zemreli').innerText) < data.deceased) ) {
+                document.getElementById('status_cz_zemreli').innerText = data.deceased
+            }
             document.getElementById('status_cz_update').innerText = `${parseInt(dte[2])}. ${parseInt(dte[1])}. v ${parseInt(hr[0]) + 1}:${hr[1]}`
     })
 })()
