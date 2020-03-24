@@ -33,7 +33,7 @@
         return colors[name.split(' -')[0]][idx]
     }
     
-    fetch('https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_19-covid-Confirmed.csv')
+    fetch('https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_global.csv')
         .then((response) => response.text())
         .then((data) => {
             const srs = []
@@ -61,7 +61,7 @@
                 )
             })
             
-            fetch('https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_19-covid-Deaths.csv')
+            fetch('https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_deaths_global.csv')
                 .then((response) => response.text())
                 .then((data) => {
                     d3.csvParse(data).filter( v => {

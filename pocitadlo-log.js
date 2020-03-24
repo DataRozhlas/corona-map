@@ -22,7 +22,7 @@
         "Hong Kong": "Hong Kong",
     }
     
-    fetch('https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_19-covid-Confirmed.csv')
+    fetch('https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_global.csv')
         .then((response) => response.text())
         .then((data) => {
             const cleaned = d3.csvParse(data).map(row => {
