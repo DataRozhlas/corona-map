@@ -152,13 +152,16 @@
             
             const omit = ['TOTAL', 'Queue', 'Diamond Princess']
             dumpWrld = dumpWrld.filter( val => !(omit.includes(val[0])) )
-            dumpWrld.sort( (a, b) => b[1] - a[1]).slice(0, 10).forEach(state => {
-                document.getElementById('corona_top_10').innerHTML += `<tr>
-                                                                            <td>${state[0]}</td>
-                                                                            <td>${state[1]}</td>
-                                                                            <td>${state[4]}</td>
-                                                                            <td>${state[3]}</td>
-                                                                        </tr>`
-            })            
+            let rows = ``
+            dumpWrld.sort( (a, b) => b[1] - a[1]).slice(0, 10).forEach( (state, idx) => {
+                rows += `<tr>
+                            <td class="text-right">${idx + 1}.</td>
+                            <td>${state[0]}</td>
+                            <td class="text-right">${state[1]}</td>
+                            <td class="text-right">${state[4]}</td>
+                            <td class="text-right">${state[3]}</td>
+                        </tr>`
+            })
+            document.getElementById('corona_top_10').innerHTML += `<tbody>${rows}</tbody>`
         })
     })()
