@@ -1,5 +1,5 @@
 (function() {
-    const systemCapacity = 823
+    const systemCapacity = 1679
     fetch('https://data.irozhlas.cz/covid-uzis/hospital.json')
         .then((response) => response.json())
         .then((data) => {
