@@ -49,7 +49,7 @@
 
             Highcharts.chart('corona_cr_pct', {
                 title: {
-                    text: `Počet hsopitalizovaných a těžce nemocných v ČR v souvislosti s COVID-19`,
+                    text: `Počet hospitalizovaných a těžce nemocných v ČR v souvislosti s COVID-19`,
                     useHTML: true,
                 },
                 subtitle: {
