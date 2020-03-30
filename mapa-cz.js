@@ -10,9 +10,11 @@
     fetch('https://data.irozhlas.cz/corona-map/kraje.json')
         .then((response) => response.json())
         .then((geojson) => {
+            console.log(geojson)
             // relativize
             let absDat = {}
            dat.forEach(f => {
+               if (f[0] === 'Nezjištěno') { return }
                 const gjs = geojson.features.filter(v => v.properties.NAZ_CZNUTS3 === f[0])[0]
                 absDat[f[0]] = f[1]
                 f[1] = (f[1] / gjs.properties.POCET_OB_11) * 100000
