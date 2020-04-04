@@ -29,7 +29,6 @@
             const wrld = d.find(e => e['WORLD'] === 'TOTAL')
             // celková čísla svět
             try {
-                console.log(wrld.Cases)
                 document.getElementById('status_all_nakazeni').innerText = wrld.Cases.replace(/,/g, '')
                 document.getElementById('status_all_zemreli').innerText = wrld.Deaths.replace(/,/g, '')
                 document.getElementById('status_all_vyleceni').innerText = wrld.Recovered.replace(/,/g, '')
