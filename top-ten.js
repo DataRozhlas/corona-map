@@ -145,7 +145,7 @@
                 //const critical = parseInt(v['Critical'].replace(',', '')) || 0
                 const deaths = parseInt(v['Deaths'].replace(',', '')) || 0
                 const recovered = parseInt(v['Recovered'].replace(',', '')) || 0
-                const country = v['WORLD']
+                const country = v['LOCATION']
 
                 dumpWrld.push([cNames[country] || country, cases, serious, deaths, recovered])
             })
