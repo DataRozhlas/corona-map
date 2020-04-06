@@ -170,7 +170,7 @@
                 //const critical = parseInt(v['Critical'].replace(',', '')) || 0
                 const deaths = parseInt(v['Deaths'].replace(',', '')) || 0
                 const recovered = parseInt(v['Recovered'].replace(',', '')) || 0
-                const country = v['WORLD']
+                const country = v['LOCATION']
 
                 if (Object.keys(euNames).indexOf(country) > -1) {
                     dumpEU.push([euNames[country], cases, serious, deaths, recovered])
