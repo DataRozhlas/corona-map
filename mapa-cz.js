@@ -10,7 +10,6 @@
     fetch('https://data.irozhlas.cz/corona-map/kraje.json')
         .then((response) => response.json())
         .then((geojson) => {
-            console.log(geojson)
             // relativize
             let absDat = {}
            dat.forEach(f => {

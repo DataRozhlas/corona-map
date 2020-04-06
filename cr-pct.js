@@ -23,8 +23,6 @@
                     infected = infected.filter(v => v[0] > 1584316800000) // od 16. 3.
                     tested = tested.filter(v => v[0] > 1584316800000)
 
-                    console.log(tested)
-
                     let pctDiff = []
                     infected.forEach( (v, ind) => {
                         if (ind <= 1) { return }
