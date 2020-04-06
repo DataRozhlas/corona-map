@@ -195,9 +195,5 @@
             // svet
             dumpDashBoard(dumpWrld, 'corona_dboard_world', 5)
             // celková čísla
-
-            
-
-            
         })
     })()

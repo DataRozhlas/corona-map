@@ -26,7 +26,7 @@
         .then((response) => response.text())
         .then((data) => {
             const d = d3.csvParse(data.split('\n').slice(5,).join('\n'))
-            const wrld = d.find(e => e['WORLD'] === 'TOTAL')
+            const wrld = d.find(e => e['LOCATION'] === 'TOTAL')
             // celková čísla svět
             try {
                 document.getElementById('status_all_nakazeni').innerText = wrld.Cases.replace(/,/g, '')
