@@ -19,7 +19,7 @@
             if ( (document.getElementById('status_cz_zemreli').innerText === '') | (parseInt(document.getElementById('status_cz_zemreli').innerText) < data.deceased) ) {
                 document.getElementById('status_cz_zemreli').innerText = data.deceased
             }
-            document.getElementById('status_cz_update').innerText = `${dte.getDate()}. ${dte.getUTCMonth() + 1}. v ${dte.getHours()}:${dte.getMinutes()}`
+            document.getElementById('status_cz_update').innerText = `${dte.getDate()}. ${dte.getUTCMonth() + 1}. v ${dte.getHours() - 1}:${dte.getMinutes()}`
     })
 
     fetch('https://docs.google.com/spreadsheets/d/e/2PACX-1vR30F8lYP3jG7YOq8es0PBpJIE5yvRVZffOyaqC0GgMBN6yt0Q-NI8pxS7hd1F9dYXnowSC6zpZmW9D/pub?gid=0&single=true&output=csv')
