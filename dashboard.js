@@ -165,11 +165,11 @@
             let dumpEU = []
             let dumpWrld = []
             d.forEach(v => {
-                const cases = parseInt(v['Cases'].replace(',', '')) || 0
-                const serious = parseInt(v['Serious & Critical'].replace(',', '')) || 0
+                const cases = parseInt(v['Cases'].replace(/,/g, '')) || 0
+                const serious = parseInt(v['Serious & Critical'].replace(/,/g, '')) || 0
                 //const critical = parseInt(v['Critical'].replace(',', '')) || 0
-                const deaths = parseInt(v['Deaths'].replace(',', '')) || 0
-                const recovered = parseInt(v['Recovered'].replace(',', '')) || 0
+                const deaths = parseInt(v['Deaths'].replace(/,/g, '')) || 0
+                const recovered = parseInt(v['Recovered'].replace(/,/g, '')) || 0
                 const country = v['LOCATION']
 
                 if (Object.keys(euNames).indexOf(country) > -1) {

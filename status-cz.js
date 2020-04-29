@@ -23,18 +23,18 @@
             document.getElementById('status_cz_update').innerText = `${dte.getDate()}. ${dte.getUTCMonth() + 1}. v ${dte.getHours() - 1}:${dte.getMinutes()}`
     })
 
-    //fetch('https://docs.google.com/spreadsheets/d/e///2PACX-1vR30F8lYP3jG7YOq8es0PBpJIE5yvRVZffOyaqC0GgMBN6yt0Q-NI8pxS7hd1F9dYXnowSC6zpZmW9D/pub?gid=0&single=true&output=csv')
-    //    .then((response) => response.text())
-    //    .then((data) => {
-    //        const d = d3.csvParse(data.split('\n').slice(5,).join('\n'))
-    //        const wrld = d.find(e => e['LOCATION'] === 'TOTAL')
-    //        // celková čísla svět
-    //        try {
-    //            document.getElementById('status_all_nakazeni').innerText = wrld.Cases.replace(/,/g, '')
-    //            document.getElementById('status_all_zemreli').innerText = wrld.Deaths.replace(/,/g, '')
-    //            document.getElementById('status_all_vyleceni').innerText = wrld.Recovered.replace(/,/g, '')
-    //        } catch(err) { return }
-    //    })
+    fetch('https://docs.google.com/spreadsheets/d/e/2PACX-1vR30F8lYP3jG7YOq8es0PBpJIE5yvRVZffOyaqC0GgMBN6yt0Q-NI8pxS7hd1F9dYXnowSC6zpZmW9D/pub?gid=0&single=true&output=csv')
+        .then((response) => response.text())
+        .then((data) => {
+            const d = d3.csvParse(data.split('\n').slice(5,).join('\n'))
+            const wrld = d.find(e => e['LOCATION'] === 'TOTAL')
+            // celková čísla svět
+            try {
+                document.getElementById('status_all_nakazeni').innerText = wrld.Cases.replace(/,/g, '')
+                document.getElementById('status_all_zemreli').innerText = wrld.Deaths.replace(/,/g, '')
+                document.getElementById('status_all_vyleceni').innerText = wrld.Recovered.replace(/,/g, '')
+            } catch(err) { return }
+        })
 })()
 
 

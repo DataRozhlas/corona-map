@@ -1,15 +1,8 @@
 (function() {
-    fetch('https://data.irozhlas.cz/covid-uzis/dead.json')
+    fetch('https://data.irozhlas.cz/covid-uzis/dead_regio.json')
         .then((response) => response.json())
         .then((data) => {
-            const tmp = {}
-            data.forEach(d => {
-                if (Object.keys(tmp).indexOf(d[2]) === -1) {
-                    tmp[d[2]] = 0
-                }
-                tmp[d[2]] += 1
-            })
-            const dat = Object.keys(tmp).map(r => [r, tmp[r]] )
+            const dat = Object.keys(data).map(r => [r, data[r]] )
 
     fetch('https://data.irozhlas.cz/corona-map/kraje.json')
         .then((response) => response.json())
@@ -53,7 +46,7 @@
                     },
                     tooltip: {
                         pointFormatter: function() {
-                            return this.NAZ_CZNUTS3 + ': ' + Math.round(this.value * 10) / 10 + ' (' + tmp[this.NAZ_CZNUTS3] + ' osob)'
+                            return this.NAZ_CZNUTS3 + ': ' + Math.round(this.value * 10) / 10 + ' (' + data[this.NAZ_CZNUTS3] + ' osob)'
                         }
                     },
                     dataLabels: {

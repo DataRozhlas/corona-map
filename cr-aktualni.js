@@ -11,7 +11,7 @@
                     text: `Aktuálně zjištění nemocní COVID-19 v Česku (bez vyléčených a zemřelých)`
                 },
                 subtitle: {
-                    text: 'data: <a href="https://koronavirus.mzcr.cz/">MZ ČR</a>, <a href="https://apify.com/petrpatek/covid-cz">Apify</a>',
+                    text: 'data: <a href="https://koronavirus.mzcr.cz/">MZ ČR</a>',
                     useHTML: true
                 },
                 credits: {

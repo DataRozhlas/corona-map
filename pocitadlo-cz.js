@@ -1,18 +1,18 @@
 (function() {
-    fetch('https://api.apify.com/v2/key-value-stores/K373S4uCFR9W1K8ei/records/LATEST?disableRedirect=true')
+    fetch('https://data.irozhlas.cz/covid-uzis/nakazeni-vyleceni-umrti-testy.json')
         .then((response) => response.json())
         .then((data) => {
             const srs = []
 
-           const tested = data.numberOfTestedGraph.map(v => {
-               return [Date.parse(v.date), parseInt(v.value)]
-           })
-
-           const infected = data.totalPositiveTests.map(v => {
-            return [Date.parse(v.date), parseInt(v.value)]
+            const tested = data.data.map(v => {
+                return [Date.parse(v.datum), parseInt(v.kumulovany_pocet_provedenych_testu)]
             })
 
-            const recovered = [[Date.parse(data.lastUpdatedAtSource), data.recovered]]
+            const infected = data.data.map(v => {
+                return [Date.parse(v.datum), parseInt(v.kumulovany_pocet_nakazenych)]
+            })
+
+            const recovered = [[Date.parse(data.data[data.data.length - 1].datum), data.data[data.data.length - 1].kumulovany_pocet_vylecenych]]
             
             srs.push(
                 {
@@ -53,10 +53,10 @@
             
             Highcharts.chart('corona_cz_chart', {
                 title: {
-                    text: `Koronavirus: testy (${data.totalTested}), pozitivně testovaní (${data.infected}) a zotavení (${data.recovered}) v Česku`
+                    text: `Koronavirus: testy (${data.data[data.data.length - 1].kumulovany_pocet_provedenych_testu}), pozitivně testovaní (${data.data[data.data.length - 1].kumulovany_pocet_nakazenych}) a zotavení (${data.data[data.data.length - 1].kumulovany_pocet_vylecenych}) v Česku`
                 },
                 subtitle: {
-                    text: 'data: <a href="https://koronavirus.mzcr.cz/">MZ ČR</a>, <a href="https://apify.com/petrpatek/covid-cz">Apify</a>',
+                    text: 'data: <a href="https://koronavirus.mzcr.cz/">MZ ČR</a>',
                     useHTML: true
                 },
                 credits: {

@@ -3,49 +3,43 @@
         .then((response) => response.json())
         .then((dt) => {
           incTmp = {
-            '0–49': 0,
-            '50–59': 0,
-            '60+': 0
+            '0-14': 0,
+            '15-24': 0,
+            '25-34': 0,
+            '35-44': 0,
+            '45-54': 0,
+            '55-64': 0,
+            '65-74': 0,
+            '75-84': 0,
+            '85+': 0,
           }
 
           dt.forEach(val => {
             const age = parseInt(val.Vek)
-            if (age < 50) {
-              incTmp['0–49'] += 1
-            } else if (age > 59) {
-              incTmp['60+'] += 1
+            if (age >= 85) {
+              incTmp['85+'] += 1
             } else {
-              incTmp['50–59'] += 1
+              Object.keys(incTmp).forEach(inter => {
+                const from = parseInt(inter.split('-')[0])
+                const to = parseInt(inter.split('-')[1])
+                if ( (age >= from) & (age <= to) ) {
+                  incTmp[inter] += 1
+                }
+              })
             }
           })
 
-    fetch('https://data.irozhlas.cz/covid-uzis/dead.json')
+    fetch('https://data.irozhlas.cz/covid-uzis/dead_age.json')
         .then((response) => response.json())
         .then((data) => {
-            const tmp = {}
-            data.forEach(d => {
-                if (Object.keys(tmp).indexOf(d[1]) === -1) {
-                    tmp[d[1]] = 0
-                }
-                tmp[d[1]] += 1
-            })
-
             const dat = [
               {
                 name: 'nakažení',
-                data: [
-                  incTmp['0–49'],
-                  incTmp['50–59'],
-                  incTmp['60+']
-                ]
+                data: Object.values(incTmp)
               },
               {
                 name: 'zesnulí',
-                data: [
-                  tmp['0–49'],
-                  tmp['50–59'],
-                  tmp['60+']
-                ]
+                data: Object.values(data)
               }
             ]
           
@@ -62,7 +56,7 @@
                   text: 'Věk nakažených a zesnulých v Česku v souvislosti s COVID-19'
               },
               xAxis: {
-                  categories: [ '0-49', '50-59', '60+' ],
+                  categories: Object.keys(incTmp),
                   crosshair: true
               },
               yAxis: {
