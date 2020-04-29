@@ -1,11 +1,11 @@
 (function() {
-    fetch('https://api.apify.com/v2/key-value-stores/K373S4uCFR9W1K8ei/records/LATEST?disableRedirect=true')
+    fetch('https://data.irozhlas.cz/covid-uzis/nakazeni-vyleceni-umrti-testy.json')
         .then((response) => response.json())
         .then((data) => {
             const srs = []
 
-           const infected = data.totalPositiveTests.map(v => {
-            return [Date.parse(v.date), parseInt(v.value)]
+           const infected = data.data.map(v => {
+            return [Date.parse(v.datum), parseInt(v.kumulovany_pocet_nakazenych)]
             })
 
             let rZero = []
@@ -36,7 +36,7 @@
                     useHTML: true,
                 },
                 subtitle: {
-                    text: 'data: <a href="https://koronavirus.mzcr.cz/">MZ ČR</a>, <a href="https://apify.com/petrpatek/covid-cz">Apify</a>',
+                    text: 'data: <a href="https://koronavirus.mzcr.cz/">MZ ČR</a>',
                     useHTML: true
                 },
                 credits: {
