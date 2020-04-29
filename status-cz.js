@@ -1,23 +1,24 @@
 (function() {
-    fetch('https://api.apify.com/v2/key-value-stores/K373S4uCFR9W1K8ei/records/LATEST?disableRedirect=true')
+    fetch('https://data.irozhlas.cz/covid-uzis/nakazeni-vyleceni-umrti-testy.json')
         .then((response) => response.json())
-        .then((data) => {
-            const dte = new Date(data.lastUpdatedAtSource)
+        .then((dt) => {
+            const dte = new Date(dt.modified)
+            const tday = dt.data[dt.data.length - 1]
             
-            if ( (document.getElementById('status_cz_testovani').innerText === '') | (parseInt(document.getElementById('status_cz_testovani').innerText) < data.totalTested) ) {
-                document.getElementById('status_cz_testovani').innerText = data.totalTested
+            if ( (document.getElementById('status_cz_testovani').innerText === '') | (parseInt(document.getElementById('status_cz_testovani').innerText) < tday.kumulovany_pocet_provedenych_testu) ) {
+                document.getElementById('status_cz_testovani').innerText = tday.kumulovany_pocet_provedenych_testu
             }
 
-            if ( (document.getElementById('status_cz_nakazeni').innerText === '') | (parseInt(document.getElementById('status_cz_nakazeni').innerText) < data.infected) ) {
-                document.getElementById('status_cz_nakazeni').innerText = data.infected
+            if ( (document.getElementById('status_cz_nakazeni').innerText === '') | (parseInt(document.getElementById('status_cz_nakazeni').innerText) < tday.kumulovany_pocet_nakazenych) ) {
+                document.getElementById('status_cz_nakazeni').innerText = tday.kumulovany_pocet_nakazenych
             }
 
-            if ( (document.getElementById('status_cz_vyleceni').innerText === '') | (parseInt(document.getElementById('status_cz_vyleceni').innerText) < data.recovered) ) {
-                document.getElementById('status_cz_vyleceni').innerText = data.recovered
+            if ( (document.getElementById('status_cz_vyleceni').innerText === '') | (parseInt(document.getElementById('status_cz_vyleceni').innerText) < tday.kumulovany_pocet_vylecenych) ) {
+                document.getElementById('status_cz_vyleceni').innerText = tday.kumulovany_pocet_vylecenych
             }
 
-            if ( (document.getElementById('status_cz_zemreli').innerText === '') | (parseInt(document.getElementById('status_cz_zemreli').innerText) < data.deceased) ) {
-                document.getElementById('status_cz_zemreli').innerText = data.deceased
+            if ( (document.getElementById('status_cz_zemreli').innerText === '') | (parseInt(document.getElementById('status_cz_zemreli').innerText) < tday.kumulovany_pocet_umrti) ) {
+                document.getElementById('status_cz_zemreli').innerText = tday.kumulovany_pocet_umrti
             }
             document.getElementById('status_cz_update').innerText = `${dte.getDate()}. ${dte.getUTCMonth() + 1}. v ${dte.getHours() - 1}:${dte.getMinutes()}`
     })

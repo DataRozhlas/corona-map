@@ -1,9 +1,9 @@
 (function() {
-    fetch('https://data.irozhlas.cz/covid-uzis/current.json')
+    fetch('https://data.irozhlas.cz/covid-uzis/nakazeni-vyleceni-umrti-testy.json')
         .then((response) => response.json())
-        .then((data) => {
-           const current = data.map(v => {
-               return [Date.parse(v.date), v.inf - v.recov - v.dec]
+        .then((dt) => {
+           const current = dt.data.map(v => {
+               return [Date.parse(v.datum), v.kumulovany_pocet_nakazenych - v.kumulovany_pocet_vylecenych - v.kumulovany_pocet_umrti]
            })            
             
             Highcharts.chart('corona_cz_akt', {
@@ -35,18 +35,18 @@
                 },
                 tooltip: {
                     formatter: function () {
-                        const dat = data.find(v => Date.parse(v.date) === this.x)
-                        const prev = data.filter(v => Date.parse(v.date) < this.x)
+                        const dat = dt.data.find(v => Date.parse(v.datum) === this.x)
+                        const prev = dt.data.filter(v => Date.parse(v.datum) < this.x)
                         let prevDpct = '?'
                         try {
-                            const prevD = prev[prev.length - 1].inf - prev[prev.length - 1].recov - prev[prev.length - 1].dec
+                            const prevD = prev[prev.length - 1].kumulovany_pocet_nakazenych - prev[prev.length - 1].kumulovany_pocet_vylecenych - prev[prev.length - 1].kumulovany_pocet_umrti
                             prevDpct = Math.round((1 - (prevD / this.y)) * 1000) / 10
                         } catch(err) {}
                         
                         return `<b>${ Highcharts.dateFormat('%d. %m.', this.x)}</b>
                         <br>Aktuální nemocní: ${this.y} (denní nárůst: ${prevDpct} %)
-                        <br>Vyléčení: ${dat.recov || 0}
-                        <br>Zemřelí: ${dat.dec || 0}`
+                        <br>Vyléčení: ${dat.kumulovany_pocet_vylecenych || 0}
+                        <br>Zemřelí: ${dat.kumulovany_pocet_umrti || 0}`
                     },
                     useHTML: true
                 },
