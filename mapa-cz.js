@@ -1,11 +1,22 @@
 (function() {
-    fetch('https://api.apify.com/v2/key-value-stores/K373S4uCFR9W1K8ei/records/LATEST?disableRedirect=true')
+    fetch('https://data.irozhlas.cz/covid-uzis/osoby.json')
         .then((response) => response.json())
         .then((data) => {
-            const dat = data.infectedByRegion.map(v => {
-                return [v.name, parseInt(v.value)]
+            const tSeries = {}
+
+            data.forEach(rec => {
+                if ( !(tSeries.hasOwnProperty(rec.KHS)) ) {
+                    tSeries[rec.KHS] = 0
+                }
+                tSeries[rec.KHS] += 1
             })
-            const upDate = data.lastUpdatedAtSource.split('T')[0].split('-')
+
+            const dat = []
+            Object.keys(tSeries).forEach(muniID => {
+                dat.push([muniID, tSeries[muniID]])
+            })
+
+            const upDate = data[data.length - 1].DatumHlaseni.split('-')
 
     fetch('https://data.irozhlas.cz/corona-map/kraje.json')
         .then((response) => response.json())
@@ -13,19 +24,17 @@
             // relativize
             let absDat = {}
            dat.forEach(f => {
-               if (f[0] === 'Nezjištěno') { return }
-                const gjs = geojson.features.filter(v => v.properties.NAZ_CZNUTS3 === f[0])[0]
+                const gjs = geojson.features.find(v => v.properties.KOD_CZNUTS3 === f[0])
                 absDat[f[0]] = f[1]
                 f[1] = (f[1] / gjs.properties.POCET_OB_11) * 100000
             })
-
             Highcharts.mapChart('corona_cz_map', {
                 chart: {
                     map: geojson
                 },
                 credits: {
-                    href: 'https://apify.com/petrpatek/covid-cz',
-                    text: 'MZ ČR, Apify',
+                    href: 'https://onemocneni-aktualne.mzcr.cz/api/v1/covid-19',
+                    text: 'MZ ČR',
                 },
                 title: {
                     text: `Zjištění nakažení (na 100 tis. obyvatel) v krajích ČR k ${parseInt(upDate[2])}. ${parseInt(upDate[1])}.`
@@ -42,8 +51,8 @@
                 },
                 series: [{
                     data: dat,
-                    keys: ['NAZ_CZNUTS3', 'value'],
-                    joinBy: 'NAZ_CZNUTS3',
+                    keys: ['KOD_CZNUTS3', 'value'],
+                    joinBy: 'KOD_CZNUTS3',
                     name: 'Zjištění nakažení na 100 tis. obyvatel',
                     states: {
                         hover: {
@@ -52,7 +61,7 @@
                     },
                     tooltip: {
                         pointFormatter: function() {
-                            return this.NAZ_CZNUTS3 + ': ' + Math.round(this.value * 10) / 10 + ' (' + absDat[this.NAZ_CZNUTS3] + ' osob)'
+                            return this.properties.NAZ_CZNUTS3 + ': ' + Math.round(this.value * 10) / 10 + ' (' + absDat[this.KOD_CZNUTS3] + ' osob)'
                         }
                     },
                     dataLabels: {
