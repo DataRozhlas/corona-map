@@ -140,13 +140,12 @@
             const d = d3.csvParse(data.split('\n').slice(5,).join('\n'))
             let dumpWrld = []
             d.forEach(v => {
-                const cases = parseInt(v['Cases'].replace(',', '')) || 0
-                const serious = parseInt(v['Serious & Critical'].replace(',', '')) || 0
-                //const critical = parseInt(v['Critical'].replace(',', '')) || 0
-                const deaths = parseInt(v['Deaths'].replace(',', '')) || 0
-                const recovered = parseInt(v['Recovered'].replace(',', '')) || 0
+                const cases = parseInt(v['Cases'].replace(/,/g, '')) || 0
+                const serious = parseInt(v['Serious & Critical'].replace(/,/g, '')) || 0
+                //const critical = parseInt(v['Critical'].replace(/,/g, '')) || 0
+                const deaths = parseInt(v['Deaths'].replace(/,/g, '')) || 0
+                const recovered = parseInt(v['Recovered'].replace(/,/g, '')) || 0
                 const country = v['LOCATION']
-
                 dumpWrld.push([cNames[country] || country, cases, serious, deaths, recovered])
             })
             
