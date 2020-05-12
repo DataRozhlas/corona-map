@@ -1,18 +1,14 @@
 (function() {
-    fetch('https://api.apify.com/v2/key-value-stores/EIolfU3CUlHlpQH5M/records/LATEST?disableRedirect=true')
+    fetch('https://data.irozhlas.cz/covid-uzis/okresy.json')
         .then((response) => response.json())
         .then((data) => {
-            const dat = []
-            Object.values(Object.values(data.data)[Object.values(data.data).length - 1]).forEach(kraj => {
-                Object.keys(kraj).forEach(kr => dat.push([kr, parseInt(kraj[kr])]))
-            })
-            const upDate = Object.keys(data.data)[Object.keys(data.data).length - 1].split('-')
+            const upDate = data.upd.split('-')
     fetch('https://data.irozhlas.cz/corona-map/okresy.json')
         .then((response) => response.json())
         .then((geojson) => {
             // relativize
             let absDat = {}
-           dat.forEach(f => {
+           data.data.forEach(f => {
                if (f[0] === 'Nezjištěno') { return }
                 const gjs = geojson.features.filter(v => v.properties.NAZ_LAU1 === f[0])[0]
                 absDat[f[0]] = f[1]
@@ -24,8 +20,8 @@
                     map: geojson
                 },
                 credits: {
-                    href: 'https://api.apify.com/v2/key-value-stores/EIolfU3CUlHlpQH5M/records/LATEST?disableRedirect=true',
-                    text: 'MZ ČR, Apify',
+                    href: 'https://docs.google.com/spreadsheets/d/1FFEDhS6VMWon_AWkJrf8j3XxjZ4J6UI1B2lO3IW-EEc/edit#gid=1011737151',
+                    text: 'MZ ČR, Marek Lutonský',
                 },
                 title: {
                     text: `Zjištění nakažení (na 100 tis. obyvatel) v okresech ČR k ${parseInt(upDate[2])}. ${parseInt(upDate[1])}.`
@@ -41,7 +37,7 @@
                     tickPixelInterval: 100
                 },
                 series: [{
-                    data: dat,
+                    data: data.data,
                     keys: ['NAZ_LAU1', 'value'],
                     joinBy: 'NAZ_LAU1',
                     name: 'Zjištění nakažení na 100 tis. obyvatel',
