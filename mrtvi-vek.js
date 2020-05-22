@@ -14,7 +14,7 @@
             '85+': 0,
           }
 
-          dt.forEach(val => {
+          dt.data.forEach(val => {
             const age = parseInt(val.Vek)
             if (age >= 85) {
               incTmp['85+'] += 1

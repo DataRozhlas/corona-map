@@ -4,7 +4,7 @@
         .then((data) => {
             const tSeries = {}
 
-            data.forEach(rec => {
+            data.data.forEach(rec => {
                 if ( !(tSeries.hasOwnProperty(rec.KHS)) ) {
                     tSeries[rec.KHS] = 0
                 }
@@ -16,7 +16,7 @@
                 dat.push([muniID, tSeries[muniID]])
             })
 
-            const upDate = data[data.length - 1].DatumHlaseni.split('-')
+            const upDate = data.data[data.data.length - 1].DatumHlaseni.split('-')
 
     fetch('https://data.irozhlas.cz/corona-map/kraje.json')
         .then((response) => response.json())

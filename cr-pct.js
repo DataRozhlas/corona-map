@@ -12,7 +12,7 @@
                 .then((response) => response.json())
                 .then((testy) => {
                     const srs = []
-                    let infected = nakaza.map(v => {
+                    let infected = nakaza.data.map(v => {
                         return [Date.parse(v.datum), parseInt(v.pocetCelkem)]
                     })
         
