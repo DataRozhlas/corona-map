@@ -21,6 +21,15 @@
             if ( (document.getElementById('status_cz_zemreli').innerText === '') | (parseInt(document.getElementById('status_cz_zemreli').innerText) < tday.kumulovany_pocet_umrti) ) {
                 document.getElementById('status_cz_zemreli').innerText = tday.kumulovany_pocet_umrti
             }
+
+            if (document.getElementById('status_cz_nemocni')) {
+                if ( (document.getElementById('status_cz_nemocni').innerText === '') | (parseInt(document.getElementById('status_cz_nemocni').innerText) < tday.kumulovany_pocet_umrti) ) {
+                    document.getElementById('status_cz_nemocni').innerText = tday.kumulovany_pocet_nakazenych - tday.kumulovany_pocet_vylecenych - tday.kumulovany_pocet_umrti
+                }
+            }
+
+            
+
             document.getElementById('status_cz_update').innerText = `${parseInt(dte[2])}. ${parseInt(dte[1])}. v ${parseInt(hr[0])}:${hr[1]}`
     })
 
