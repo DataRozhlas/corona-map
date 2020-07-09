@@ -1,4 +1,13 @@
 (function() {
+    function getLastVal(obj) {
+        const tmp = Object.keys(obj).map(v => {
+            if (v.indexOf('/20') > -1) {
+                return [Date.parse(v), v ]
+            }
+        })
+        return parseInt(obj[tmp.sort( (a,b) => b[0] - a[0] )[0][1]])
+    }
+
     fetch('https://data.irozhlas.cz/covid-uzis/nakazeni-vyleceni-umrti-testy.json')
         .then((response) => response.json())
         .then((dt) => {
@@ -28,23 +37,31 @@
                 }
             }
 
-            
-
             document.getElementById('status_cz_update').innerText = `${parseInt(dte[2])}. ${parseInt(dte[1])}. v ${parseInt(hr[0])}:${hr[1]}`
     })
 
-    fetch('https://docs.google.com/spreadsheets/d/e/2PACX-1vR30F8lYP3jG7YOq8es0PBpJIE5yvRVZffOyaqC0GgMBN6yt0Q-NI8pxS7hd1F9dYXnowSC6zpZmW9D/pub?gid=0&single=true&output=csv')
+    fetch('https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_global.csv')
         .then((response) => response.text())
         .then((data) => {
-            const d = d3.csvParse(data.split('\n').slice(5,).join('\n'))
-            const wrld = d.find(e => e['LOCATION'] === 'TOTAL')
-            // celková čísla svět
-            try {
-                document.getElementById('status_all_nakazeni').innerText = wrld.Cases.replace(/,/g, '')
-                document.getElementById('status_all_zemreli').innerText = wrld.Deaths.replace(/,/g, '')
-                document.getElementById('status_all_vyleceni').innerText = wrld.Recovered.replace(/,/g, '')
-            } catch(err) { return }
-        })
+            confirmed = d3.csvParse(data)
+
+            fetch('https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_deaths_global.csv')
+                .then((response) => response.text())
+                .then((data) => {
+                    deaths = d3.csvParse(data)
+
+                    fetch('https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_recovered_global.csv')
+                        .then((response) => response.text())
+                        .then((data) => {
+                            recovered = d3.csvParse(data)
+
+                            // celková čísla
+                            document.getElementById('status_all_nakazeni').innerText = confirmed.map(v => getLastVal(v)).reduce((a, b) => a + b, 0)
+                            document.getElementById('status_all_zemreli').innerText = deaths.map(v => getLastVal(v)).reduce((a, b) => a + b, 0)
+                            document.getElementById('status_all_vyleceni').innerText = recovered.map(v => getLastVal(v)).reduce((a, b) => a + b, 0)
+                        })
+                    })
+                })
 })()
 
 
