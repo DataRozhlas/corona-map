@@ -52,13 +52,17 @@
               },
               credits: {
                 href: 'https://koronavirus.mzcr.cz/',
-                text: 'MZ ČR',
+                text: 'Zdroj dat: MZ ČR',
               },
               // colors: visColors, //['#de2d26', 'black'],
               colors: [ '#e63946', '#003d5b' ],
               // colors: [ '#edae49', '#d1495b'],
               title: {
-                  text: 'Věk nakažených a zesnulých v Česku v souvislosti s COVID-19'
+                  text: 'Věk nakažených a zesnulých v Česku v souvislosti s COVID-19', 
+                  align: 'left', 
+                  style: {
+                    fontWeight: 'bold'
+                  }
               },
               xAxis: {
                   categories: Object.keys(incTmp),
@@ -71,12 +75,16 @@
                   }
               },
               tooltip: {
-                  headerFormat: '<span style="font-size:10px"><b>Věk {point.key}</b></span><table>',
+                  backgroundColor: '#ffffffee',
+                  headerFormat: '<span style="font-size:0.8rem"><b>Věk {point.key}</b></span><table>',
                   pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
                       '<td style="padding:0"><b>{point.y:.0f}</b></td></tr>',
                   footerFormat: '</table>',
                   shared: true,
-                  useHTML: true
+                  useHTML: true,
+                  style: {
+                    fontSize: '0.8rem'
+                  }
               },
               plotOptions: {
                   series: {

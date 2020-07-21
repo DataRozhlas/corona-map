@@ -24,10 +24,14 @@
                 },
                 credits: {
                     href: 'https://docs.google.com/spreadsheets/d/1FFEDhS6VMWon_AWkJrf8j3XxjZ4J6UI1B2lO3IW-EEc/edit#gid=1011737151',
-                    text: 'MZ ČR, Marek Lutonský',
+                    text: 'Zdroj dat: MZ ČR, Marek Lutonský',
                 },
                 title: {
-                    text: `Zjištění nakažení (na 100 tis. obyvatel) v okresech ČR k ${parseInt(upDate[2])}. ${parseInt(upDate[1])}.`
+                    text: `Zjištění nakažení (na 100 tis. obyvatel) v okresech ČR k ${parseInt(upDate[2])}. ${parseInt(upDate[1])}.`, 
+                    align: 'left', 
+                    style: {
+                      fontWeight: 'bold'
+                    }
                 },
                 mapNavigation: {
                     enableMouseWheelZoom: false,
@@ -37,13 +41,17 @@
                     }
                 },
                 colorAxis: {
-                    tickPixelInterval: 100
+                    tickPixelInterval: 100,
+                    minColor: '#FDEDEE',
+                    maxColor: '#DA1B2B', //e63946 CA1622
+                    name: "abc"
+
                 },
-                  tooltip: {
-                    
-                    style: {
-                      fontSize: '0.9rem',
-                      // color: 'blue'
+                tooltip: {
+                  backgroundColor: '#ffffffee',
+                  headerFormat: '<span style="margin-bottom: 0.5rem"><b>{point.NAZ_LAU1}</b></span>',
+                  style: {
+                    fontSize: '0.8rem',
                   }
                 },
                 series: [{
