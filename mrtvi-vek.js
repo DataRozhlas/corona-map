@@ -45,13 +45,18 @@
           
             Highcharts.chart('corona_cz_dec_age', {
               chart: {
-                  type: 'column'
+                  type: 'bar',
+                  style: {
+                    fontFamily: 'Asap'
+                  }
               },
               credits: {
                 href: 'https://koronavirus.mzcr.cz/',
                 text: 'MZ ČR',
               },
-              colors: ['#de2d26', 'black'],
+              // colors: visColors, //['#de2d26', 'black'],
+              colors: [ '#e63946', '#003d5b' ],
+              // colors: [ '#edae49', '#d1495b'],
               title: {
                   text: 'Věk nakažených a zesnulých v Česku v souvislosti s COVID-19'
               },
@@ -74,9 +79,13 @@
                   useHTML: true
               },
               plotOptions: {
-                  column: {
-                      pointPadding: 0.2,
-                      borderWidth: 0
+                  series: {
+                      pointWidth: 15,
+                      // pointPadding: 0.5,
+                      // groupPadding: 1 ,
+                      borderWidth: 0,
+                      borderRadius: 2,
+                      // color: visColors
                   }
               },
               series: dat
