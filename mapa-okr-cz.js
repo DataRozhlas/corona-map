@@ -17,7 +17,10 @@
 
             Highcharts.mapChart('corona_okr_map', {
                 chart: {
-                    map: geojson
+                    map: geojson,
+                    // style: {
+                    //   fontFamily: 'Asap'
+                    // }
                 },
                 credits: {
                     href: 'https://docs.google.com/spreadsheets/d/1FFEDhS6VMWon_AWkJrf8j3XxjZ4J6UI1B2lO3IW-EEc/edit#gid=1011737151',
@@ -36,20 +39,31 @@
                 colorAxis: {
                     tickPixelInterval: 100
                 },
+                  tooltip: {
+                    
+                    style: {
+                      fontSize: '0.9rem',
+                      // color: 'blue'
+                  }
+                },
                 series: [{
                     data: data.data,
                     keys: ['NAZ_LAU1', 'value'],
                     joinBy: 'NAZ_LAU1',
-                    name: 'Zjištění nakažení na 100 tis. obyvatel',
+                    name: 'Zjištění nakažení', // na 100 tis. obyvatel
+                    borderColor: '#fff',
                     states: {
-                        hover: {
-                            color: '#de2d26'
-                        }
+                      hover: {
+                          color: data,
+                          borderColor: '#333',
+                      }, 
                     },
                     tooltip: {
                         pointFormatter: function() {
-                            return this.NAZ_LAU1 + ': ' + Math.round(this.value * 10) / 10 + ' (' + absDat[this.NAZ_LAU1] + ' osob)'
-                        }
+                            return '<b>' + this.NAZ_LAU1 + '<br>' + 
+                            '<b>' + Math.round(this.value * 10) / 10 + '</b> osob nakažených na 100 tisíc lidí<br>' + 
+                            '<b>' + absDat[this.NAZ_LAU1] + '</b> nakažených osob celkem v okrese'
+                        },
                     },
                     dataLabels: {
                         enabled: false,

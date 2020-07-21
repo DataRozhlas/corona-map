@@ -46,9 +46,9 @@
             Highcharts.chart('corona_cz_dec_age', {
               chart: {
                   type: 'bar',
-                  style: {
-                    fontFamily: 'Asap'
-                  }
+                  // style: {
+                  //   fontFamily: 'Asap'
+                  // }
               },
               credits: {
                 href: 'https://koronavirus.mzcr.cz/',

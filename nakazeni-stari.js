@@ -1,4 +1,5 @@
-(function() { 
+(
+  function() { 
       fetch('https://data.irozhlas.cz/covid-uzis/osoby.json')
           .then((response) => response.json())
           .then((data) => {
@@ -34,15 +35,29 @@
                 return a[0] - b[0]
                 })
          
+                
+              Highcharts.setOptions({
+                lang: {
+                    months: ['leden', 'únor', 'březen', 'duben', 'květen', 'červen', 'červenec', 'srpen', 'září', 'říjen', 'listopad', 'prosinec'],
+                    weekdays: ['neděle', 'pondělí', 'úterý', 'středa', 'čtvrtek', 'pátek', 'sobota'],
+                    shortMonths: ['leden', 'únor', 'březen', 'duben', 'květen', 'červen', 'červenec', 'srpen', 'září', 'říjen', 'listopad', 'prosinec'],
+                    thousandsSep: '',
+                    decimalPoint:',',
+                    rangeSelectorZoom: 'Zobrazit'
+                }
+              });
               Highcharts.chart('corona_inf_old', {
                 chart: {
-                    type: 'line'
+                    type: 'area',
+                    // style: {
+                    //   fontFamily: 'Asap'
+                    // }
                 },
                 credits: {
                   href: 'https://koronavirus.mzcr.cz/',
                   text: 'MZ ČR',
                 },
-                colors: ['#de2d26'],
+                colors: ['#EB5C68'], //edae49
                 title: {
                     text: 'Nakažených seniorů nepřibývá'
                 },
@@ -54,7 +69,25 @@
                     type: 'datetime',
                     dateTimeLabelFormats: {
                         day: '%e of %b' //https://api.highcharts.com/highcharts/yAxis.dateTimeLabelFormats
-                    }
+                    },
+                    plotLines: [{
+                      color: 'black',
+                      dashStyle: 'dot',
+                      value: Date.parse('2020-03-12'),
+                      width: 1.5,
+                      zIndex: 10000,
+                      label: {
+                        text: 'Vyhlášen nouzový stav',
+                        rotation: 0,
+                        textAlign: 'left',
+                        y: 20,
+                        align: 'left',
+                        style: {
+                          color: '#444',
+                          // fontWeight: 'bold',
+                        }
+                      }
+                    }],
                 },
                 yAxis: {
                     //type: 'logarithmic',
@@ -62,6 +95,32 @@
                         text: 'počet osob'
                     }
                 },
+              //   annotations: [{
+              //     labelOptions: {
+              //         backgroundColor: 'rgba(255,255,255,0.5)',
+              //         verticalAlign: 'top',
+              //         y: 15,
+              //         align: 'right',
+              //         justify: false,
+              //         crop: false,
+              //         style: {
+              //             fontSize: '0.8em',
+              //             textOutline: '1px white'
+              //         }
+              //     },
+              //     labels: [{
+              //         point: {
+              //             xAxis: 0,
+              //             yAxis: 0,
+              //             // x: 0,
+              //             // y: 1.4
+              //         },
+              //         // x: 20,
+              //         // y: -20,
+              //         text: 'První úsek pro cyklisty:<br/>cyklostezka kolem Svratky<br/>z Komína na přehradu'
+              //     }
+              //   ]
+              // }],
                 tooltip: {
                     formatter: function() {
                         return `Dne ${new Date(this.x).toUTCString()} se nakazilo <b>${this.y}</b> osob ve věku 65+ let`
@@ -70,21 +129,29 @@
                     useHTML: true
                 },
                 plotOptions: {
-                    column: {
-                        pointPadding: 0.2,
-                        borderWidth: 0
+                  series: {
+                    marker: {
+                      enabled: false,
+                      symbol: 'circle',
+                      radius: 2
                     }
+                  }
                 },
                 series: [
                     {
-                      name: 'nakažení',
-                      data: dt
+                        type: 'area',
+                        name: 'nakažení celkem',
+                        data: dt,
+                        color: '#d1d1d1',
+                        lineWidth: 1,
+                        // color: 'blue'
                     },
                     {
-                        name: 'nakažení senioři',
-                        data: dtOld,
-                        color: 'blue'
-                    }
+                      type: 'area',
+                      name: 'nakažení nad 65 let',
+                      color: '#EB5C68',
+                      data: dtOld
+                    },
                   ]
             })
       })
