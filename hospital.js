@@ -1,62 +1,94 @@
-/* eslint-disable no-undef */
-// eslint-disable-next-line func-names
 (function () {
   const systemCapacity = 1679;
   fetch('https://data.irozhlas.cz/covid-uzis/hospital.json')
     .then((response) => response.json())
     .then((data) => {
       const srs = [];
-      srs.push({
-        name: 'Hospitalizovaní',
-        data: data.map((v) => [Date.parse(v.date), parseInt(v.hospital, 5)]),
-        color: '#fc9272',
-        visible: true,
-        marker: {
-          symbol: 'circle',
+      srs.push(
+        {
+          name: 'Hospitalizovaní',
+          data: data.map((v) => [Date.parse(v.date), parseInt(v.hospital)]),
+          color: '#fc9272',
+          visible: true,
+          lineWidth: 0.5,
+          marker: {
+            symbol: 'circle',
+          },
         },
-      });
+      );
 
       srs.push(
         {
           name: 'Těžce nemocní',
-          data: data.map((v) => [Date.parse(v.date), parseInt(v.tezke, 5)]),
-          color: '#de2d26',
+          data: data.map((v) => [Date.parse(v.date), parseInt(v.tezke)]),
+          color: '#e63946',
           visible: true,
+          lineWidth: 0.5,
           marker: {
             symbol: 'circle',
           },
         },
       );
 
-      srs.push(
-        {
-          name: 'Kapacita péče o těžce nemocné',
-          data: data.map((v) => [Date.parse(v.date), systemCapacity]),
-          dashStyle: 'longdash',
-          color: 'black',
-          visible: true,
-          marker: {
-            symbol: 'circle',
-          },
+      Highcharts.setOptions({
+        lang: {
+          months: ['leden', 'únor', 'březen', 'duben', 'květen', 'červen', 'červenec', 'srpen', 'září', 'říjen', 'listopad', 'prosinec'],
+          weekdays: ['neděle', 'pondělí', 'úterý', 'středa', 'čtvrtek', 'pátek', 'sobota'],
+          shortMonths: ['leden', 'únor', 'březen', 'duben', 'květen', 'červen', 'červenec', 'srpen', 'září', 'říjen', 'listopad', 'prosinec'],
+          thousandsSep: '',
+          decimalPoint: ',',
+          rangeSelectorZoom: 'Zobrazit',
         },
-      );
-
+      });
       Highcharts.chart('corona_hospital', {
+        chart: {
+          type: 'area',
+        },
         title: {
           text: 'Počet hospitalizovaných a těžce nemocných v ČR v souvislosti s COVID-19',
-          useHTML: true,
-        },
-        subtitle: {
-          text: 'data: <a href="https://koronavirus.mzcr.cz/">MZ ČR</a>',
-          useHTML: true,
+          align: 'left',
+          style: {
+            fontWeight: 'bold',
+          },
         },
         credits: {
-          enabled: false,
+          href: 'https://koronavirus.mzcr.cz/',
+          text: 'Zdroj dat: MZ ČR',
         },
         yAxis: {
           title: {
             text: 'počet nemocných',
           },
+          max: 1700,
+          plotLines: [{
+            color: 'black',
+            dashStyle: 'dot',
+            value: 1679,
+            width: 1.5,
+            zIndex: 10000,
+            label: {
+              text: 'Kapacita péče o těžce nemocné',
+              rotation: 0,
+              textAlign: 'left',
+              y: -5,
+              align: 'left',
+              style: {
+                color: '#444',
+                fontWeight: 'bold',
+              },
+            },
+          }],
+          plotBands: [{
+            color: '#f2f2f2',
+            from: 0,
+            to: 1679,
+            label: {
+              style: {
+                color: '#444',
+
+              },
+            },
+          }],
         },
         xAxis: {
           type: 'datetime',
@@ -82,16 +114,20 @@
           verticalAlign: 'bottom',
         },
         plotOptions: {
-          line: {
+          area: {
             animation: false,
             marker: {
               enabled: false,
+              symbol: 'circle',
+              radius: 2,
             },
           },
           series: {
             label: {
+              enabled: false,
               connectorAllowed: false,
             },
+
           },
         },
         series: srs,
