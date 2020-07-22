@@ -1,5 +1,5 @@
 (
-function() {
+  function () {
     fetch('https://data.irozhlas.cz/covid-uzis/osoby.json')
       .then((response) => response.json())
       .then((data) => {
@@ -41,7 +41,7 @@ function() {
           },
           data: { dateFormat: 'yyyy-mm-dd' },
         });
-        Highcharts.chart('corona_inf_old', {
+        const chart = Highcharts.chart('corona_inf_old', {
           chart: {
             type: 'area',
           },
@@ -119,6 +119,24 @@ function() {
               lineWidth: 0.5,
               data: dtOld,
             },
+          ],
+        });
+
+        chart.addAnnotation({
+          labelOptions: {
+            backgroundColor: 'rgba(255,255,255,0.5)',
+            style: {
+              fontSize: '0.8em',
+              textOutline: '1px white',
+            },
+          },
+          labels: [{
+            point: {
+              x: chart.xAxis[0].toPixels(Date.parse('2020-06-28'), true),
+              y: chart.yAxis[0].toPixels(247, true),
+            },
+            text: 'plošné testování kontaktů horníků',
+          },
           ],
         });
       });
