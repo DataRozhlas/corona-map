@@ -60,9 +60,9 @@
         },
         xAxis: {
           type: 'datetime',
-          endOnTick: true,
-          showLastLabel: true,
-          startOnTick: true,
+          endOnTick: false,
+          showLastLabel: false,
+          startOnTick: false,
           labels: {
             formatter() {
               return Highcharts.dateFormat('%d. %m.', this.value);
