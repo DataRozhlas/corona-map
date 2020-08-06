@@ -49,6 +49,12 @@ text.highcharts-credits {
   font-family: "Asap" !important;
 }
 
+.highcharts-label text {
+  font-size: 0.85rem !important;
+  fill: #666 !important;
+  /* font-family: 'Noticia text' !important; */
+}
+
 a {
   color: #666;
   fill: #666;

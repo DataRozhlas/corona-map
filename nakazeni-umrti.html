@@ -6,7 +6,9 @@
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"/>
 <link rel="stylesheet" href="./style.css"/>
 <link rel="stylesheet" href="./highcharts-style.css"/>
-<link href="https://fonts.googleapis.com/css2?family=Asap" rel="stylesheet">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Asap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text">
+
 
 <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.15.0/d3.min.js"></script>
@@ -16,6 +18,7 @@
 <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/highcharts/8.1.2/es-modules/masters/modules/series-label.src.min.js"></script> -->
 <script src="https://code.highcharts.com/modules/series-label.js"></script>
 
+
 <div id="corona_cz_akt" style="width: 100%; height: auto"></div>
 <div id="corona_cz_dec_age" style="height: auto"></div>
 <div id="corona_okr_map"></div>
@@ -24,10 +27,22 @@
 <div id="corona_inf_young_ratio"></div>
 <div id="corona_hospital"></div>
 
-<!-- 
+
 <script>
-  let czActHeight = $('#corona_cz_act').width() * 0.75
-</script> -->
+Highcharts.setOptions({
+    lang: {
+      months: ['ledna', 'února', 'března', 'dubna', 'května', 'června', 'července', 'srpna', 'září', 'října', 'listopadu', 'prosince'],
+      shortMonths: ['leden', 'únor', 'březen', 'duben', 'květen', 'červen', 'červenec', 'srpen', 'září', 'říjen', 'listopad', 'prosinec'],
+      // shortMonths: ['led', 'úno', 'bře', 'dub', 'kvě', 'čen', 'čec', 'srp', 'zář', 'říj', 'lis', 'pro'],
+      decimalPoint: ',',
+      numericSymbols: [' tis.', ' mil.', 'mld.', 'T', 'P', 'E'],
+      rangeSelectorFrom: 'od',
+      rangeSelectorTo: 'do',
+      rangeSelectorZoom: 'vyberte období:',
+    },
+  });
+
+</script>
 
 <script src="./cr-aktualni.js"></script>
 <script src="./mrtvi-vek.js"></script>

@@ -68,51 +68,6 @@
         return Date.parse("2020-01-12");
       }
 
-      Highcharts.setOptions({
-        lang: {
-          months: [
-            "leden",
-            "únor",
-            "březen",
-            "duben",
-            "květen",
-            "červen",
-            "červenec",
-            "srpen",
-            "září",
-            "říjen",
-            "listopad",
-            "prosinec",
-          ],
-          weekdays: [
-            "neděle",
-            "pondělí",
-            "úterý",
-            "středa",
-            "čtvrtek",
-            "pátek",
-            "sobota",
-          ],
-          shortMonths: [
-            "leden",
-            "únor",
-            "březen",
-            "duben",
-            "květen",
-            "červen",
-            "červenec",
-            "srpen",
-            "září",
-            "říjen",
-            "listopad",
-            "prosinec",
-          ],
-          thousandsSep: "",
-          decimalPoint: ",",
-          rangeSelectorZoom: "Zobrazit",
-        },
-        data: { dateFormat: "yyyy-mm-dd" },
-      });
       Highcharts.chart("corona_inf_young", {
         chart: {
           type: "area",
@@ -123,7 +78,7 @@
         },
         colors: ["#EB5C68"], //edae49
         title: {
-          text: "Nakažených seniorů nepřibývá",
+          text: "Nakažených mladých (do 25) zase tak nepřibývá",
           align: "left",
           style: {
             fontWeight: "bold",
@@ -212,25 +167,18 @@
       Highcharts.chart("corona_inf_young_ratio", {
         chart: {
           type: "area",
-          // style: {
-          //   fontFamily: 'Asap'
-          // }
+        },
+        title: {
+          text: "Poměr nakažených mladých ze všech nakažených",
+          useHTML: true
+        },
+        subtitle: {
+          text: "a to je dobře",
+          useHTML: true
         },
         credits: {
           href: "https://koronavirus.mzcr.cz/",
           text: "Zdroj dat: MZ ČR",
-        },
-        colors: ["#EB5C68"],
-        title: {
-          text: "Nakažených seniorů nepřibývá",
-          align: "left",
-          style: {
-            fontWeight: "bold",
-          },
-        },
-        subtitle: {
-          text: "a to je dobře",
-          align: "left",
         },
         xAxis: {
           crosshair: true,
@@ -301,7 +249,7 @@
           },
           {
             type: "line",
-            name: "pomer mladych",
+            name: "pomer mladych (5ti denni prumer)",
             data: slideAvg,
             color: "#000",
             // lineWidth: 1

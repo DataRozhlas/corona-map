@@ -30,17 +30,17 @@
         dt.sort((a, b) => a[0] - b[0]);
         dtOld.sort((a, b) => a[0] - b[0]);
 
-        Highcharts.setOptions({
-          lang: {
-            months: ['leden', 'únor', 'březen', 'duben', 'květen', 'červen', 'červenec', 'srpen', 'září', 'říjen', 'listopad', 'prosinec'],
-            weekdays: ['neděle', 'pondělí', 'úterý', 'středa', 'čtvrtek', 'pátek', 'sobota'],
-            shortMonths: ['leden', 'únor', 'březen', 'duben', 'květen', 'červen', 'červenec', 'srpen', 'září', 'říjen', 'listopad', 'prosinec'],
-            thousandsSep: '',
-            decimalPoint: ',',
-            rangeSelectorZoom: 'Zobrazit',
-          },
-          data: { dateFormat: 'yyyy-mm-dd' },
-        });
+        // Highcharts.setOptions({
+        //   lang: {
+        //     months: ['leden', 'únor', 'březen', 'duben', 'květen', 'červen', 'červenec', 'srpen', 'září', 'říjen', 'listopad', 'prosinec'],
+        //     weekdays: ['neděle', 'pondělí', 'úterý', 'středa', 'čtvrtek', 'pátek', 'sobota'],
+        //     shortMonths: ['leden', 'únor', 'březen', 'duben', 'květen', 'červen', 'červenec', 'srpen', 'září', 'říjen', 'listopad', 'prosinec'],
+        //     thousandsSep: '',
+        //     decimalPoint: ',',
+        //     rangeSelectorZoom: 'Zobrazit',
+        //   },
+        //   data: { dateFormat: 'yyyy-mm-dd' },
+        // });
         const chart = Highcharts.chart('corona_inf_old', {
           chart: {
             type: 'area',
@@ -95,12 +95,20 @@
             useHTML: true,
           },
           plotOptions: {
+            area: {
+              label: {
+                visible: false
+              }
+            },
             series: {
               marker: {
                 enabled: false,
                 symbol: 'circle',
                 radius: 2,
               },
+              label: {
+                enabled: false
+              }
             },
           },
           series: [
@@ -124,18 +132,23 @@
 
         chart.addAnnotation({
           labelOptions: {
-            backgroundColor: 'rgba(255,255,255,0.5)',
-            style: {
-              fontSize: '0.8em',
-              textOutline: '1px white',
-            },
+            shape: 'connector',
+            align: 'right',
+            justify: false,
+            crop: true,
+            lineColor: '#f00',
+            backgroundColor: '#fff'//'rgba(255,255,255,0.5)',
+            // style: {
+            //   fontSize: '0.8em',
+            //   textOutline: '1px white',
+            // },
           },
           labels: [{
             point: {
               x: chart.xAxis[0].toPixels(Date.parse('2020-06-28'), true),
               y: chart.yAxis[0].toPixels(247, true),
             },
-            text: 'plošné testování kontaktů horníků',
+            text: 'plošné testování<br>kontaktů horníků',
           },
           ],
         });
