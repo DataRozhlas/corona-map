@@ -53,14 +53,12 @@
             
             Highcharts.chart('corona_cz_chart', {
                 title: {
-                    text: `Koronavirus: testy (${data.data[data.data.length - 1].kumulovany_pocet_provedenych_testu}), pozitivně testovaní (${data.data[data.data.length - 1].kumulovany_pocet_nakazenych}) a zotavení (${data.data[data.data.length - 1].kumulovany_pocet_vylecenych}) v Česku`
-                },
-                subtitle: {
-                    text: 'data: <a href="https://koronavirus.mzcr.cz/">MZ ČR</a>',
+                    text: `Koronavirus: testy (${data.data[data.data.length - 1].kumulovany_pocet_provedenych_testu}), pozitivně testovaní (${data.data[data.data.length - 1].kumulovany_pocet_nakazenych}) a zotavení (${data.data[data.data.length - 1].kumulovany_pocet_vylecenych}) v Česku`,
                     useHTML: true
                 },
                 credits: {
-                    enabled: false,
+                    href: 'https://koronavirus.mzcr.cz/',
+                    text: 'Zdroj dat: MZ ČR',
                 },
                 yAxis: {
                     title: {

@@ -70,12 +70,9 @@
                             text: `Procentuální nárůst testů a zjištěných nakažených COVID-19 v Česku (oproti předchozímu dni)`,
                             useHTML: true,
                         },
-                        subtitle: {
-                            text: 'data: <a href="https://koronavirus.mzcr.cz/">MZ ČR</a>',
-                            useHTML: true
-                        },
                         credits: {
-                            enabled: false,
+                            href: 'https://koronavirus.mzcr.cz/',
+                            text: 'Zdroj dat: MZ ČR'
                         },
                         yAxis: {
                             title: {

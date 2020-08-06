@@ -1,10 +1,23 @@
+<!-- 
+  TODO pocitadlo-usa.js > prehod popis osy y do tick label
+  TODO mapa-mrtvi-kraje.js > fix hover + white outline
+  TODO tabulky prestylovat (Celkova cisla, Evropa, Svet)
+  TODO Pořešit zobrazení datumů v grafech 
+  TODO Pohlidej si popisky os
+ -->
+
 <!DOCTYPE html>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 
+<!-- links -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text">
+<link href="https://fonts.googleapis.com/css2?family=Asap" rel="stylesheet">
 
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"/>
 <link rel="stylesheet" href="./style.css"/>
+<link rel="stylesheet" href="./highcharts-style.css"/>
+
 <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.15.0/d3.min.js"></script>
 <script src="https://code.highcharts.com/maps/highmaps.js"></script>
@@ -78,6 +91,21 @@
 <div id="corona_map"></div>
 
 <div id="corona_count"></div>
+
+<script>
+  Highcharts.setOptions({
+    lang: {
+      months: ['ledna', 'února', 'března', 'dubna', 'května', 'června', 'července', 'srpna', 'září', 'října', 'listopadu', 'prosince'],
+      shortMonths: ['leden', 'únor', 'březen', 'duben', 'květen', 'červen', 'červenec', 'srpen', 'září', 'říjen', 'listopad', 'prosinec'],
+      // shortMonths: ['led', 'úno', 'bře', 'dub', 'kvě', 'čen', 'čec', 'srp', 'zář', 'říj', 'lis', 'pro'],
+      decimalPoint: ',',
+      numericSymbols: [' tis.', ' mil.', 'mld.', 'T', 'P', 'E'],
+      rangeSelectorFrom: 'od',
+      rangeSelectorTo: 'do',
+      rangeSelectorZoom: 'vyberte období:',
+    },
+  });
+</script>
 
 <script src="./cr-aktualni.js"></script>
 <script src="./mapa-okr-cz.js"></script>

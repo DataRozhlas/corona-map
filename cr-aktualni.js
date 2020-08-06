@@ -35,11 +35,8 @@
                   height: chartHeight
                 },
                 title: {
-                    text: `Aktuálně zjištění nemocní COVID-19 v Česku (bez vyléčených a zemřelých)`, 
-                    align: 'left', 
-                    style: {
-                      fontWeight: 'bold'
-                    }
+                    text: `Aktuálně zjištění nemocní COVID-19 v Česku (bez vyléčených a zemřelých)`,
+                    useHTML: true
                 },
                 subtitle: {
                     // text: 'data: <a href="https://koronavirus.mzcr.cz/">MZ ČR</a>',

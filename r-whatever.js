@@ -35,9 +35,9 @@
                     text: `Odhad čísla R<sub>0</sub> v Česku: ${(Math.round(rZero[rZero.length - 1][1] * 10) / 10).toFixed(1)}`,
                     useHTML: true,
                 },
-                subtitle: {
-                    text: 'data: <a href="https://koronavirus.mzcr.cz/">MZ ČR</a>',
-                    useHTML: true
+                credits: {
+                    href: 'https://koronavirus.mzcr.cz/',
+                    text: 'Zdroj dat: MZ ČR',
                 },
                 credits: {
                     enabled: false,

@@ -37,7 +37,8 @@
                     text: 'MZ ČR',
                 },
                 title: {
-                    text: `Zjištění nakažení (na 100 tis. obyvatel) v krajích ČR k ${parseInt(upDate[2])}. ${parseInt(upDate[1])}.`
+                    text: `Zjištění nakažení (na 100 tis. obyvatel) v krajích ČR k ${parseInt(upDate[2])}. ${parseInt(upDate[1])}.`,
+                    useHTML: true
                 },
                 mapNavigation: {
                     enableMouseWheelZoom: false,

@@ -18,9 +18,6 @@
             Highcharts.mapChart('corona_okr_map', {
                 chart: {
                     map: geojson,
-                    // style: {
-                    //   fontFamily: 'Asap'
-                    // }
                 },
                 credits: {
                     href: 'https://docs.google.com/spreadsheets/d/1FFEDhS6VMWon_AWkJrf8j3XxjZ4J6UI1B2lO3IW-EEc/edit#gid=1011737151',
@@ -28,10 +25,7 @@
                 },
                 title: {
                     text: `Zjištění nakažení (na 100 tis. obyvatel) v okresech ČR k ${parseInt(upDate[2])}. ${parseInt(upDate[1])}.`, 
-                    align: 'left', 
-                    style: {
-                      fontWeight: 'bold'
-                    }
+                    useHTML: true
                 },
                 mapNavigation: {
                     enableMouseWheelZoom: false,
