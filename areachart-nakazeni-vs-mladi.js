@@ -78,15 +78,13 @@
         },
         colors: ["#EB5C68"], //edae49
         title: {
-          text: "Nakažených mladých (do 25) zase tak nepřibývá",
-          align: "left",
-          style: {
-            fontWeight: "bold",
-          },
+          text: "Mladých nakažených pozvolně přibývá",
+          useHTML: true
         },
         subtitle: {
-          text: "a to je dobře",
-          align: "left",
+          text: "nárůst zaznamenává skupina 24 až 35 let"
+          + '<br><span style="color: #fff">.</span>',
+          useHTML: true
         },
         xAxis: {
           crosshair: true,
@@ -173,7 +171,7 @@
           useHTML: true,
         },
         subtitle: {
-          text: "a to je dobře",
+          text: "24-35 let?" + '<br><span style="color: #fff">.</span>',
           useHTML: true,
         },
         credits: {
@@ -193,7 +191,7 @@
           showFirstLabel: false,
           labels: {
             formatter: function () {
-              return this.value + "<br>osob";
+              return this.value + " %";
             },
           },
           plotLines: [
@@ -276,6 +274,10 @@
         plotOptions: {
           area: {
             stacking: "normal",
+            label: {
+              visible: false
+            }
+
           },
           series: {
             marker: {
@@ -288,21 +290,21 @@
         series: [
           {
             type: "area",
-            name: "zbytkac",
+            name: "ostatní nakažení",
             data: others,
             color: "#eee",
             lineWidth: 1,
           },
           {
             type: "area",
-            name: "pomer mladych",
+            name: "poměr mladých",
             data: ratioYoung,
             color: "#e63946",
             lineWidth: 1,
           },
           // {
           //   type: "line",
-          //   name: "pomer mladych (5ti denni prumer)",
+          //   name: "pětidenní průměr",
           //   data: slideAvg,
           //   color: "#000",
           //   // lineWidth: 1
