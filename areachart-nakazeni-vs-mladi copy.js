@@ -68,7 +68,7 @@
         return Date.parse("2020-01-12");
       }
 
-      Highcharts.chart("corona_ratio_young_abs", {
+      Highcharts.chart("corona_inf_young", {
         chart: {
           type: "area",
         },
@@ -164,17 +164,17 @@
         ],
       });
 
-      Highcharts.chart("corona_ratio_young_rel", {
+      Highcharts.chart("corona_inf_young_ratio", {
         chart: {
           type: "area",
         },
         title: {
           text: "Poměr nakažených mladých ze všech nakažených",
-          useHTML: true,
+          useHTML: true
         },
         subtitle: {
           text: "a to je dobře",
-          useHTML: true,
+          useHTML: true
         },
         credits: {
           href: "https://koronavirus.mzcr.cz/",
@@ -196,59 +196,6 @@
               return this.value + "<br>osob";
             },
           },
-          plotLines: [
-            {
-              color: "black",
-              dashStyle: "dot",
-              value: 25,
-              width: 1.5,
-              zIndex: 10000,
-              label: {
-                text: "25 %",
-                rotation: 0,
-                textAlign: "center",
-                y: -10,
-                align: "center",
-                style: {
-                  color: "#444",
-                },
-              },
-            },
-            {
-              color: "black",
-              dashStyle: "dot",
-              value: 50,
-              width: 1.5,
-              zIndex: 10000,
-              label: {
-                text: "50 %",
-                rotation: 0,
-                textAlign: "center",
-                y: -10,
-                align: "center",
-                style: {
-                  color: "#444",
-                },
-              },
-            },
-            {
-              color: "black",
-              dashStyle: "dot",
-              value: 75,
-              width: 1.5,
-              zIndex: 10000,
-              label: {
-                text: "75 % z aktuálně nakažených",
-                rotation: 0,
-                textAlign: "center",
-                y: -10,
-                align: "center",
-                style: {
-                  color: "#444",
-                },
-              },
-            },
-          ],
         },
         labels: [
           {
@@ -300,13 +247,13 @@
             color: "#e63946",
             lineWidth: 1,
           },
-          // {
-          //   type: "line",
-          //   name: "pomer mladych (5ti denni prumer)",
-          //   data: slideAvg,
-          //   color: "#000",
-          //   // lineWidth: 1
-          // },
+          {
+            type: "line",
+            name: "pomer mladych (5ti denni prumer)",
+            data: slideAvg,
+            color: "#000",
+            // lineWidth: 1
+          },
         ],
       });
     });
