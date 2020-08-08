@@ -138,7 +138,7 @@
           crosshair: true,
           type: "datetime",
           dateTimeLabelFormats: {
-            day: "%e of %b", //https://api.highcharts.com/highcharts/yAxis.dateTimeLabelFormats
+            day: "%e. %b", //https://api.highcharts.com/highcharts/yAxis.dateTimeLabelFormats
           },
           plotLines: [
             {
@@ -181,7 +181,14 @@
           showFirstLabel: false,
           labels: {
             formatter: function () {
-              return this.value + "<br>osob";
+              if (this.isLast) {
+                    return this.value + '<br>' +
+                                '<span class="light-gray-text">osob</span>'
+                                // '<span class="light-gray-text">návěstidla</span>'
+                  } else {
+                    return this.value
+                  }
+              // return this.value + "<br>osob";
             },
           },
         },
@@ -333,7 +340,7 @@
             },
           },
           plotBands: [{
-            color: '#eee',
+            color: '#f3f3f3',
             from: 0, 
             to: Date.parse("2020-04-12"),
           }],
@@ -414,18 +421,10 @@
               x: Date.parse("2020-04-12"),
               y: 200,
             },
-            // x: 20,
-            // y: -20,
             text: "Lorem ipsum",
           },
         ],
         tooltip: {
-          // formatter: function () {
-          //   return `Dne ${Highcharts.dateFormat(
-          //     "%e. %m.",
-          //     this.x
-          //   )} se nakazilo <b>${this.y}</b> osob ve věku 65+ let`;
-          // },
           shared: true,
           useHTML: true,
           valueDecimals: 1,
