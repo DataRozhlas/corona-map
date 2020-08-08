@@ -47,6 +47,11 @@ text.highcharts-credits {
 
 .highcharts-tooltip span {
   font-family: "Asap" !important;
+  font-size: 0.85rem !important;
+}
+
+.highcharts-tooltip-box {
+  fill: #ffff !important;
 }
 
 .highcharts-label text {
@@ -55,7 +60,7 @@ text.highcharts-credits {
   /* font-family: 'Noticia text' !important; */
 }
 
-a {
+.vis-link {
   color: #666;
   fill: #666;
 }

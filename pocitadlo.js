@@ -31,7 +31,10 @@ function niceDate(val) {
           enabled: false,
         },
         subtitle: {
-          text: 'Zdroj: <a href="https://www.who.int/emergencies/diseases/novel-coronavirus-2019/situation-reports">WHO</a>, <a href="https://www.cdc.gov/coronavirus/2019-ncov/index.html">CDC</a>, <a href="https://www.ecdc.europa.eu/en/geographical-distribution-2019-ncov-cases">ECDC</a>, <a href="http://www.nhc.gov.cn/xcs/yqtb/list_gzbd.shtml">NHC</a> a <a href="https://3g.dxy.cn/newh5/view/pneumonia?scene=2&amp;clicktime=1579582238&amp;enterid=1579582238&amp;from=singlemessage&amp;isappinstalled=0">DXY</a>.',
+          text: 'Zdroj: <a class="vis-link" href="https://www.who.int/emergencies/diseases/novel-coronavirus-2019/situation-reports">WHO</a>,' +
+          ' <a class="vis-link" href="https://www.cdc.gov/coronavirus/2019-ncov/index.html">CDC</a>,' + 
+          ' <a class="vis-link" href="https://www.ecdc.europa.eu/en/geographical-distribution-2019-ncov-cases">ECDC</a>,' + 
+          ' <a class="vis-link" href="http://www.nhc.gov.cn/xcs/yqtb/list_gzbd.shtml">NHC</a> a <a class="vis-link" href="https://3g.dxy.cn/newh5/view/pneumonia?scene=2&amp;clicktime=1579582238&amp;enterid=1579582238&amp;from=singlemessage&amp;isappinstalled=0">DXY</a>.',
           useHTML: true
         },
         yAxis: {
