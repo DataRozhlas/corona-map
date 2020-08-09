@@ -204,6 +204,7 @@
               radius: 2,
             },
             lineWidth: 0,
+            /*
             events: {
               legendItemClick: function() {
                 let chart = this.chart, 
@@ -223,11 +224,13 @@
                 }
               }
             }
+            */
           },
           area: {
             label: {
               enabled: false
-            }
+            },
+            stacking: 'normal'
           },
         },
         series: [
@@ -240,6 +243,7 @@
             lineWidth: 0.5,
             opacity: 0.3,
             showInLegend: false,
+            stacking: undefined
           },
           {
             type: "area",
