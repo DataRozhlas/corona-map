@@ -288,6 +288,9 @@
           shared: true,
           useHTML: true,
         },
+        legend: {
+          reversed: true
+        },
         plotOptions: {
           series: {
             marker: {
@@ -533,6 +536,9 @@
           valueDecimals: 1,
           zIndex: 12000,
           valueSuffix: ' %',
+        },
+        legend: {
+          reversed: true
         },
         plotOptions: {
           area: {
