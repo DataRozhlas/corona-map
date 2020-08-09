@@ -39,11 +39,11 @@
       const ages = [15, 25, 35, 45, 55, 65, 75, 85]
 
       let ageColors = {
-        '55': '#7F3C8D',
         '15': '#11A579',
         '25': '#3969AC',
         '45': '#F2B701',
         '35': '#E73F74',
+        '55': '#7F3C8D',
         '65': '#80BA5A',
         '75': '#E68310',
         '85': '#008695',
@@ -115,6 +115,19 @@
         return Date.parse("2020-01-12");
       }
 
+      Highcharts.setOptions({
+        lang: {
+          months: ['ledna', 'února', 'března', 'dubna', 'května', 'června', 'července', 'srpna', 'září', 'října', 'listopadu', 'prosince'],
+          shortMonths: ['leden', 'únor', 'březen', 'duben', 'květen', 'červen', 'červenec', 'srpen', 'září', 'říjen', 'listopad', 'prosinec'],
+          // shortMonths: ['led', 'úno', 'bře', 'dub', 'kvě', 'čen', 'čec', 'srp', 'zář', 'říj', 'lis', 'pro'],
+          decimalPoint: ',',
+          numericSymbols: [' tis.', ' mil.', 'mld.', 'T', 'P', 'E'],
+          rangeSelectorFrom: 'od',
+          rangeSelectorTo: 'do',
+          rangeSelectorZoom: 'vyberte období:',
+        },
+      });    
+
       Highcharts.chart("corona_ratio_young_abs", {
         chart: {
           type: "area",
@@ -148,13 +161,14 @@
               width: 1.5,
               zIndex: 10000,
               label: {
-                text: "Vyhlášen nouzový stav",
+                text: "Vyhlášen<br>nouzový<br>stav",
                 rotation: 0,
                 textAlign: "left",
                 y: 20,
                 align: "left",
                 style: {
                   color: "#444",
+                  fontStyle: 'italic'
                 },
               },
             },
@@ -177,20 +191,98 @@
           ],
         },
         yAxis: {
+          // visible: false,
           title: false,
           showFirstLabel: false,
           labels: {
-            formatter: function () {
-              if (this.isLast) {
-                    return this.value + '<br>' +
-                                '<span class="light-gray-text">osob</span>'
-                                // '<span class="light-gray-text">návěstidla</span>'
-                  } else {
-                    return this.value
-                  }
-              // return this.value + "<br>osob";
+            enabled: false,
+            // formatter: function () {
+            //   if (this.isLast) {
+            //         return this.value + '<br>' +
+            //                     '<span class="light-gray-text">osob</span>'
+            //                     // '<span class="light-gray-text">návěstidla</span>'
+            //       } else {
+            //         return this.value
+            //       }
             },
-          },
+          // },
+          plotLines: [
+            {
+              color: visColors['dashedLine'],
+              dashStyle: "dot",
+              value: 100,
+              width: 0,
+              zIndex: 1000,
+              label: {
+                text: "100",
+                rotation: 0,
+                textAlign: "left",
+                y: -5,
+                x: -10,
+                align: "left",
+                style: {
+                  color: "#666",
+                  // fontWeight: 'bold'
+                },
+              },
+            },
+            {
+              color: visColors['dashedLine'],
+              dashStyle: "dot",
+              value: 200,
+              width: 0,
+              zIndex: 10000,
+              label: {
+                text: "200",
+                rotation: 0,
+                textAlign: "left",
+                y: -5,
+                x: -10,
+                align: "left",
+                style: {
+                  color: "#666",
+                  // fontWeight: 'bold'
+                },
+              },
+            },
+            {
+              color: visColors['dashedLine'],
+              dashStyle: "dot",
+              value: 300,
+              width: 0,
+              zIndex: 10000,
+              label: {
+                text: "300",
+                rotation: 0,
+                textAlign: "left",
+                y: -5,
+                x: -10,
+                align: "left",
+                style: {
+                  color: "#666",
+                  // fontWeight: 'bold'
+                },
+              },
+            },
+            {
+              color: visColors['dashedLine'],
+              width: 0,
+              value: 400,
+              zIndex: 10000,
+              label: {
+                text: "400<br>osob",
+                rotation: 0,
+                textAlign: "left",
+                y: -5,
+                x: -10,
+                align: "left",
+                style: {
+                  color: "#666",
+                  // fontWeight: 'bold'
+                },
+              },
+            },
+          ],
         },
         tooltip: {
           shared: true,
@@ -314,13 +406,13 @@
           type: "area",
         },
         title: {
-          text: "Poměr nakažených mladých ze všech nakažených",
+          text: "Podíl nakažených mladých ve všech nakažených",
           useHTML: true,
         },
-        subtitle: {
-          text: "24-35 let?" + '<br><span style="color: #fff">.</span>',
-          useHTML: true,
-        },
+        // subtitle: {
+        //   text: "24-35 let?" + '<br><span style="color: #fff">.</span>',
+        //   useHTML: true,
+        // },
         credits: {
           href: "https://koronavirus.mzcr.cz/",
           text: "Zdroj dat: MZ ČR",
@@ -358,10 +450,12 @@
                 text: "25 %",
                 rotation: 0,
                 textAlign: "left",
-                y: 15,
+                y: -5,
+                x: -10,
                 align: "left",
                 style: {
-                  color: "#444",
+                  color: "#666",
+                  // fontWeight: 'bold'
                 },
               },
             },
@@ -375,10 +469,12 @@
                 text: "50 %",
                 rotation: 0,
                 textAlign: "left",
-                y: 15,
+                y: -5,
+                x: -10,
                 align: "left",
                 style: {
-                  color: "#444",
+                  color: "#666",
+                  // fontWeight: 'bold'
                 },
               },
             },
@@ -392,10 +488,12 @@
                 text: "75 % z aktuálně nakažených",
                 rotation: 0,
                 textAlign: "left",
-                y: 15,
+                y: -5,
+                x: -10,
                 align: "left",
                 style: {
-                  color: "#444",
+                  color: "#666",
+                  // fontWeight: 'bold'
                 },
               },
             },
@@ -409,10 +507,12 @@
                 text: "100 % = všichni aktuálně  nakažení",
                 rotation: 0,
                 textAlign: "left",
-                y: 15,
+                y: -5,
+                x: -10,
                 align: "left",
                 style: {
-                  color: "#444",
+                  color: "#666",
+                  // fontWeight: 'bold'
                 },
               },
             },
