@@ -278,7 +278,7 @@
             name: "45-54 let",
             color: ageColors['55'],
             data: dtAgeGroups['55'],
-            // visible: false
+            visible: false
           },
           {
             type: "area",
@@ -304,7 +304,7 @@
             name: "0-14",
             color: ageColors['15'],
             data: dtAgeGroups['15'],
-            visible: false
+            // visible: false
           },
         ],
       });
@@ -504,7 +504,7 @@
           name: "45-54 let",
           color: ageColors['55'],
           data: ratios['55'],
-          // visible: false
+          visible: false
         },
         {
           type: "area",
@@ -532,7 +532,7 @@
           name: "0-14",
           color: ageColors['15'],
           data: ratios['15'],
-          visible: false
+          // visible: false
         },
         ],
       });
