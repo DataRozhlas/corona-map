@@ -39,11 +39,11 @@
       const ages = [15, 25, 35, 45, 55, 65, 75, 85]
 
       let ageColors = {
-        '15': '#7F3C8D',
-        '25': '#11A579',
-        '35': '#3969AC',
+        '55': '#7F3C8D',
+        '15': '#11A579',
+        '25': '#3969AC',
         '45': '#F2B701',
-        '55': '#E73F74',
+        '35': '#E73F74',
         '65': '#80BA5A',
         '75': '#E68310',
         '85': '#008695',
@@ -126,14 +126,14 @@
         },
         colors: ["#EB5C68"], //edae49
         title: {
-          text: "Mladých nakažených pozvolně přibývá",
+          text: "Mladých nakažených přibývá jen pozvolna",
           useHTML: true
         },
-        subtitle: {
-          text: "nárůst zaznamenává skupina 24 až 35 let"
-          + '<br><span style="color: #fff">.</span>',
-          useHTML: true
-        },
+        // subtitle: {
+        //   text: "nárůst zaznamenává skupina 24 až 35 let"
+        //   + '<br><span style="color: #fff">.</span>',
+        //   useHTML: true
+        // },
         xAxis: {
           crosshair: true,
           type: "datetime",
