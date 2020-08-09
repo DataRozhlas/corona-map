@@ -39,15 +39,15 @@
       const ages = [15, 25, 35, 45, 55, 65, 75, 85]
 
       let ageColors = {
-        '15': '#ff00ff',
-        '25': '#000',
-        '35': '#113946',
-        '45': '#e63946',
-        '55': '#e639bb',
-        '65': '#e6aa46',
-        '75': '#eaa846',
-        '85': '#ea0000',
-        'rest': '#ea0000',
+        '15': '#7F3C8D',
+        '25': '#11A579',
+        '35': '#3969AC',
+        '45': '#F2B701',
+        '55': '#E73F74',
+        '65': '#80BA5A',
+        '75': '#E68310',
+        '85': '#008695',
+        'rest': '#CF1C90',
       }
       let visColors = {
         'dashedLine' : "#0005",
@@ -278,7 +278,7 @@
             name: "45-54 let",
             color: ageColors['55'],
             data: dtAgeGroups['55'],
-            visible: false
+            // visible: false
           },
           {
             type: "area",
@@ -292,20 +292,19 @@
             name: "25-34",
             color: ageColors['35'],
             data: dtAgeGroups['35'],
-            visible: false
           },
           {
             type: "area",
             name: "15-24",
             color: ageColors['25'],
             data: dtAgeGroups['25'],
-            visible: false
           },
           {
             type: "area",
             name: "0-14",
             color: ageColors['15'],
             data: dtAgeGroups['15'],
+            visible: false
           },
         ],
       });
@@ -449,6 +448,7 @@
               symbol: "circle",
               radius: 2,
             },
+            /*
             events: {
               legendItemClick: function() {
                 let chart = this.chart, 
@@ -467,6 +467,7 @@
                 }
               }
             }
+            */
           },
         },
         series: [
@@ -475,7 +476,7 @@
           name: "85 let a starší",
           data: ratios['rest'],
           color: ageColors['rest'],
-          visible: true
+          visible: false
         },
         {
           type: "area",
@@ -503,7 +504,7 @@
           name: "45-54 let",
           color: ageColors['55'],
           data: ratios['55'],
-          visible: false
+          // visible: false
         },
         {
           type: "area",
@@ -517,14 +518,14 @@
           name: "25-34",
           color: ageColors['35'],
           data: ratios['35'],
-          visible: false
+          // visible: false
         },
         {
           type: "area",
           name: "15-24",
           color: ageColors['25'],
           data: ratios['25'],
-          visible: false
+          // visible: false
         },
         {
           type: "area",
