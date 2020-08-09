@@ -39,10 +39,10 @@
       const ages = [15, 25, 35, 45, 55, 65, 75, 85]
 
       let ageColors = {
-        '15': '#11A579',
-        '25': '#3969AC',
-        '45': '#F2B701',
+        '15': '#3969AC',
+        '25': '#11A579',
         '35': '#E73F74',
+        '45': '#F2B701',
         '55': '#7F3C8D',
         '65': '#80BA5A',
         '75': '#E68310',
@@ -431,6 +431,7 @@
           max: 100,
           title: false,
           showFirstLabel: false,
+          gridLineColor: '#ccc',
           labels: {
             enabled: false,
             formatter: function () {
@@ -447,14 +448,14 @@
               color: visColors['dashedLine'],
               dashStyle: "dot",
               value: 25,
-              width: 1.5,
+              width: 0,
               zIndex: 1000,
               label: {
                 text: "25 %",
                 rotation: 0,
                 textAlign: "left",
                 y: -5,
-                x: -10,
+                x: 0,
                 align: "left",
                 style: {
                   color: "#666",
@@ -466,14 +467,14 @@
               color: visColors['dashedLine'],
               dashStyle: "dot",
               value: 50,
-              width: 1.5,
+              width: 0,
               zIndex: 10000,
               label: {
                 text: "50 %",
                 rotation: 0,
                 textAlign: "left",
                 y: -5,
-                x: -10,
+                x: 0,
                 align: "left",
                 style: {
                   color: "#666",
@@ -485,14 +486,14 @@
               color: visColors['dashedLine'],
               dashStyle: "dot",
               value: 75,
-              width: 1.5,
+              width: 0,
               zIndex: 10000,
               label: {
                 text: "75 % z aktuálně nakažených",
                 rotation: 0,
                 textAlign: "left",
                 y: -5,
-                x: -10,
+                x: 0,
                 align: "left",
                 style: {
                   color: "#666",
@@ -504,14 +505,14 @@
               color: visColors['dashedLine'],
               dashStyle: "dot",
               value: 100,
-              width: 1.5,
+              width: 0,
               zIndex: 10000,
               label: {
                 text: "100 % = všichni aktuálně  nakažení",
                 rotation: 0,
                 textAlign: "left",
                 y: -5,
-                x: -10,
+                x: 0,
                 align: "left",
                 style: {
                   color: "#666",
@@ -546,7 +547,8 @@
             label: {
               enabled: false
             },
-            lineWidth: 0.5
+            lineWidth: 0.5,
+            opacity: 0.9
           },
           series: {
             marker: {
