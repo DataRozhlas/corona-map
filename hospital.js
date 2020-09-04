@@ -1,5 +1,4 @@
 (function () {
-  const systemCapacity = 1679;
   fetch('https://data.irozhlas.cz/covid-uzis/hospital.json')
     .then((response) => response.json())
     .then((data) => {
@@ -63,7 +62,7 @@
           plotLines: [{
             color: 'black',
             dashStyle: 'dot',
-            value: 1679,
+            value: 1679, // kapacita péče
             width: 1.5,
             zIndex: 10000,
             label: {
