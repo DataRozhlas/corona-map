@@ -1,0 +1,128 @@
+<!-- 
+  TODO pocitadlo-usa.js > prehod popis osy y do tick label
+  TODO mapa-mrtvi-kraje.js > fix hover + white outline
+  TODO tabulky prestylovat (Celkova cisla, Evropa, Svet)
+  TODO Pořešit zobrazení datumů v grafech 
+  TODO Pohlidej si popisky os
+ -->
+
+<!DOCTYPE html>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+<!-- links -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text">
+<link href="https://fonts.googleapis.com/css2?family=Asap" rel="stylesheet">
+
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"/>
+<link rel="stylesheet" href="./style.css"/>
+<link rel="stylesheet" href="./highcharts-style.css"/>
+
+<script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.15.0/d3.min.js"></script>
+<script src="https://code.highcharts.com/maps/highmaps.js"></script>
+<script type="text/javascript" src="https://code.highcharts.com/modules/annotations.js"></script>
+
+<div id="corona_cz_akt"></div>
+
+<div id="corona_okr_map"></div>
+
+<div id="corona_usa"></div>
+
+<div id="corona_cz_dec_age"></div>
+
+<div id="corona_cz_dec_map"></div>
+
+<div id="corona_hospital"></div>
+
+<div id="corona_cr_pct"></div>
+
+<div id="r_whatever"></div>
+
+<table id="corona_top_10">
+    <tr>
+      <th>Země</th>
+      <th>Zjištěné případy</th>
+      <th>Zotavení</th>
+      <th>Mrtví</th>
+    </tr>
+</table> 
+
+<div id="corona_deaths_log"></div>
+
+<div id="status_cz">
+    <p>Testovaní: <div id="status_cz_testovani"></div></p>
+    <p>Nakažení: <div id="status_cz_nakazeni"></div></p>
+    <p>Vyléčení: <div id="status_cz_vyleceni"></div></p>
+    <p>Zesnulí: <div id="status_cz_zemreli"></div></p>
+    <p>Nemocní: <div id="status_cz_nemocni"></div></p>
+    
+    <p>Svět nakažení: <div id="status_all_nakazeni"></div></p>
+    <p>Svět vyléčení: <div id="status_all_vyleceni"></div></p>
+    <p>Svět zesnulí: <div id="status_all_zemreli"></div></p>
+
+    <p>Aktualizováno: <div id="status_cz_update"></div></p>
+</div>
+
+<div id="corona_cz_map"></div>
+
+<div id="corona_cz_chart"></div>
+
+
+
+<div id="corona_log"></div>
+
+<div id="corona_dboard">
+    <div id="corona_dboard_overview">
+        <h3>Celková čísla</h3>
+        <p>Celkem nakažených: <span id="corona_sum_conf"></span></p>
+        <p>Celkem mrtvých: <span id="corona_sum_deaths"></span></p>
+        <p>Celkem zotavených: <span id="corona_sum_recov"></span></p>
+        <p><span id="corona_stats_updated">Zdroj: <a target="_blank" href="https://bnonews.com/index.php/2020/02/the-latest-coronavirus-cases/">BNO News</a></span></p>
+    </div>
+    <div id="corona_dboard_eu"></div>
+    <div id="corona_dboard_world"></div>
+</div>
+
+
+
+<div id="corona_eu"></div>
+
+<div id="corona_map"></div>
+
+<div id="corona_count"></div>
+
+<script>
+  Highcharts.setOptions({
+    lang: {
+      months: ['ledna', 'února', 'března', 'dubna', 'května', 'června', 'července', 'srpna', 'září', 'října', 'listopadu', 'prosince'],
+      shortMonths: ['leden', 'únor', 'březen', 'duben', 'květen', 'červen', 'červenec', 'srpen', 'září', 'říjen', 'listopad', 'prosinec'],
+      // shortMonths: ['led', 'úno', 'bře', 'dub', 'kvě', 'čen', 'čec', 'srp', 'zář', 'říj', 'lis', 'pro'],
+      decimalPoint: ',',
+      numericSymbols: [' tis.', ' mil.', 'mld.', 'T', 'P', 'E'],
+      rangeSelectorFrom: 'od',
+      rangeSelectorTo: 'do',
+      rangeSelectorZoom: 'vyberte období:',
+    },
+  });
+</script>
+
+<script src="./cr-aktualni.js"></script>
+<script src="./mapa-okr-cz.js"></script>
+<script src="./pocitadlo-usa.js"></script>
+<script src="./mrtvi-vek.js"></script>
+<script src="./mapa-mrtvi-kraje.js"></script>
+<script src="./hospital.js"></script>
+<script src="./cr-pct.js"></script>
+<script src="./r-whatever.js"></script>
+<script src="./top-ten.js"></script>
+<script src="./status-cz.js"></script>
+<script src="./mapa-cz.js"></script>
+<script src="./pocitadlo-cz.js"></script>
+<script src="./dashboard.js"></script>
+<script src="./script.js"></script>
+<script src="./pocitadlo-eu.js"></script>
+<script src="./pocitadlo-mrtvi-log.js"></script>
+<script src="./pocitadlo-log.js"></script>
+<script src="./pocitadlo.js"></script>
+
