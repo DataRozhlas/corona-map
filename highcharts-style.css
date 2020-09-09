@@ -4,7 +4,7 @@ text {
   font-family: "Asap" !important;
 }
 
-p {
+#corona_cz_akt p, #corona_okr_map p, #corona_cz_dec_age p, #corona_hospital p, #corona_cr_pct p {
   font-family: "Noticia text" !important;
 }
  
