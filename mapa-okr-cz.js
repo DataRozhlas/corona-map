@@ -24,6 +24,9 @@
               text: `Aktuálně nemocní (na 100 tis. obyvatel) v okresech ČR k ${parseInt(upDate[2])}. ${parseInt(upDate[1])}.`,
               useHTML: true,
             },
+            subtitle: {
+              text: 'aktualizace jednou týdně',
+            },
             mapNavigation: {
               enableMouseWheelZoom: false,
               enabled: false,
