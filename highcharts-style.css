@@ -31,6 +31,14 @@ text {
   font-size: 0.85rem !important;
 }
 
+.highcharts-legend-item text {
+  font-size: 0.85rem !important;
+}
+
+.highcharts-xaxis .highcharts-axis-line {
+  stroke: #e6e6e6;
+}
+
 text.highcharts-plot-line-label {
   font-size: 0.85rem !important;
   fill: #666;
@@ -60,6 +68,11 @@ text.highcharts-credits {
   /* font-family: 'Noticia text' !important; */
 }
 
+.highcharts-series path {
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
 .vis-link {
   color: #666;
   fill: #666;
@@ -69,6 +82,7 @@ text.highcharts-credits {
 .axis-label-on-tick {
   fill: #aaa;
   color: #aaa;
+  font-weight: bold !important;
 }
 
 .mock-empty-line {
