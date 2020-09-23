@@ -59,15 +59,17 @@
             const dat = dt.data.find((v) => Date.parse(v.datum) === this.x);
             const prev = dt.data.filter((v) => Date.parse(v.datum) < this.x);
             let prevDpct = '?';
+            let prevD = 0;
             try {
-              const prevD = prev[prev.length - 1].kumulovany_pocet_nakazenych
+              prevD = prev[prev.length - 1].kumulovany_pocet_nakazenych
                 - prev[prev.length - 1].kumulovany_pocet_vylecenych
                 - prev[prev.length - 1].kumulovany_pocet_umrti;
               prevDpct = Math.round((1 - (prevD / this.y)) * 1000) / 10;
             } catch (err) {}
 
             return `<b>${Highcharts.dateFormat('%d. %m.', this.x)}</b>
-                        <br><b><span style="color:#de2d26">Aktuální nemocní: ${this.y}</span></b> (denní nárůst: ${prevDpct} %)
+                        <br><b><span style="color:#de2d26">Aktuální nemocní: ${this.y}</span></b>
+                        <br>Denní nárůst: ${this.y - prevD} (${prevDpct} %)
                         <br>Vyléčení: ${dat.kumulovany_pocet_vylecenych || 0}
                         <br>Zemřelí: ${dat.kumulovany_pocet_umrti || 0}`;
           },
