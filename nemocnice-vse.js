@@ -60,7 +60,7 @@
             data: tmp[regID],
             visible: [ 'PHA', 'JHM', 'VYS', 'JHC'].includes(regID) ? true : false,
             marker: {
-              // enabled: false,
+              enabled: false,
               symbol: 'circle',
             },
           },
@@ -70,17 +70,54 @@
 
       const upd = new Date(data.slice(-1)[0].upd);
 
-      Highcharts.setOptions({ chart: { animation: false }})
+      function onChartLoad(e) {
+        const test = document.getElementById(e.renderTo.id)
+        const plotBack = document.getElementById(e.renderTo.id).getElementsByClassName('highcharts-plot-background')[0];
+        let shouldBeHeight = 0; // = plotBack.width.baseVal.value * 0.6;
+        console.log('plotBack', test, window.screen.width)
+        // const heightDiff = 0;
+        const displayWidth = window.screen.width;
+        console.log(displayWidth)
+        if (displayWidth < 576) {
+          shouldBeHeight = plotBack.width.baseVal.value * 0.6;
+        } else { // if (displayWidth < 758) {
+          shouldBeHeight = plotBack.width.baseVal.value * 0.45;
+        }
+
+        const heightDiff = shouldBeHeight - plotBack.height.baseVal.value;
+        if (heightDiff > 0) {
+          document.getElementById(e.renderTo.id).style.height = `${e.chartHeight + heightDiff}px`;
+          e.reflow();
+        }
+      }
+      
+
+      Highcharts.setOptions({ 
+        plotOptions: { 
+          series: {
+            animation: false,
+          }, 
+        },
+        chart: {
+          animation: false
+        },
+      })
       Highcharts.chart('corona_nemocnice_vse', {
         chart: {
           type: 'line',
+          events: {
+            load() {
+              onChartLoad(this);
+            }
+          }
         },
         title: {
           text: 'Volná kapacita na jednotkách ARO a JIP',
           useHTML: true,
         },
         subtitle: {
-          text: `Aktualizováno ${upd.getDate()}. ${upd.getMonth() + 1}.` // v ${upd.getHours()}:${upd.getMinutes()}`
+          text: "<span style='background-color: #e7e7e7;'>" + 
+          "<span style='color:#e7e7e7'>.</span>Šedá plocha </span> označuje rozmezí volné lůžkové kapacity mezi kraji. " + `Naposledy aktualizováno ${upd.getDate()}. ${upd.getMonth() + 1}. 2020.` // v ${upd.getHours()}:${upd.getMinutes()}`
           + "<span class='mock-empty-line'><br>.</span>",
           useHTML: true,
         },
@@ -101,7 +138,8 @@
             formatter: function () {
               if (this.isLast) {
                 return this.value 
-                + ' %<br><span class="axis-label-on-tick">volných lůžek</span>'
+                + ' %<br>volných lůžek'
+                // + ' %<br><span class="axis-label-on-tick">volných lůžek</span>'
               }
               return this.value + " %";
             },
@@ -125,28 +163,37 @@
               return Highcharts.dateFormat('%d. %m.', this.value);
             },
           },
-          plotLines: [
-            {
-              // value: Date.parse("2020-09-22"),
-              value: Date.parse(lastDay),
-              width: 0,
-              // zIndex: 10000,
-              label: {
-                text: "<span style='color: #aaa; font-weight: bold'>Šedá plocha</span> značí rozsah<br>volné lůžkové kapacity<br>v jednotlivých krajích",
-                rotation: 0,
-                textAlign: "right",
-                y: -3,
-                align: "left",
-                style: {
-                  color: "#444",
-                },
-              },
-            },
-          ],
+          // plotLines: [
+          //   {
+          //     // value: Date.parse("2020-09-22"),
+          //     value: Date.parse(lastDay),
+          //     width: 0,
+          //     // zIndex: 10000,
+          //     label: {
+          //       text: "<span style='color: #999; font-weight: bold; background-color: #ff0000'>Šedá plocha </span> značí rozsah<br>volné lůžkové kapacity<br>v jednotlivých krajích",
+          //       rotation: 0,
+          //       textAlign: "right",
+          //       y: -3,
+          //       align: "left",
+          //       style: {
+          //         color: "#444"
+          //       },
+          //     },
+          //   },
+          // ],
         },
         tooltip: {
           formatter() {
-            return this.points.reduce((s, point) => `${s}<br/><span style="color: ${point.series.color};">${point.series.name}: ${(Math.round(point.y * 10) / 10).toFixed(1)} %`, `<b>${Highcharts.dateFormat('%d. %m.', this.x)}</b>`);
+            return this.points.reduce(
+              (s, point) =>
+                point.series.name === 'Range' ?  
+                s :
+                `${s}<br/><span style="color: ${point.series.color};">${point.series.name}: ${(Math.round(point.y * 10) / 10).toFixed(1)} %`
+              , 
+              `<b>${Highcharts.dateFormat('%d. %m.', this.x)}</b>`
+            );
+
+
           },
           shared: true,
           useHTML: true,
@@ -155,6 +202,9 @@
           layout: 'horizontal',
           align: 'center',
           verticalAlign: 'bottom',
+          itemEvents: {
+            click: function() { console.log('click') }
+          }
         },
         plotOptions: {
           line: {
@@ -173,7 +223,7 @@
                 }
               }
             },
-            dashStyle: 'dash',
+            // dashStyle: 'dash',
 
           },
           series: {
