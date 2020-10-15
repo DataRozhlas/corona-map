@@ -58,7 +58,7 @@
           title: {
             text: 'počet nemocných',
           },
-          max: 1700,
+          // max: 1700,
           plotLines: [{
             color: 'black',
             dashStyle: 'dot',
