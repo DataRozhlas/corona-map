@@ -1,4 +1,10 @@
 (function () {
+  Highcharts.setOptions({
+    lang: {
+      numericSymbols: [' tis.', ' mil.', 'mld.'] //otherwise by default ['k', 'M', 'G', 'T', 'P', 'E']
+    }
+  });
+
   fetch('https://data.irozhlas.cz/covid-uzis/nakazeni-vyleceni-umrti-testy.json')
     .then((response) => response.json())
     .then((data) => {
@@ -24,42 +30,48 @@
 
       srs.push(
         {
-          name: 'Zjištění nakažení',
+          name: 'Denně zjištění nakažení',
           data: infected.slice(1),
           color: '#de2d26',
           visible: true,
           type: 'column',
+          yAxis: 0,
         },
       );
 
       srs.push(
         {
-          name: 'Mrtví',
+          name: 'Denně zemřelírtví',
           data: deceased.slice(1),
           color: 'black',
           visible: true,
           type: 'column',
+          yAxis: 1,
         },
       );
 
       Highcharts.chart('corona_cz_7', {
         title: {
-          text: `Počty nově zjištěných nakažených a zemřelých za 7 dní`,
+          text: 'Počty nově zjištěných nakažených a zemřelých za 7 dní',
           useHTML: true,
         },
         subtitle: {
-          text: 'pro srovnání je osa Y logaritmická',
+          text: 'pro srovnání má počet nakažených osu vlevo, počet zemřelých vpravo',
         },
         credits: {
           href: 'https://koronavirus.mzcr.cz/',
           text: 'Zdroj dat: MZ ČR',
         },
-        yAxis: {
-          type: 'logarithmic',
+        yAxis: [{
           title: {
-            text: 'počet testů',
+            text: 'nakažení',
           },
-        },
+        }, {
+          title: {
+            text: 'mrtví',
+          },
+          opposite: true,
+        }],
         xAxis: {
           type: 'datetime',
           endOnTick: true,
