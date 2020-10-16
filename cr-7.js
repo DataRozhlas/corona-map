@@ -41,7 +41,7 @@
 
       srs.push(
         {
-          name: 'Denně zemřelírtví',
+          name: 'Denně zemřelí',
           data: deceased.slice(1),
           color: 'black',
           visible: true,
