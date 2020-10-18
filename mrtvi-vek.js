@@ -43,7 +43,7 @@
             },
           ];
 
-          const decUpd = data.upd;
+          const decUpd = data.upd.replace(' 2020', '');
 
           Highcharts.chart('corona_cz_dec_age', {
             chart: {
