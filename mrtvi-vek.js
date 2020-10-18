@@ -39,7 +39,7 @@
             },
             {
               name: 'zesnulí',
-              data: Object.values(data),
+              data: Object.values(data.data),
             },
           ];
 
@@ -58,6 +58,10 @@
               style: {
                 fontWeight: 'bold',
               },
+            },
+            subtitle: {
+              text: 'Aktualizováno 21. 9.',
+              align: 'left',
             },
             xAxis: {
               categories: Object.keys(incTmp),
