@@ -43,6 +43,8 @@
             },
           ];
 
+          const decUpd = data.upd;
+
           Highcharts.chart('corona_cz_dec_age', {
             chart: {
               type: 'bar',
@@ -60,7 +62,7 @@
               },
             },
             subtitle: {
-              text: 'Aktualizováno 21. 9.',
+              text: 'Počet úmrtí aktualizován ' + decUpd,
               align: 'left',
             },
             xAxis: {
