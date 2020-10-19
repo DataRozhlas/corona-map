@@ -35,7 +35,6 @@
           color: '#de2d26',
           visible: true,
           type: 'column',
-          yAxis: 0,
         },
       );
 
@@ -46,7 +45,6 @@
           color: 'black',
           visible: true,
           type: 'column',
-          yAxis: 1,
         },
       );
 
@@ -55,28 +53,24 @@
           text: 'Počty nově zjištěných nakažených a zemřelých za 7 dní',
           useHTML: true,
         },
-        subtitle: {
-          text: 'pro srovnání má počet nakažených osu vlevo, počet zemřelých vpravo',
-        },
         credits: {
           href: 'https://koronavirus.mzcr.cz/',
           text: 'Zdroj dat: MZ ČR',
         },
-        yAxis: [{
-          title: {
-            text: 'nakažení',
+        yAxis: {
+          stackLabels: {
+            enabled: true,
+            align: 'center',
           },
-        }, {
           title: {
-            text: 'mrtví',
+            text: 'osoby',
           },
-          opposite: true,
-        }],
+        },
         xAxis: {
           type: 'datetime',
-          endOnTick: true,
+          endOnTick: false,
           showLastLabel: true,
-          startOnTick: true,
+          startOnTick: false,
           labels: {
             formatter() {
               return Highcharts.dateFormat('%d. %m.', this.value);
@@ -95,10 +89,10 @@
           verticalAlign: 'bottom',
         },
         plotOptions: {
-          line: {
+          column: {
             animation: false,
-            marker: {
-              enabled: false,
+            dataLabels: {
+              enabled: true,
             },
           },
           series: {
