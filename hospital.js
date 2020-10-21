@@ -35,6 +35,7 @@
           weekdays: ['neděle', 'pondělí', 'úterý', 'středa', 'čtvrtek', 'pátek', 'sobota'],
           shortMonths: ['leden', 'únor', 'březen', 'duben', 'květen', 'červen', 'červenec', 'srpen', 'září', 'říjen', 'listopad', 'prosinec'],
           thousandsSep: '',
+          numericSymbols: [' tis.', ' mil.', 'mld.', 'T', 'P', 'E'],
           decimalPoint: ',',
           rangeSelectorZoom: 'Zobrazit',
         },
@@ -62,7 +63,7 @@
           plotLines: [{
             color: 'black',
             dashStyle: 'dot',
-            value: 1679, // kapacita péče
+            value: 3942, // kapacita péče
             width: 1.5,
             zIndex: 10000,
             label: {
@@ -80,7 +81,7 @@
           plotBands: [{
             color: '#f2f2f2',
             from: 0,
-            to: 1679,
+            to: 3942,
             label: {
               style: {
                 color: '#444',
