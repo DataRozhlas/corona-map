@@ -23,6 +23,8 @@
       Highcharts.chart('corona_cz_akt', {
         chart: {
           height: chartHeight,
+          spacingLeft: 0,
+          spacingRight: 0,
         },
         title: {
           text: 'Aktuálně zjištění nemocní COVID-19 v Česku (bez vyléčených a zemřelých)',

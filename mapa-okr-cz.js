@@ -15,6 +15,8 @@
           Highcharts.mapChart('corona_okr_map', {
             chart: {
               map: geojson,
+              spacingLeft: 0,
+              spacingRight: 0,
             },
             credits: {
               href: 'https://onemocneni-aktualne.mzcr.cz/api/v2/covid-19',

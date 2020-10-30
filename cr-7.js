@@ -53,6 +53,10 @@
           text: 'Počty nově zjištěných nakažených a zemřelých za 7 dní',
           useHTML: true,
         },
+        chart: {
+          spacingLeft: 0,
+          spacingRight: 0,
+        },
         credits: {
           href: 'https://koronavirus.mzcr.cz/',
           text: 'Zdroj dat: MZ ČR',

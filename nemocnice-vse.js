@@ -20,13 +20,12 @@
     .then((response) => response.json())
     .then((data) => {
       data.sort((a, b) => Date.parse(a.upd) - Date.parse(b.upd));
-      data.forEach( day => { day.upd = day.upd.substring(0,10)})
+      data.forEach((day) => { day.upd = day.upd.substring(0, 10); });
 
       const srs = [];
       const tmp = {};
       const dailyRanges = []; // [ date, minRate, maxRate ]
-      const lastDay = data[data.length-1].upd
-      console.log(lastDay)
+      const lastDay = data[data.length - 1].upd;
 
       data.forEach((day) => {
         Object.keys(day.regions).forEach((reg) => {
@@ -34,31 +33,30 @@
             tmp[reg] = [];
           }
 
-          //------------ vypocet procenta volnych luzek
+          // ------------ vypocet procenta volnych luzek
           const pct = ((day.regions[reg].AROJIP_luzka_covid
             + day.regions[reg].AROJIP_luzka_necovid) / day.regions[reg].AROJIP_luzka_celkem) * 100;
           tmp[reg].push([Date.parse(day.upd), pct]); // [ den, volna_luzka_% ]
         });
 
-        //-------------- compute daily ranges
-        let dayMin = Infinity, dayMax = 0
+        // -------------- compute daily ranges
+        let dayMin = Infinity; let
+          dayMax = 0;
         Object.keys(day.regions).forEach((reg) => {
-          let dayRgnRate = tmp[reg].filter(a => a[0] == Date.parse(day.upd))[0][1]
+          const dayRgnRate = tmp[reg].filter((a) => a[0] == Date.parse(day.upd))[0][1];
 
-          dayMin = Math.min(dayMin, dayRgnRate)
-          dayMax = Math.max(dayMax, dayRgnRate)
-        })
-        dailyRanges.push([ Date.parse(day.upd), dayMin, dayMax ])
+          dayMin = Math.min(dayMin, dayRgnRate);
+          dayMax = Math.max(dayMax, dayRgnRate);
+        });
+        dailyRanges.push([Date.parse(day.upd), dayMin, dayMax]);
       });
-      console.log(dailyRanges)
 
       Object.keys(tmp).forEach((regID) => { // regID : STC, HKK, ...
-        
         srs.push(
           {
             name: ids[regID],
             data: tmp[regID],
-            visible: [ 'PHA', 'JHM', 'VYS', 'JHC'].includes(regID) ? true : false,
+            visible: !!['PHA', 'JHM', 'VYS', 'JHC'].includes(regID),
             marker: {
               enabled: false,
               symbol: 'circle',
@@ -67,17 +65,14 @@
         );
       });
 
-
       const upd = new Date(data.slice(-1)[0].upd);
 
       function onChartLoad(e) {
-        const test = document.getElementById(e.renderTo.id)
+        const test = document.getElementById(e.renderTo.id);
         const plotBack = document.getElementById(e.renderTo.id).getElementsByClassName('highcharts-plot-background')[0];
         let shouldBeHeight = 0; // = plotBack.width.baseVal.value * 0.6;
-        console.log('plotBack', test, window.screen.width)
         // const heightDiff = 0;
         const displayWidth = window.screen.width;
-        console.log(displayWidth)
         if (displayWidth < 576) {
           shouldBeHeight = plotBack.width.baseVal.value * 0.6;
         } else { // if (displayWidth < 758) {
@@ -90,34 +85,35 @@
           e.reflow();
         }
       }
-      
 
-      Highcharts.setOptions({ 
-        plotOptions: { 
+      Highcharts.setOptions({
+        plotOptions: {
           series: {
             animation: false,
-          }, 
+          },
         },
         chart: {
-          animation: false
+          animation: false,
         },
-      })
+      });
       Highcharts.chart('corona_nemocnice_vse', {
         chart: {
           type: 'line',
+          spacingLeft: 0,
+          spacingRight: 0,
           events: {
             load() {
               onChartLoad(this);
-            }
-          }
+            },
+          },
         },
         title: {
           text: 'Volná kapacita na jednotkách ARO a JIP',
           useHTML: true,
         },
         subtitle: {
-          text: "<span style='background-color: #e7e7e7;'>" + 
-          "<span style='color:#e7e7e7'>.</span>Šedá plocha </span> označuje rozmezí volné lůžkové kapacity mezi kraji. " + `Naposledy aktualizováno ${upd.getDate()}. ${upd.getMonth() + 1}. 2020.` // v ${upd.getHours()}:${upd.getMinutes()}`
+          text: "<span style='background-color: #e7e7e7;'>"
+          + "<span style='color:#e7e7e7'>.</span>Šedá plocha </span> označuje rozmezí volné lůžkové kapacity mezi kraji. " + `Naposledy aktualizováno ${upd.getDate()}. ${upd.getMonth() + 1}. 2020.` // v ${upd.getHours()}:${upd.getMinutes()}`
           + "<span class='mock-empty-line'><br>.</span>",
           useHTML: true,
         },
@@ -135,20 +131,20 @@
             align: 'left',
             x: 0,
             y: -3,
-            formatter: function () {
+            formatter() {
               if (this.isLast) {
-                return this.value 
-                + ' %<br>volných lůžek'
+                return `${this.value
+                } %<br>volných lůžek`;
                 // + ' %<br><span class="axis-label-on-tick">volných lůžek</span>'
               }
-              return this.value + " %";
+              return `${this.value} %`;
             },
           },
           offset: 30,
           max: 60,
           tickLength: -100,
           tickWidth: 1,
-          tickColor: '#e6e6e6'
+          tickColor: '#e6e6e6',
           // left: 10
         },
         xAxis: {
@@ -185,15 +181,11 @@
         tooltip: {
           formatter() {
             return this.points.reduce(
-              (s, point) =>
-                point.series.name === 'Range' ?  
-                s :
-                `${s}<br/><span style="color: ${point.series.color};">${point.series.name}: ${(Math.round(point.y * 10) / 10).toFixed(1)} %`
-              , 
-              `<b>${Highcharts.dateFormat('%d. %m.', this.x)}</b>`
+              (s, point) => (point.series.name === 'Range'
+                ? s
+                : `${s}<br/><span style="color: ${point.series.color};">${point.series.name}: ${(Math.round(point.y * 10) / 10).toFixed(1)} %`),
+              `<b>${Highcharts.dateFormat('%d. %m.', this.x)}</b>`,
             );
-
-
           },
           shared: true,
           useHTML: true,
@@ -202,9 +194,6 @@
           layout: 'horizontal',
           align: 'center',
           verticalAlign: 'bottom',
-          itemEvents: {
-            click: function() { console.log('click') }
-          }
         },
         plotOptions: {
           line: {
@@ -217,11 +206,11 @@
                 hover: {
                   enabled: true,
                   halo: {
-                    size: 0
+                    size: 0,
                   },
                   lineWidthPlus: 0,
-                }
-              }
+                },
+              },
             },
             // dashStyle: 'dash',
 
@@ -243,10 +232,10 @@
             lineWidth: 0,
             color: '#777',
             marker: {
-              enabled: false
-            }
+              enabled: false,
+            },
           },
-          ...srs, 
+          ...srs,
         ],
       });
     });

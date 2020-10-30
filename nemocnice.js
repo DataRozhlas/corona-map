@@ -50,6 +50,8 @@
       Highcharts.chart('corona_nemocnice', {
         chart: {
           type: 'line',
+          spacingLeft: 0,
+          spacingRight: 0,
         },
         title: {
           text: 'Volná kapacita na jednotkách ARO a JIP',

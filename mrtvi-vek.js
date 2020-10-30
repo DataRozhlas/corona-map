@@ -48,6 +48,8 @@
           Highcharts.chart('corona_cz_dec_age', {
             chart: {
               type: 'bar',
+              spacingLeft: 0,
+              spacingRight: 0,
             },
             credits: {
               href: 'https://koronavirus.mzcr.cz/',

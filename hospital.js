@@ -43,6 +43,8 @@
       Highcharts.chart('corona_hospital', {
         chart: {
           type: 'area',
+          spacingLeft: 0,
+          spacingRight: 0,
         },
         title: {
           text: 'Počet hospitalizovaných a těžce nemocných v ČR v souvislosti s COVID-19',
