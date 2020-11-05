@@ -2,32 +2,7 @@
   fetch('https://data.irozhlas.cz/covid-uzis/osoby.json')
     .then((response) => response.json())
     .then((dt) => {
-      const incTmp = {
-        '0-14': 0,
-        '15-24': 0,
-        '25-34': 0,
-        '35-44': 0,
-        '45-54': 0,
-        '55-64': 0,
-        '65-74': 0,
-        '75-84': 0,
-        '85+': 0,
-      };
-
-      dt.data.forEach((val) => {
-        const age = parseInt(val.Vek);
-        if (age >= 85) {
-          incTmp['85+'] += 1;
-        } else {
-          Object.keys(incTmp).forEach((inter) => {
-            const from = parseInt(inter.split('-')[0]);
-            const to = parseInt(inter.split('-')[1]);
-            if ((age >= from) && (age <= to)) {
-              incTmp[inter] += 1;
-            }
-          });
-        }
-      });
+      const incTmp = dt.data;
 
       fetch('https://data.irozhlas.cz/covid-uzis/dead_age.json')
         .then((response) => response.json())
