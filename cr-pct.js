@@ -13,7 +13,8 @@
           const srs = [];
           let infected = nakaza.data.map((v) => [Date.parse(v.datum), parseInt(v.pocetCelkem)]);
 
-          let tested = testy.data.map((v) => [unfuckUZISdate(v.datum), parseInt(v['testy-celkem'])]);
+          let tested = testy
+            .data.map((v) => [unfuckUZISdate(v.datum), parseInt(v.kumulativni_pocet_testu)]);
 
           infected = infected.filter((v) => v[0] > 1584316800000); // od 16. 3.
           tested = tested.filter((v) => v[0] > 1584316800000);

@@ -95,9 +95,6 @@
                   return `<b>${nazok.properties.NAZOK}<br>` + `Úroveň rizika: ${stage(rec.body)} (${rec.body} bodů)`;
                 },
               },
-              legend: {
-                labelFormat: '{this} xx'
-              },
               dataLabels: {
                 enabled: false,
                 format: '{point.properties.postal}',
