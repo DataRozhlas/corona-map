@@ -33,7 +33,7 @@
       });
       const days = muni.ind.map((d) => {
         const p = d.split('T')[0].split('-');
-        return `${p[2]}. ${p[1]}.`;
+        return `${parseInt(p[2])}. ${parseInt(p[1])}.`;
       });
 
       Highcharts.setOptions({
