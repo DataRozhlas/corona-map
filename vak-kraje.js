@@ -90,6 +90,7 @@
             stacking: 'normal',
             marker: {
               enabled: false,
+              symbol: 'circle',
             },
           },
         },
