@@ -4,7 +4,15 @@ async function getData(url) {
   return data;
 }
 
+function prepareDate(d) {
+  [y, m, d] = d.split("-");
+  return [Number(y), m - 1, Number(d.substring(0, 2))];
+}
+
 getData("https://data.irozhlas.cz/covid-uzis/ag_testy.json").then((data) => {
+  data.data = data.data.filter((i) => {
+    return new Date(...prepareDate(i[0])) >= new Date(2020, 10, 1);
+  });
   Highcharts.setOptions({
     lang: {
       months: [
@@ -74,7 +82,6 @@ getData("https://data.irozhlas.cz/covid-uzis/ag_testy.json").then((data) => {
     xAxis: {
       type: "datetime",
       crosshair: true,
-
     },
     yAxis: {
       title: {
@@ -85,13 +92,16 @@ getData("https://data.irozhlas.cz/covid-uzis/ag_testy.json").then((data) => {
       valueSuffix: " %",
       shared: true,
       valueDecimals: 1,
+      dateTimeLabelFormats: {
+        day: "%A, %e. %b %Y",
+      },
     },
     exporting: {
       enabled: false,
     },
     plotOptions: {
       series: {
-        pointStart: Date.UTC(2020, 9, 1),
+        pointStart: Date.UTC(2020, 10, 1),
         pointInterval: 24 * 3600 * 1000, // one day
       },
       line: {
@@ -113,12 +123,12 @@ getData("https://data.irozhlas.cz/covid-uzis/ag_testy.json").then((data) => {
     series: [
       {
         name: "antigenní",
-        data: data.data.map((i) => (i[15] + i[16]) / i[2] * 100),
+        data: data.data.map((i) => ((i[15] + i[16]) / i[2]) * 100),
         color: "#e63946",
       },
       {
         name: "PCR",
-        data: data.data.map((i) => (i[13] + i[16]) / i[1] * 100),
+        data: data.data.map((i) => ((i[13] + i[16]) / i[1]) * 100),
         color: "#3E80B6",
       },
     ],

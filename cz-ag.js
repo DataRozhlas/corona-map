@@ -4,7 +4,15 @@ async function getData(url) {
   return data;
 }
 
+function prepareDate(d) {
+  [y, m, d] = d.split("-");
+  return [Number(y), m - 1, Number(d.substring(0, 2))];
+}
+
 getData("https://data.irozhlas.cz/covid-uzis/ag_testy.json").then((data) => {
+  data.data = data.data.filter((i) => {
+    return new Date(...prepareDate(i[0])) >= new Date(2020, 10, 1);
+  });
   Highcharts.setOptions({
     lang: {
       months: [
@@ -57,14 +65,8 @@ getData("https://data.irozhlas.cz/covid-uzis/ag_testy.json").then((data) => {
       type: "column",
     },
     title: {
-      text: "Na přelomu roku se počet antigenních testů vyrovnal PCR testům",
+      text: "Počet antigenních a PCR testů po dnech",
       useHTML: true,
-    },
-    subtitle: {
-      useHTML: true,
-      text:
-        "Ty, které skončily s negativním výsledkem, se však do podílu pozitivních nezapočítávaly",
-      // + '<br><span style="color: #fff">.</span>',
     },
     credits: {
       href: "https://share.uzis.cz/s/rR34S7bCtP3ambH/download",
@@ -93,13 +95,16 @@ getData("https://data.irozhlas.cz/covid-uzis/ag_testy.json").then((data) => {
     tooltip: {
       valueSuffix: " testů",
       shared: true,
+      dateTimeLabelFormats: {
+        day: "%A, %e. %b %Y",
+      },
     },
     exporting: {
       enabled: false,
     },
     plotOptions: {
       series: {
-        pointStart: Date.UTC(2020, 9, 1),
+        pointStart: Date.UTC(2020, 8, 1),
         pointInterval: 24 * 3600 * 1000, // one day
       },
       column: {
@@ -114,14 +119,14 @@ getData("https://data.irozhlas.cz/covid-uzis/ag_testy.json").then((data) => {
     },
     series: [
       {
-        name: "PCR",
-        data: data.data.map((i) => i[1]),
-        color: "#3E80B6",
-      },
-      {
         name: "antigenní",
         data: data.data.map((i) => i[2]),
         color: "#e63946",
+      },
+      {
+        name: "PCR",
+        data: data.data.map((i) => i[1]),
+        color: "#3E80B6",
       },
     ],
   });
