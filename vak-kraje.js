@@ -61,8 +61,9 @@
           },
         },
         subtitle: {
-          text: `Aktualizováno ${parseInt(decUpd[2])}. ${parseInt(decUpd[1])}.`,
+          text: `Aktualizováno ${parseInt(decUpd[2])}. ${parseInt(decUpd[1])}. <i>(Některé údaje mohou být chybné a ÚZIS zveřejnění dalších informací odmítá.)</i>`,
           align: 'left',
+          useHTML: true,
         },
         xAxis: {
           categories: days,
