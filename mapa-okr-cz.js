@@ -9,6 +9,7 @@
           const mapDat = [];
           data.data.forEach((f) => {
             const gjs = geojson.features.filter((v) => v.properties.LAU1 === f[0])[0];
+            if (gjs === undefined) { return; }
             mapDat.push([f[0], ((f[1] - f[2] - f[3]) / gjs.properties.OBAKT) * 100000]);
           });
 
