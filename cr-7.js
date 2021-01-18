@@ -1,8 +1,10 @@
 (function () {
   Highcharts.setOptions({
     lang: {
-      numericSymbols: [' tis.', ' mil.', 'mld.'] //otherwise by default ['k', 'M', 'G', 'T', 'P', 'E']
-    }
+      numericSymbols: [' tis.', ' mil.', 'mld.'],
+      shortWeekdays: ['ne', 'po', 'út', 'st', 'čt', 'pá', 'so'],
+      weekdays: ['neděle', 'pondělí', 'úterý', 'středa', 'čtvrtek', 'pátek', 'sobota'],
+    },
   });
 
   fetch('https://data.irozhlas.cz/covid-uzis/nakazeni-vyleceni-umrti-testy.json')
@@ -11,9 +13,9 @@
       const srs = [];
 
       // poslednich 7 dni
-      let infected = data.data.slice(-8).map((v) => [Date.parse(v.datum),
+      let infected = data.data.slice(-9).map((v) => [Date.parse(v.datum),
         parseInt(v.kumulovany_pocet_nakazenych, 10)]);
-      let deceased = data.data.slice(-8).map((v) => [Date.parse(v.datum),
+      let deceased = data.data.slice(-9).map((v) => [Date.parse(v.datum),
         parseInt(v.kumulovany_pocet_umrti, 10)]);
 
       infected = infected.map((v, i) => {
@@ -50,7 +52,7 @@
 
       Highcharts.chart('corona_cz_7', {
         title: {
-          text: 'Počty nově zjištěných nakažených a zemřelých za 7 dní',
+          text: 'Počty nově zjištěných nakažených a zemřelých za týden',
           useHTML: true,
         },
         chart: {
@@ -77,13 +79,13 @@
           startOnTick: false,
           labels: {
             formatter() {
-              return Highcharts.dateFormat('%d. %m.', this.value);
+              return Highcharts.dateFormat('%a %d. %m.', this.value);
             },
           },
         },
         tooltip: {
           formatter() {
-            return this.points.reduce((s, point) => `${s}<br/><span style="color: ${point.series.color};">${point.series.name}</span>: ${point.y}`, `<b>${Highcharts.dateFormat('%d. %m.', this.x)}</b>`);
+            return this.points.reduce((s, point) => `${s}<br/><span style="color: ${point.series.color};">${point.series.name}</span>: ${point.y}`, `<b>${Highcharts.dateFormat('%A %d. %m.', this.x)}</b>`);
           },
           shared: true,
         },
