@@ -7,13 +7,14 @@ const planDavek = 11901700;
 const pocitadlo = document.querySelector("#pocitadlo");
 const davkyAplikovane = 70680;
 const dnuDoSplneni = (planDavek - davkyAplikovane)/(davkyAplikovane/dnuVakcinace);
+const pctHotovo = Math.round(davkyAplikovane/planDavek*1000)/1000;
 
 const p1 = document.createElement("P"); 
 p1.innerHTML = `Od začátku očkování v Česku uplynulo <strong>${Math.floor((new Date() - vacStart)/86400000)} dnů</strong>.`;
 pocitadlo.appendChild(p1);
 
 const p2 = document.createElement("P"); 
-p2.innerHTML = `Podle posledních <a href="https://onemocneni-aktualne.mzcr.cz/covid-19" target="_blank"> oficiálních informací</a> od té doby zdravotníci aplikovali <strong>${davkyAplikovane.toLocaleString('cs')} dávek</strong> vakcíny. (Ministerstvo zdravotnictví data aktualizuje jednou týdně, poslední údaj je ze čtvrtka 14. ledna).`;
+p2.innerHTML = `Podle posledních <a href="https://onemocneni-aktualne.mzcr.cz/covid-19" target="_blank"> oficiálních informací</a> od té doby zdravotníci aplikovali <strong>${davkyAplikovane.toLocaleString('cs')} dávek</strong> vakcíny. (Ministerstvo zdravotnictví data aktualizuje jednou týdně, poslední údaj je ze čtvrtka 14. ledna.)`;
 pocitadlo.appendChild(p2);
 
 const p3 = document.createElement("P"); 
@@ -36,6 +37,35 @@ const p7 = document.createElement("P");
 p7.innerHTML = `Dosavadním tempem by Česko cíle očkovací strategie dosáhlo za <strong>${Math.floor(dnuDoSplneni).toLocaleString('cs')} dnů</strong>, tj. <strong>${(new Date(Date.now() + dnuDoSplneni * 86400000)).toLocaleDateString('cs')}</strong>.`;
 pocitadlo.appendChild(p7);
 
+Highcharts.setOptions({
+    lang: {
+        shortMonths: [
+            'led', 'úno', 'bře', 'dub', 'kvě', 'čvn', 'čvc', 'srp', 'zář', 'říj', 'lis', 'pro'
+        ],
+        months: [
+            'led', 'úno', 'bře', 'dub', 'kvě', 'čvn', 'čvc', 'srp', 'zář', 'říj', 'lis', 'pro'
+        ]
+    }
+});
 
+Highcharts.ganttChart('progres', {
+    title: {
+        text: 'Jak postupuje očkování'
+    },
+    xAxis: {
+        min: Date.UTC(2021, 0, 1),
+        max: Date.UTC(2022, 5, 30)
+    },
+
+    series: [{
+        name: '',
+        data: [{
+            name: 'počet dávek',
+            start: Date.UTC(2020, 11, 27),
+            end: Date.UTC(2022, 5, 30),
+            completed: pctHotovo,
+        }]
+    }]
+});
 
 
