@@ -39,7 +39,7 @@ p5.innerHTML = `Podle vládní <a href="https://koronavirus.mzcr.cz/wp-content/u
 pocitadlo.appendChild(p5);
 
 const p6 = document.createElement("LI");
-p6.innerHTML = `Potřeba k tomu bude <strong>11,9 milionu dávek</strong>. (Zhruba dva miliony lidí mají dostat vakcínu Jansen, která se skládá z jediné dávky. Ostatní by měli dostat dávky dvě.)`;
+p6.innerHTML = `Potřeba k tomu bude <strong>11,9 milionu dávek</strong>. (Zhruba dva miliony lidí mají dostat vakcínu společnosti Johnson&Johnson, která se skládá z jediné dávky. Ostatní by měli dostat dávky dvě.)`;
 pocitadlo.appendChild(p6);
 
 const p7 = document.createElement("LI");
