@@ -58,7 +58,7 @@ const p8 = document.createElement("LI");
 Highcharts.chart("progresbar", {
   chart: {
     type: "bar",
-    height: 220,
+    height: 225,
   },
   title: {
     text: `Jak vláda plní strategii očkování? Zbývá rozdat ${(100 - (davkyAplikovane / planDavek*100)).toFixed(1).replace('.', ',')} % injekcí`,
@@ -68,7 +68,7 @@ Highcharts.chart("progresbar", {
   },
   xAxis: {
     categories: ["dávky vakcíny"],
-    height: 25,
+    height: 50,
   },
   yAxis: {
     // min: 0,
@@ -91,6 +91,13 @@ Highcharts.chart("progresbar", {
   plotOptions: {
     series: {
       stacking: "percent",
+      dataLabels: {
+          enabled: true,
+          color: '#ffffff',
+          formatter: function() {
+              return `${this.percentage.toFixed(2).replace('.', ',')} %`
+          },           
+      },
     },
   },
   tooltip: {
