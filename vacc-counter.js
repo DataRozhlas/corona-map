@@ -105,7 +105,7 @@ Highcharts.chart("progresbar", {
         },
         align : 'right',
         x: 5,
-        color: '#FFFFFF',
+        color: '#000',
         useHTML: true,
       },
     },
@@ -122,7 +122,7 @@ Highcharts.chart("progresbar", {
     {
       name: "zbývá aplikovat",
       data: [planDavek - davkyAplikovane],
-      color: "#aaaa",
+      color: "#ededed",
       marker: {
         symbol: "square",
       },
