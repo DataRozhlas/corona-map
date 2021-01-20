@@ -41,14 +41,52 @@
 }
 
 #pocitadlo {
+    width: 100%;
+    font-family: 'Asap';
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
+    flex-wrap: wrap;
 }
 
-#pocitadlo li {
-    font-family: 'Asap';
-    font-size: 0.85rem;
-    list-style-type: square;
-    margin-bottom: 0.5rem;
+#progresbar {
+    width: 100%;
+}
+
+#dashboardik {
+    width: 100%;
+    padding: 0.8rem;
+    height: 8rem;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: flex-start;
+    flex-wrap: wrap;
+}
+
+
+.boxik {
+    width: 30%;
+    max-width: 320px; 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0.25rem 0rem;
+    padding: 2rem 0.25rem;
+}
+
+.cislo {
+    font-size: 1.8rem;
+    font-weight: bold;;
+}
+
+.vysvetl {
+    font-size: 0.8rem;
+    text-align: center;
+}
+
+.strategie {
+    background-color: #ededed;
+    width: 50%;
+    margin: 0;
+    padding: 2rem 0rem;
 }

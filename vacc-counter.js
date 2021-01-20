@@ -1,59 +1,71 @@
 const vacStart = new Date(2020, 11, 27);
 const vacEnd = new Date(2022, 05, 30);
-const dnuVakcinace = Math.floor((new Date(2021, 0, 14) - vacStart) / 86400000);
+const dnuVakcinace = Math.floor((new Date() - vacStart) / 86400000);
 const dnuDoKonce = Math.floor((vacEnd - new Date()) / 86400000);
 const planLidi = 6953849;
 const planDavek = 11901700;
-const pocitadlo = document.querySelector("#pocitadlo");
 const davkyAplikovane = 70680;
 const dnuDoSplneni =
   (planDavek - davkyAplikovane) / (davkyAplikovane / dnuVakcinace);
 const pctHotovo = Math.round((davkyAplikovane / planDavek) * 1000) / 1000;
 
-const p1 = document.createElement("LI");
-p1.innerHTML = `Od začátku očkování v Česku uplynulo <strong>${Math.floor(
-  (new Date() - vacStart) / 86400000
-)} dnů</strong>.`;
-pocitadlo.appendChild(p1);
+const pocitadlo = document.querySelector("#pocitadlo");
+const progresbar = document.createElement("DIV");
+progresbar.id = "progresbar";
+pocitadlo.appendChild(progresbar);
+const dashboardik = document.createElement("DIV");
+dashboardik.id = "dashboardik";
+pocitadlo.appendChild(dashboardik);
 
-const p2 = document.createElement("LI");
-p2.innerHTML = `Podle posledních <a href="https://onemocneni-aktualne.mzcr.cz/covid-19" target="_blank"> oficiálních informací</a> zdravotníci aplikovali <strong>${davkyAplikovane.toLocaleString(
-  "cs"
-)} dávek</strong> vakcíny. (Ministerstvo zdravotnictví data aktualizuje jednou týdně, poslední údaj je ze čtvrtka 14. ledna.)`;
-pocitadlo.appendChild(p2);
+const p1 = document.createElement("DIV");
+p1.classList.add("boxik");
+p1.innerHTML = `<div class='cislo'>${Math.floor((new Date() - vacStart) / 86400000)} dnů</div><div class='vysvetl'>uplynulo od začátku očkování v Česku</div>`;
+dashboardik.appendChild(p1);
 
-const p3 = document.createElement("LI");
-p3.innerHTML = `To je v průměru <strong>${Math.floor(
+const p2 = document.createElement("DIV");
+p2.classList.add("boxik");
+p2.innerHTML = `<div class='cislo'>${davkyAplikovane.toLocaleString("cs")} dávek</div><div class="vysvetl">vakcíny zdravotníci použili</div>`;
+dashboardik.appendChild(p2);
+
+const p3 = document.createElement("DIV");
+p3.classList.add("boxik");
+p3.innerHTML = `<div class='cislo'>${Math.floor(
   davkyAplikovane / dnuVakcinace
-).toLocaleString("cs")} dávek</strong> za den.`;
-pocitadlo.appendChild(p3);
+).toLocaleString("cs")} denně</div><div class='vysvetl'>průměrně aplikovaných dávek</div>`;
+dashboardik.appendChild(p3);
 
-const p4 = document.createElement("LI");
-p4.innerHTML = `Aby se plán naplnil, bylo by potřeba každý den aplikovat průměrně <strong>${Math.floor(
-  (planDavek - davkyAplikovane) / dnuDoKonce
-).toLocaleString("cs")} dávek</strong>.`;
-pocitadlo.appendChild(p4);
+const p4 = document.createElement("DIV");
+p4.classList.add("boxik");
+p4.classList.add("strategie");
+p4.innerHTML = `<div class='cislo'>6,9 mil. lidí</div><div class='vysvetl'>má být naočkováno do června 2022</div>`;
+dashboardik.appendChild(p4);
 
-const p5 = document.createElement("LI");
-p5.innerHTML = `Podle vládní <a href="https://koronavirus.mzcr.cz/wp-content/uploads/2020/12/Strategie_ockovani_proti_covid-19_aktual_221220.pdf">Strategie očkování proti covid-19 v České republice</a> by mělo být v polovině roku 2022 naočkováno <strong>6,9 milionu lidí</strong>.`;
-pocitadlo.appendChild(p5);
+const p5 = document.createElement("DIV");
+p5.classList.add("boxik");
+p5.classList.add("strategie");
+p5.innerHTML = `<div class='cislo'>11,9 mil. dávek</div><div class='vysvetl'>vakcín k tomu bude potřeba</div>`;
+dashboardik.appendChild(p5);
 
-const p6 = document.createElement("LI");
-p6.innerHTML = `Potřeba k tomu bude <strong>11,9 milionu dávek</strong>. (Zhruba dva miliony lidí mají dostat vakcínu společnosti Johnson&Johnson, která se skládá z jediné dávky. Ostatní by měli dostat dávky dvě.)`;
-pocitadlo.appendChild(p6);
-
-const p7 = document.createElement("LI");
-p7.innerHTML = `Dosavadním tempem by Česko cíle očkovací strategie dosáhlo za <strong>${Math.floor(
+const p6 = document.createElement("DIV");
+p6.classList.add("boxik");
+p6.innerHTML = `<div class='cislo'>${Math.floor(
   dnuDoSplneni
-).toLocaleString("cs")} dnů</strong>, tj. <strong>${new Date(
-  Date.now() + dnuDoSplneni * 86400000
-).toLocaleDateString("cs")}</strong>.`;
-pocitadlo.appendChild(p7);
+).toLocaleString("cs")} dnů</div><div class='vysvetl'>by trvalo splnění plánu dosavadním tempem</div>`;
+dashboardik.appendChild(p6);
 
-const p8 = document.createElement("LI");
-(p8.innerHTML =
-  "Graf se automaticky aktualizuje, jakmile ministerstvo zdravotnictví zveřejní nová data"),
-  pocitadlo.appendChild(p8);
+const p7 = document.createElement("DIV");
+p7.classList.add("boxik");
+p7.innerHTML = `<div class='cislo'>${new Date(Date.now() + dnuDoSplneni * 86400000).toLocaleDateString("cs")}</div><div class='vysvetl'>by vláda splnila dosáhla cíle vakcinační strategie</div>`;
+dashboardik.appendChild(p7);
+
+
+const p8 = document.createElement("DIV");
+p8.classList.add("boxik");
+p8.innerHTML = `<div class='cislo'>${Math.floor(
+  (planDavek - davkyAplikovane) / dnuDoKonce
+).toLocaleString("cs")} denně</div><div class='vysvetl'>tolik dávek je potřeba rozdělovat, aby se očkování stihlo podle plánu</div>
+`;
+dashboardik.appendChild(p8);
 
 Highcharts.chart("progresbar", {
   chart: {
