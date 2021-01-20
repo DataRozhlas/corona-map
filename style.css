@@ -39,3 +39,16 @@
 #corona_stats_updated {
     font-size: x-small;
 }
+
+#pocitadlo {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+#pocitadlo li {
+    font-family: 'Asap';
+    font-size: 0.85rem;
+    list-style-type: square;
+    margin-bottom: 0.5rem;
+}
