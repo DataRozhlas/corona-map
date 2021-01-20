@@ -31,7 +31,7 @@ const p3 = document.createElement("DIV");
 p3.classList.add("boxik");
 p3.innerHTML = `<div class='cislo'>${Math.floor(
   davkyAplikovane / dnuVakcinace
-).toLocaleString("cs")} denně</div><div class='vysvetl'>průměrně aplikovaných dávek</div>`;
+).toLocaleString("cs")} za den</div><div class='vysvetl'>průměrně aplikovaných dávek</div>`;
 dashboardik.appendChild(p3);
 
 const p4 = document.createElement("DIV");
@@ -63,7 +63,7 @@ const p8 = document.createElement("DIV");
 p8.classList.add("boxik");
 p8.innerHTML = `<div class='cislo'>${Math.floor(
   (planDavek - davkyAplikovane) / dnuDoKonce
-).toLocaleString("cs")} denně</div><div class='vysvetl'>tolik dávek je potřeba rozdělovat, aby se očkování stihlo podle plánu</div>
+).toLocaleString("cs")} za den</div><div class='vysvetl'>tolik dávek je potřeba, aby se očkování stihlo podle plánu</div>
 `;
 dashboardik.appendChild(p8);
 
