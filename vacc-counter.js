@@ -30,8 +30,8 @@ pocitadlo.appendChild(p3);
 
 const p4 = document.createElement("LI");
 p4.innerHTML = `Aby se plán naplnil, bylo by potřeba každý den aplikovat průměrně <strong>${Math.floor(
-    (planDavek - davkyAplikovane) / dnuDoKonce
-  ).toLocaleString("cs")} dávek</strong>.`;
+  (planDavek - davkyAplikovane) / dnuDoKonce
+).toLocaleString("cs")} dávek</strong>.`;
 pocitadlo.appendChild(p4);
 
 const p5 = document.createElement("LI");
@@ -61,7 +61,12 @@ Highcharts.chart("progresbar", {
     height: 225,
   },
   title: {
-    text: `Jak vláda plní strategii očkování? Zbývá rozdat ${(100 - (davkyAplikovane / planDavek*100)).toFixed(1).replace('.', ',')} % injekcí`,
+    text: `Jak vláda plní strategii očkování? Zbývá rozdat ${(
+      100 -
+      (davkyAplikovane / planDavek) * 100
+    )
+      .toFixed(1)
+      .replace(".", ",")} % injekcí`,
   },
   credits: {
     enabled: false,
@@ -90,20 +95,27 @@ Highcharts.chart("progresbar", {
   },
   plotOptions: {
     series: {
-      stacking: "percent",
+      stacking: 'percent',
       dataLabels: {
-          enabled: true,
-          color: '#ffffff',
-          formatter: function() {
-              return `${this.percentage.toFixed(2).replace('.', ',')} %`
-          },           
+        enabled: true,
+        formatter: function () {
+          if (this.series.index === 1) {
+            return `${this.percentage.toFixed(2).replace(".", ",")} %`;
+          }
+        },
+        align : 'right',
+        x: 5,
+        color: '#FFFFFF',
+        useHTML: true,
       },
     },
   },
   tooltip: {
-    formatter: function() {
-        return `${this.series.name}: ${this.percentage.toFixed(2).replace('.', ',')} %,<br>tj. ${this.y} dávek vakcín`
-        console.log(this);
+    formatter: function () {
+      return `${this.series.name}: ${this.percentage
+        .toFixed(2)
+        .replace(".", ",")} %,<br>tj. ${this.y} dávek vakcín`;
+      console.log(this);
     },
   },
   series: [
@@ -129,7 +141,12 @@ Highcharts.chart("progresbar", {
         },
         chartOptions: {
           title: {
-              text: `Jak vláda plní strategii očkování? Zbývá ${(100 - (davkyAplikovane / planDavek*100)).toFixed(1).replace('.', ',')} %`,
+            text: `Jak vláda plní strategii očkování? Zbývá ${(
+              100 -
+              (davkyAplikovane / planDavek) * 100
+            )
+              .toFixed(1)
+              .replace(".", ",")} %`,
           },
           xAxis: {
             categories: [""],
