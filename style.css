@@ -41,6 +41,7 @@
 }
 
 #pocitadlo {
+    box-sizing: content-box !important;
     width: 100%;
     font-family: 'Asap';
     display: flex;
