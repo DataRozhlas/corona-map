@@ -19,7 +19,7 @@ pocitadlo.appendChild(dashboardik);
 
 const p1 = document.createElement("DIV");
 p1.classList.add("boxik");
-p1.innerHTML = `<div class='cislo'>${Math.floor((new Date() - vacStart) / 86400000)} dnů</div><div class='vysvetl'>uplynulo od začátku očkování v Česku</div>`;
+p1.innerHTML = `<div class='cislo'>${Math.floor((new Date() - vacStart) / 86400000)} dnů</div><div class='vysvetl'>od začátku očkování v Česku</div>`;
 dashboardik.appendChild(p1);
 
 const p2 = document.createElement("DIV");
@@ -58,7 +58,6 @@ p7.classList.add("boxik");
 p7.innerHTML = `<div class='cislo'>${new Date(Date.now() + dnuDoSplneni * 86400000).toLocaleDateString("cs")}</div><div class='vysvetl'>by vláda splnila dosáhla cíle vakcinační strategie</div>`;
 dashboardik.appendChild(p7);
 
-
 const p8 = document.createElement("DIV");
 p8.classList.add("boxik");
 p8.innerHTML = `<div class='cislo'>${Math.floor(
@@ -66,6 +65,11 @@ p8.innerHTML = `<div class='cislo'>${Math.floor(
 ).toLocaleString("cs")} za den</div><div class='vysvetl'>tolik dávek je potřeba, aby se očkování stihlo podle plánu</div>
 `;
 dashboardik.appendChild(p8);
+
+const p9 = document.createElement("DIV");
+p9.classList.add("poznamka");
+p9.innerHTML = `<p>Graf i všechny výpočty se automaticky aktualizují, jakmile ministerstvo zdravotnictví <a href="https://onemocneni-aktualne.mzcr.cz/covid-19" target="_blank">zveřejní nová data</a>. Aktuální údaj je z 21. ledna 2021.</p><p>Plány očkování vycházejí z vládní <a href="https://koronavirus.mzcr.cz/wp-content/uploads/2020/12/Strategie_ockovani_proti_covid-19_aktual_221220.pdf" target="_blank"s>Strategie očkování proti covid-19 v České republice</a>. Zhruba dva miliony lidí mají dostat vakcínu společnosti Johnson&Johnson, která se skládá z jediné dávky. Ostatní by měli dostat dávky dvě.</p>`
+pocitadlo.appendChild(p9);
 
 Highcharts.chart("progresbar", {
   chart: {

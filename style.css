@@ -45,7 +45,6 @@
     font-family: 'Asap';
     display: flex;
     flex-direction: column;
-    flex-wrap: wrap;
 }
 
 #progresbar {
@@ -54,8 +53,6 @@
 
 #dashboardik {
     width: 100%;
-    padding: 0.8rem;
-    height: 8rem;
     display: flex;
     justify-content: space-evenly;
     align-items: flex-start;
@@ -64,19 +61,23 @@
 
 
 .boxik {
-    width: 30%;
+    width: 32%;
     max-width: 320px; 
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin: 0.25rem 0rem;
-    padding: 2rem 0.25rem;
+    margin: 0;
+    padding: 2rem 0rem;
+    height: 4.5rem;
+
 }
 
 .cislo {
-    font-size: 1.7rem;
-    font-weight: bold;;
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-align: center;
+
 }
 
 .vysvetl {
@@ -87,6 +88,8 @@
 .strategie {
     background-color: #ededed;
     width: 50%;
-    margin: 0;
-    padding: 2rem 0rem;
+}
+
+.poznamka {
+    font-size: 0.8rem;
 }
