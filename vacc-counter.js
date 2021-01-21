@@ -4,7 +4,7 @@ const dnuVakcinace = Math.floor((new Date() - vacStart) / 86400000);
 const dnuDoKonce = Math.floor((vacEnd - new Date()) / 86400000);
 const planLidi = 6953849;
 const planDavek = 11901700;
-const davkyAplikovane = 70680;
+const davkyAplikovane = 154989;
 const dnuDoSplneni =
   (planDavek - davkyAplikovane) / (davkyAplikovane / dnuVakcinace);
 const pctHotovo = Math.round((davkyAplikovane / planDavek) * 1000) / 1000;
