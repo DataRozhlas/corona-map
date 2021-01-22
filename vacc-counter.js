@@ -67,7 +67,7 @@
 
       const p7 = document.createElement('DIV');
       p7.classList.add('boxik');
-      p7.innerHTML = `<div class='cislo'>${new Date(Date.now() + dnuDoSplneni * 86400000).toLocaleDateString('cs')}</div><div class='vysvetl'>by vláda splnila dosáhla cíle vakcinační strategie</div>`;
+      p7.innerHTML = `<div class='cislo'>${new Date(Date.now() + dnuDoSplneni * 86400000).toLocaleDateString('cs')}</div><div class='vysvetl'>by vláda dosáhla cíle vakcinační strategie</div>`;
       dashboardik.appendChild(p7);
 
       const p8 = document.createElement('DIV');
