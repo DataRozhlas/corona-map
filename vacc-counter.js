@@ -152,11 +152,21 @@
             marker: {
               symbol: 'square',
             },
+            events: {
+              legendItemClick(e) {
+                e.preventDefault();
+              },
+            },
           },
           {
             name: 'aplikované',
             data: [davkyAplikovane],
             color: '#e63946',
+            events: {
+              legendItemClick(e) {
+                e.preventDefault();
+              },
+            },
           },
         ],
         responsive: {
