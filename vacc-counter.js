@@ -18,9 +18,8 @@
       // const planLidi = 6953849;
       const planDavek = 11901700;
       const davkyAplikovane = current[1];
-      const dnuDoSplneni = (planDavek - davkyAplikovane) / (davkyAplikovane / dnuVakcinace);
+      const dnuDoSplneni = (planDavek - davkyAplikovane) / curr.offic['7day_avg'];
       // const pctHotovo = Math.round((davkyAplikovane / planDavek) * 1000) / 1000;
-
       const pocitadlo = document.querySelector('#pocitadlo');
       const progresbar = document.createElement('DIV');
       progresbar.id = 'progresbar';
@@ -42,8 +41,8 @@
       const p3 = document.createElement('DIV');
       p3.classList.add('boxik');
       p3.innerHTML = `<div class='cislo'>${Math.floor(
-        davkyAplikovane / dnuVakcinace,
-      ).toLocaleString('cs')} za den</div><div class='vysvetl'>průměrně aplikovaných dávek</div>`;
+        curr.offic['7day_avg'],
+      ).toLocaleString('cs')} za den</div><div class='vysvetl'>průměrně aplikovaných dávek (7denní průměr)</div>`;
       dashboardik.appendChild(p3);
 
       const p4 = document.createElement('DIV');
@@ -67,7 +66,7 @@
 
       const p7 = document.createElement('DIV');
       p7.classList.add('boxik');
-      p7.innerHTML = `<div class='cislo'>${new Date(Date.now() + dnuDoSplneni * 86400000).toLocaleDateString('cs')}</div><div class='vysvetl'>by vláda dosáhla cíle vakcinační strategie</div>`;
+      p7.innerHTML = `<div class='cislo'>${new Date(Date.now() + dnuDoSplneni * 86400000).toLocaleDateString('cs')}</div><div class='vysvetl'>by vláda splnila dosáhla cíle vakcinační strategie</div>`;
       dashboardik.appendChild(p7);
 
       const p8 = document.createElement('DIV');
