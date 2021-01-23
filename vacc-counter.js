@@ -42,7 +42,7 @@
       p3.classList.add('boxik');
       p3.innerHTML = `<div class='cislo'>${Math.floor(
         curr.offic['7day_avg'],
-      ).toLocaleString('cs')} za den</div><div class='vysvetl'>průměrně aplikovaných dávek (7denní průměr)</div>`;
+      ).toLocaleString('cs')} za den</div><div class='vysvetl'>aplikovaných dávek (průměr za posledních 7 dnů)</div>`;
       dashboardik.appendChild(p3);
 
       const p4 = document.createElement('DIV');
@@ -61,7 +61,7 @@
       p6.classList.add('boxik');
       p6.innerHTML = `<div class='cislo'>${Math.floor(
         dnuDoSplneni,
-      ).toLocaleString('cs')} dnů</div><div class='vysvetl'>by trvalo splnění plánu dosavadním tempem</div>`;
+      ).toLocaleString('cs')} dnů</div><div class='vysvetl'>by trvalo splnění plánu současným tempem</div>`;
       dashboardik.appendChild(p6);
 
       const p7 = document.createElement('DIV');
