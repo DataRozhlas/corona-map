@@ -61,7 +61,7 @@
           },
         },
         subtitle: {
-          text: `Aktualizováno ${parseInt(decUpd[2])}. ${parseInt(decUpd[1])}. <i>(Některé údaje mohou být chybné a ÚZIS zveřejnění dalších informací odmítá.)</i>`,
+          text: `Aktualizováno ${parseInt(decUpd[2])}. ${parseInt(decUpd[1])}. <i>(Čísla z některých krajů mohou být zpožděná.)</i>`,
           align: 'left',
           useHTML: true,
         },
