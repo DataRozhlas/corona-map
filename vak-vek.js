@@ -3,15 +3,23 @@
     .then((response) => response.json())
     .then((data) => {
       const lastDay = data.slice(-1)[0];
-      const decUpd = lastDay.ind.split('-')
-      delete lastDay['ind'];
-      const dat = [
-        {
-          name: 'očkovaní',
-          data: Object.values(lastDay),
-        },
-      ];
+      const decUpd = lastDay.ind.split('-');
 
+      const tmp = {};
+      data.forEach((day) => {
+        Object.keys(day).forEach((group) => {
+          if (!(group in tmp)) {
+            tmp[group] = 0;
+          }
+          tmp[group] += day[group];
+        });
+      });
+      delete tmp.ind;
+
+      const dat = [];
+      Object.keys(tmp).forEach((group) => {
+        dat.push([group, tmp[group]]);
+      });
 
       Highcharts.chart('covid_vak_age', {
         chart: {
@@ -63,7 +71,12 @@
             borderRadius: 2,
           },
         },
-        series: dat,
+        series: [
+          {
+            name: 'očkovaní',
+            data: dat,
+          },
+        ],
       });
     });
 }());
