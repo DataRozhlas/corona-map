@@ -73,7 +73,7 @@
         },
         series: [
           {
-            name: 'očkovaní',
+            name: 'počet vakcín',
             data: dat,
           },
         ],
