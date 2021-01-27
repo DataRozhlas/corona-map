@@ -21,6 +21,14 @@
         dat.push([group, tmp[group]]);
       });
 
+      dat.sort((a, b) => {
+        if (a[0] < b[0]) { return -1; }
+        if (a[0] > b[0]) { return 1; }
+        return 0;
+      });
+
+      console.log(dat)
+
       Highcharts.chart('covid_vak_age', {
         chart: {
           type: 'bar',
@@ -44,7 +52,7 @@
           align: 'left',
         },
         xAxis: {
-          categories: Object.keys(lastDay),
+          categories: dat.map((r) => r[0]),
           crosshair: true,
         },
         yAxis: {
