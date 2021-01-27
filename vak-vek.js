@@ -27,8 +27,6 @@
         return 0;
       });
 
-      console.log(dat)
-
       Highcharts.chart('covid_vak_age', {
         chart: {
           type: 'bar',
