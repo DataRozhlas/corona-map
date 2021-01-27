@@ -12,7 +12,13 @@
         tmp.push([ind, Object.values(row).reduce((a, b) => a + b, 0)]);
       });
 
-      const tmp_7day = [];
+      const tmp7day = [];
+      tmp.forEach((day, idx) => {
+        if (idx >= 6) {
+          const week = tmp.slice(idx - 6, idx).map((rec) => rec[1]);
+          tmp7day.push([day[0], week.reduce((a, b) => a + b, 0) / 7]);
+        }
+      });
 
       Highcharts.setOptions({
         lang: {
@@ -56,15 +62,18 @@
           },
         },
         tooltip: {
-          useHTML: true,
           dateTimeLabelFormats: {
             day: '%A %d. %m.',
           },
           style: {
             fontSize: '0.8rem',
           },
+          valueDecimals: 0,
         },
         plotOptions: {
+          series: {
+            animation: false,
+          },
           line: {
             marker: {
               enabled: false,
@@ -77,7 +86,7 @@
           color: '#de2d26',
         }, {
           name: 'týdenní průměr',
-          data: tmp_7day,
+          data: tmp7day,
           color: '#756bb1',
         }],
       });
