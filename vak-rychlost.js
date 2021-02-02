@@ -62,6 +62,7 @@
           },
         },
         tooltip: {
+          valueSuffix: ' denně',
           dateTimeLabelFormats: {
             day: '%A %d. %m.',
           },
