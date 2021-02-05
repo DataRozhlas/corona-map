@@ -85,6 +85,7 @@
           name: 'očkování',
           data: tmp,
           color: '#de2d26',
+          type: 'column',
         }, {
           name: 'týdenní průměr',
           data: tmp7day,
