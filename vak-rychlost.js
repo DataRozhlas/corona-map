@@ -23,7 +23,7 @@
       Highcharts.setOptions({
         lang: {
           numericSymbols: [' tis.', ' mil.'],
-          weekdays: ['pondělí', 'úterý', 'středa', 'čtvrtek', 'pátek', 'sobota', 'neděle'],
+          weekdays: ['neděle', 'pondělí', 'úterý', 'středa', 'čtvrtek', 'pátek', 'sobota'],
         },
       });
 
