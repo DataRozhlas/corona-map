@@ -1,12 +1,13 @@
 (function () {
-  fetch('https://data.irozhlas.cz/covid-uzis/hospital.json')
+  fetch('https://data.irozhlas.cz/covid-uzis/nemocnice_kapacity.json')
     .then((response) => response.json())
     .then((data) => {
+      data = data.filter((r) => Date.parse(r.datum) >= 1604188800000);
       const srs = [];
       srs.push(
         {
-          name: 'Hospitalizovaní',
-          data: data.map((v) => [Date.parse(v.date), parseInt(v.hospital)]),
+          name: 'Volná místa na JIP (covid)',
+          data: data.map((v) => [Date.parse(v.datum), parseInt(v.jip)]),
           color: '#fc9272',
           visible: true,
           lineWidth: 0.5,
@@ -18,8 +19,8 @@
 
       srs.push(
         {
-          name: 'Těžce nemocní',
-          data: data.map((v) => [Date.parse(v.date), parseInt(v.tezke)]),
+          name: 'Volná lůžka s kyslíkem (covid)',
+          data: data.map((v) => [Date.parse(v.datum), parseInt(v.kyslik)]),
           color: '#e63946',
           visible: true,
           lineWidth: 0.5,
@@ -42,12 +43,12 @@
       });
       Highcharts.chart('corona_hospital', {
         chart: {
-          type: 'area',
+          type: 'line',
           spacingLeft: 0,
           spacingRight: 0,
         },
         title: {
-          text: 'Počet hospitalizovaných a těžce nemocných v ČR v souvislosti s COVID-19',
+          text: 'Volná místa pro pacienty s covid-19',
           align: 'left',
           style: {
             fontWeight: 'bold',
@@ -59,27 +60,9 @@
         },
         yAxis: {
           title: {
-            text: 'počet nemocných',
+            text: 'volná místa',
           },
-          // max: 1700,
-          plotLines: [{
-            color: 'black',
-            dashStyle: 'dot',
-            value: 3942, // kapacita péče
-            width: 1.5,
-            zIndex: 10000,
-            label: {
-              text: 'Kapacita péče o těžce nemocné',
-              rotation: 0,
-              textAlign: 'left',
-              y: -5,
-              align: 'left',
-              style: {
-                color: '#444',
-                fontWeight: 'bold',
-              },
-            },
-          }],
+          // max: 1700,,
           plotBands: [{
             color: '#f2f2f2',
             from: 0,
