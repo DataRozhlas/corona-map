@@ -2,6 +2,7 @@
   fetch('https://data.irozhlas.cz/covid-uzis/vak_kraje.json')
     .then((response) => response.json())
     .then((data) => {
+      data.sort((a, b) => Date.parse(a.ind) - Date.parse(b.ind));
       const lastDay = data.slice(-1)[0];
       const decUpd = lastDay.ind.split('-');
       const tmp = [];
