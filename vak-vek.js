@@ -2,6 +2,7 @@
   fetch('https://data.irozhlas.cz/covid-uzis/vak_vek.json')
     .then((response) => response.json())
     .then((data) => {
+      data.sort((a, b) => Date.parse(a.ind) - Date.parse(b.ind));
       const lastDay = data.slice(-1)[0];
       const decUpd = lastDay.ind.split('-');
 
@@ -62,7 +63,7 @@
           backgroundColor: '#ffffffee',
           headerFormat: '<span style="font-size:0.8rem"><b>Věk {point.key}</b></span><table>',
           pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>'
-                        + '<td style="padding:0"><b>{point.y:.0f}</b></td></tr>',
+            + '<td style="padding:0"><b>{point.y:.0f}</b></td></tr>',
           footerFormat: '</table>',
           shared: true,
           useHTML: true,
