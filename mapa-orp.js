@@ -67,9 +67,9 @@
                   const rec = data.data.find((v) => v[0] === this.KOD);
                   const nazok = geojson.features.find((v) => v.properties.KOD === this.KOD);
                   return `<b>${nazok.properties.NAZ_ORP}<br>`
-                            + `týdně <b>${rec[1]}</b> nově nemocných (<b>${Math.round(this.value * 10) / 10}</b> na tis. obyv.)<br>`
-                            + `<b>${rec[2] + rec[3]}</b> ve věku 65 let a více<br>`
-                            + `<b>${rec[7]}</b> aktuálně hospitalizovaných`;
+                    + `týdně <b>${rec[1]}</b> nově nemocných (<b>${Math.round(this.value * 10) / 10}</b> na tis. obyv.)<br>`
+                    + `<b>${rec[2] + rec[3]}</b> ve věku 65 let a více<br>`
+                    + `<b>${rec[7]}</b> aktuálně hospitalizovaných`;
                 },
               },
               dataLabels: {
