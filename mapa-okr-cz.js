@@ -8,9 +8,9 @@
         .then((geojson) => {
           const mapDat = [];
           data.data.forEach((f) => {
-            const gjs = geojson.features.filter((v) => v.properties.LAU1 === f[0])[0];
+            const gjs = geojson.features.filter((v) => v.properties.LAU1 === f[1])[0];
             if (gjs === undefined) { return; }
-            mapDat.push([f[0], ((f[1] - f[2] - f[3]) / gjs.properties.OBAKT) * 100000]);
+            mapDat.push([f[1], ((f[2] - f[3] - f[4]) / gjs.properties.OBAKT) * 100000]);
           });
 
           Highcharts.mapChart('corona_okr_map', {
@@ -65,11 +65,11 @@
               },
               tooltip: {
                 pointFormatter() {
-                  const rec = data.data.find((v) => v[0] === this.LAU1);
+                  const rec = data.data.find((v) => v[1] === this.LAU1);
                   const nazok = geojson.features.find((v) => v.properties.LAU1 === this.LAU1);
                   return `<b>${nazok.properties.NAZOK}<br>`
-                            + `aktuálně <b>${Math.round(this.value * 10) / 10}</b> osob nemocných na 100 tisíc obyvatel<br>`
-                            + `za dobu epidemie celkem ${rec[1]} nemocných, ${rec[2]} vyléčených a ${rec[3]} mrtvých`;
+                    + `aktuálně <b>${Math.round(this.value * 10) / 10}</b> osob nemocných na 100 tisíc obyvatel<br>`
+                    + `za dobu epidemie celkem ${rec[2]} nemocných, ${rec[3]} vyléčených a ${rec[4]} mrtvých`;
                 },
               },
               dataLabels: {

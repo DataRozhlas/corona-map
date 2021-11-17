@@ -14,9 +14,9 @@
 
       // poslednich 7 dni
       let infected = data.data.slice(-9).map((v) => [Date.parse(v.datum),
-        parseInt(v.kumulovany_pocet_nakazenych, 10)]);
+      parseInt(v.kumulativni_pocet_nakazenych, 10)]);
       let deceased = data.data.slice(-9).map((v) => [Date.parse(v.datum),
-        parseInt(v.kumulovany_pocet_umrti, 10)]);
+      parseInt(v.kumulativni_pocet_umrti, 10)]);
 
       infected = infected.map((v, i) => {
         if (i !== 0) {
