@@ -19,6 +19,7 @@
   fetch('https://data.irozhlas.cz/covid-uzis/nemocnice.json')
     .then((response) => response.json())
     .then((data) => {
+      console.log(data)
       data.sort((a, b) => Date.parse(a.upd) - Date.parse(b.upd));
       data.forEach((day) => { day.upd = day.upd.substring(0, 10); });
 
@@ -113,8 +114,8 @@
         },
         subtitle: {
           text: "<span style='background-color: #e7e7e7;'>"
-          + "<span style='color:#e7e7e7'>.</span>Šedá plocha </span> označuje rozmezí volné lůžkové kapacity mezi kraji. " + `Naposledy aktualizováno ${upd.getDate()}. ${upd.getMonth() + 1}. 2020.` // v ${upd.getHours()}:${upd.getMinutes()}`
-          + "<span class='mock-empty-line'><br>.</span>",
+            + "<span style='color:#e7e7e7'>.</span>Šedá plocha </span> označuje rozmezí volné lůžkové kapacity mezi kraji. " + `Naposledy aktualizováno ${upd.getDate()}. ${upd.getMonth() + 1}. 2020.` // v ${upd.getHours()}:${upd.getMinutes()}`
+            + "<span class='mock-empty-line'><br>.</span>",
           useHTML: true,
         },
         colors: ['#a6cee3', '#1f78b4', '#b2df8a', '#33a02c', '#fb9a99', '#e31a1c', '#fdbf6f', '#ff7f00', '#cab2d6', '#6a3d9a', 'black', '#b15928'],
@@ -134,7 +135,7 @@
             formatter() {
               if (this.isLast) {
                 return `${this.value
-                } %<br>volných lůžek`;
+                  } %<br>volných lůžek`;
                 // + ' %<br><span class="axis-label-on-tick">volných lůžek</span>'
               }
               return `${this.value} %`;
