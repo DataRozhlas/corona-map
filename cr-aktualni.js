@@ -1,8 +1,26 @@
 (function () {
-  fetch('https://data.irozhlas.cz/covid-uzis/nakazeni-vyleceni-umrti-testy.json')
-    .then((response) => response.json())
+  function parseCsv(fle) {
+    const rows = fle.split('\r\n');
+    const header = rows[0].split(',');
+    const data = [];
+    rows.slice(1).map((row) => {
+      const rw = {};
+      row.split(',').map((val, i) => {
+        if (!isNaN(val)) {
+          val = parseFloat(val) || parseInt(val);
+        }
+        rw[header[i]] = val;
+      });
+      data.push(rw);
+    });
+    return data;
+  }
+
+  fetch('https://data.irozhlas.cz/covid-uzis/nakazeni-vyleceni-umrti-testy.csv')
+    .then((response) => response.text())
     .then((dt) => {
-      const current = dt.data.map((v) => [Date.parse(v.datum), v.kumulativni_pocet_nakazenych
+      dt = parseCsv(dt);
+      const current = dt.map((v) => [Date.parse(v.datum), v.kumulativni_pocet_nakazenych
         - v.kumulativni_pocet_vylecenych - v.kumulativni_pocet_umrti]);
       const chartWidth = document.getElementById('corona_cz_akt').offsetWidth;
       let chartHeight = chartWidth * 0.4;
@@ -58,8 +76,8 @@
         tooltip: {
           backgroundColor: '#ffffffee',
           formatter() {
-            const dat = dt.data.find((v) => Date.parse(v.datum) === this.x);
-            const prev = dt.data.filter((v) => Date.parse(v.datum) < this.x);
+            const dat = dt.find((v) => Date.parse(v.datum) === this.x);
+            const prev = dt.filter((v) => Date.parse(v.datum) < this.x);
             let prevDpct = '?';
             let prevD = 0;
             try {

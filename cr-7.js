@@ -7,15 +7,32 @@
     },
   });
 
-  fetch('https://data.irozhlas.cz/covid-uzis/nakazeni-vyleceni-umrti-testy.json')
-    .then((response) => response.json())
+  function parseCsv(fle) {
+    const rows = fle.split('\r\n')
+    const header = rows[0].split(',')
+    let data = [];
+    rows.slice(1,).map((row) => {
+      let rw = {};
+      row.split(',').map((val, i) => {
+        if (!isNaN(val)) {
+          val = parseFloat(val) || parseInt(val);
+        }
+        rw[header[i]] = val;
+      })
+      data.push(rw)
+    })
+    return data;
+  }
+
+  fetch('https://data.irozhlas.cz/covid-uzis/nakazeni-vyleceni-umrti-testy.csv')
+    .then((response) => response.text())
     .then((data) => {
       const srs = [];
-
+      data = parseCsv(data);
       // poslednich 7 dni
-      let infected = data.data.slice(-9).map((v) => [Date.parse(v.datum),
+      let infected = data.slice(-9).map((v) => [Date.parse(v.datum),
       parseInt(v.kumulativni_pocet_nakazenych, 10)]);
-      let deceased = data.data.slice(-9).map((v) => [Date.parse(v.datum),
+      let deceased = data.slice(-9).map((v) => [Date.parse(v.datum),
       parseInt(v.kumulativni_pocet_umrti, 10)]);
 
       infected = infected.map((v, i) => {
