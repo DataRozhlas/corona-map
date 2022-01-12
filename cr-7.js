@@ -24,33 +24,22 @@
     return data;
   }
 
-  fetch('https://data.irozhlas.cz/covid-uzis/nakazeni-vyleceni-umrti-testy.csv')
-    .then((response) => response.text())
-    .then((data) => {
+  Promise.all([
+    fetch('https://data.irozhlas.cz/covid-uzis/nakazeni-vyleceni-umrti-testy.csv').then((d) => d.text()), 
+    fetch('https://data.irozhlas.cz/covid-uzis/nakazeni-reinfekce.csv').then((d) => d.text()),
+  ]).then((res) => {
+      const data = parseCsv(res[0]);
+      const rei = parseCsv(res[1])
+
       const srs = [];
-      data = parseCsv(data);
       // poslednich 7 dni
-      let infected = data.slice(-9).map((v) => [Date.parse(v.datum),
-      parseInt(v.kumulativni_pocet_nakazenych, 10)]);
-      let deceased = data.slice(-9).map((v) => [Date.parse(v.datum),
-      parseInt(v.kumulativni_pocet_umrti, 10)]);
-
-      infected = infected.map((v, i) => {
-        if (i !== 0) {
-          return [v[0], v[1] - infected[i - 1][1]];
-        }
-      });
-
-      deceased = deceased.map((v, i) => {
-        if (i !== 0) {
-          return [v[0], v[1] - deceased[i - 1][1]];
-        }
-      });
+      let infected = rei.slice(-10).map((v) => [Date.parse(v.datum), (v.nove_pripady || 0) + (v.nove_reinfekce || 0)]);
+      let deceased = data.slice(-9).map((v) => [Date.parse(v.datum), v.prirustkovy_pocet_umrti]);
 
       srs.push(
         {
           name: 'Denně zjištění nakažení',
-          data: infected.slice(1),
+          data: infected.slice(0,8),
           color: '#de2d26',
           visible: true,
           type: 'column',
