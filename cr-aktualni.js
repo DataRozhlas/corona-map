@@ -27,7 +27,7 @@
     let nakKum = 0
     const reiKum = {}
     rei.forEach((day) => {
-      nakKum += (day.nove_pripady || 0) + (day.nove_reinfekce || 0)
+      nakKum += (day.nove_pripady || 0) // + (day.nove_reinfekce || 0)
       reiKum[day.datum] = nakKum;
     });
 
